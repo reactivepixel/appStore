@@ -1,0 +1,26 @@
+{
+  "name": "app_store",
+  "version": "1.0.0",
+  "description": "A Game and Application Store for Exclusive use by Full Sail Students and Alumni",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node src/server.js"
+  },
+  "author": "Chapman",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.15.0",
+    "express": "4.13.4",
+    "mysql": "2.10.2",
+    "sequelize": "3.19.3",
+    "supertest": "1.2.0",
+    "validator": "4.9.0"
+  },
+  "devDependencies": {
+    "dotenv": "^2.0.0",
+    "faker": "^3.0.1",
+    "mocha": "2.4.5",
+    "supertest": "^1.2.0"
+  }
+}
