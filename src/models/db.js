@@ -176,7 +176,7 @@ module.exports = function() {
   _user.hasMany(_list, {
     foreignKey: 'user_id'
   });
-  
+
   _app.belongsToMany(_list, {
     through: 'listedApp'
   });

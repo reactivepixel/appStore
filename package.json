@@ -4,7 +4,7 @@
   "description": "A Game and Application Store for Exclusive use by Full Sail Students and Alumni",
   "main": "./src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "PORT=9000 DEBUG=true mocha",
     "start": "node src/server.js"
   },
   "author": "Chapman",

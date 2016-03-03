@@ -1,7 +1,7 @@
-# ProRubrics
-#### Better than Spreadsheets
+# Gravity App Store
+####
 
-ProRubrics is a service built to simplify the grading process.
+A Game and Application Store. 
 
 ## Usage
 

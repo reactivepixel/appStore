@@ -15,5 +15,13 @@ module.exports = function (express) {
   router.get('/status', function(req, res) {
     res.status(200).json({ healthy: true });
   });
+
+
+  // Routes
+  router.use('/api/', require('./api/user')(express));
+  router.use('/api/', require('./api/app')(express));
+
+
+
   return router;
 };
