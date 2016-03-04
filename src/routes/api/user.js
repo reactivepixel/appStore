@@ -14,7 +14,7 @@ module.exports = function (express) {
   });
 
   // Read All
-  router.get('/user', function(req, res) {
+  router.get('/users', function(req, res) {
     user.findAll(function(err){
       // Error Encountered
       res.status(500).json(err);

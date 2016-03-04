@@ -2,14 +2,14 @@ var request = require('supertest');
 var faker = require('faker');
 var util = require('../lib/util.js');
 
-describe('User Routes', function() {
+describe('App Routes', function() {
   var server;
   var testingObjData = {
-    dispName: faker.name.findName(),
-    email: faker.internet.email(),
-    password: 'unhashed',
-    phone: faker.phone.phoneNumber()
+    title: faker.company.companyName(),
+    description: faker.company.bs(),
+    user_id: 1
   }
+
   var testingObj;
 
   // Before / After each test create / destroy the express server to fully simulate unique requests.
@@ -21,18 +21,18 @@ describe('User Routes', function() {
     server.close();
   });
 
-  // User Create One
-  it('User Create One', function(done){
+  // App Create One
+  it('App Create One', function(done){
     request(server)
-      .put('/api/user')
+      .put('/api/app')
       .set('Accept', 'application/json')
       .send(testingObjData)
       .expect('Content-Type', /json/)
       .expect(function(res){
         if(!util.hayTest(testingObjData, res.body)) throw new Error('hayTest has concluded that data sent to and received from the server does not match.');
 
-        util.debug('User Create Route Request Data', testingObjData);
-        util.debug('User Create Route Response', res.body);
+        util.debug('App Create Route Request Data', testingObjData);
+        util.debug('App Create Route Response', res.body);
 
         // Save info about the created as our Testing Object
         testingObj = res.body;
@@ -40,66 +40,62 @@ describe('User Routes', function() {
       .expect(200, done);
   });
 
-  // User Update One
-  it('User Update', function(done){
+  // App Update One
+  it('App Update', function(done){
     var payload = testingObj;
     var testingObjDataKeys = Object.keys(testingObjData);
     payload[testingObjDataKeys[0]] = faker.company.bs();
     request(server)
-      .put('/api/user/' + payload.id.toString())
+      .put('/api/app/' + payload.id.toString())
       .set('Accept', 'application/json')
       .send(payload)
       .expect('Content-Type', /json/)
       .expect(function(res){
         if(!util.hayTest(payload, res.body)) throw new Error('hayTest has concluded that data sent to and received from the server does not match.');
-
-        util.debug('User Update Payload', payload);
-        util.debug('User Update Route Response', res.body);
+        util.debug('App Update Payload', payload);
+        util.debug('App Update Route Response', res.body);
       })
       .expect(200, done);
   });
 
-  // User Read One
-  it('User Read One', function(done){
+  // App Read One
+  it('App Read One', function(done){
     request(server)
-      .get('/api/user/' + testingObj.id.toString())
+      .get('/api/app/' + testingObj.id.toString())
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(function(res){
         if(!util.hayTest(testingObj, res.body)) throw new Error('hayTest has concluded that data sent to and received from the server does not match.');
-
-        util.debug('User Read Testing Data', testingObj);
-        util.debug('User Read Route Response', res.body);
+        util.debug('App Read Testing Data', testingObj);
+        util.debug('App Read Route Response', res.body);
       })
       .expect(200, done);
   });
 
-  // User Read All
-  it('User Read All', function(done){
+  // App Read All
+  it('App Read All', function(done){
     request(server)
-      .get('/api/users')
+      .get('/api/apps')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(function(res){
-        if(res.body.length < 1) throw new Error('Less than 1 entry in the User Table');
-
-        util.debug('User Read All Route Response', res.body);
+        if(res.body.length < 1) throw new Error('Less than 1 entry in the App Table');
+        util.debug('App Read All Route Response', res.body);
       })
       .expect(200, done);
   });
 
-  // User Destroy
-  it('User Destroy', function(done){
+  // App Destroy
+  it('App Destroy', function(done){
     request(server)
-      .delete('/api/user/' + testingObj.id.toString())
+      .delete('/api/app/' + testingObj.id.toString())
       .set('Accept', 'application/json')
       .send({force: true})
       .expect('Content-Type', /json/)
       .expect(function(res){
         if(!res.body.success) throw new Error('Destroy did not correctly work');
-
-        util.debug('User Delete User Data', testingObj);
-        util.debug('User Delete Route Response', res.body);
+        util.debug('App Delete App Data', testingObj);
+        util.debug('App Delete Route Response', res.body);
       })
       .expect(200, done);
   });
