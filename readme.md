@@ -42,13 +42,16 @@ An automatic list showcasing the new and most downloaded/viewed/reviewed applica
 In addition to a Terms of Service for Users, Developers and Admins will need to consent to and abide by a set of principles to help guide conduct between users, devs, and admins. If viruses or other malicious code is found in any application or game it will be immediately removed, the developer account will be suspended, pending review and possible further action in addition to the users that have previously installed may be contacted if able to warn of the threat.
 
 ## Tech Stack
-* **Web Server** - Node.js Server running an API built on Express
-* **Front End** - Either AngularJS or ReactJS (further internal debate will determine) front end will consume the API.
-* **Database** - MySql will provide the Data Relations to tie everything together.
-* **Hosting** - Heroku will provide the initial platform to host. The application will be built in such a way that it can easily be migrated to a VPS hosted solution once it out-scales the constraints of Heroku’s free hosting options.
-* **Unit Tests** - Mocha will be used to provide the stability over time this project will need.
-* **Automated QA** - Codeship will be our build and test runner tool to not encumber our production environment.
-* **Various Notables for Inclusion** - CodeClimate, Sequelizejs, Gulp, Papertrailsapp, Github Workflow, PassportJS, JSON Web Tokens (JWT), SemVer
+
+|Considerations| |
+|---|---|
+| Web Server | Node.js Server running an API built on Express |
+| Front End | Either AngularJS or ReactJS (further internal debate will determine) front end will consume the API. |
+| Database| MySql will provide the Data Relations to tie everything together.|
+|Hosting| Heroku will provide the initial platform to host. The application will be built in such a way that it can easily be migrated to a VPS hosted solution once it out-scales the constraints of Heroku’s free hosting options.|
+|Unit Tests| Mocha will be used to provide the stability over time this project will need.|
+|Automated QA| Codeship will be our build and test runner tool to not encumber our production environment.|
+|Various Notables for Inclusion| CodeClimate, Sequelizejs, Gulp, Papertrailsapp, Github Workflow, PassportJS, JSON Web Tokens (JWT), SemVer |
 
 
 ## Unit Testing
