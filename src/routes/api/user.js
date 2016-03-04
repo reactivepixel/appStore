@@ -1,6 +1,7 @@
 module.exports = function (express) {
   var router = express.Router();
   var user = require('../../models/user.js');
+  var util = require('../../../lib/util');
 
   // Read One
   router.get('/user/:id', function(req, res) {

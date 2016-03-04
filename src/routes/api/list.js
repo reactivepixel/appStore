@@ -1,12 +1,12 @@
 module.exports = function (express) {
   var router = express.Router();
-  var app = require('../../models/app.js');
+  var list = require('../../models/list.js');
   var util = require('../../../lib/util');
 
   // Read One
-  router.get('/app/:id', function(req, res) {
+  router.get('/list/:id', function(req, res) {
     req.body.id = req.params.id;
-    app.find(req.body,function(err){
+    list.find(req.body,function(err){
       // Error Encountered
       res.status(500).json(err);
     },function(data) {
@@ -15,8 +15,8 @@ module.exports = function (express) {
   });
 
   // Read All
-  router.get('/apps', function(req, res) {
-    app.findAll(function(err){
+  router.get('/lists', function(req, res) {
+    list.findAll(function(err){
       // Error Encountered
       res.status(500).json(err);
     },function(data) {
@@ -25,8 +25,9 @@ module.exports = function (express) {
   });
 
   // Create
-  router.put('/app', function(req, res) {
-    app.create(req.body,function(err){
+  router.put('/list', function(req, res) {
+    util.debug('List Route Create Payload', req.body);
+    list.create(req.body,function(err){
       // Error Encountered
       res.status(500).json(err);
     },function(data) {
@@ -35,9 +36,9 @@ module.exports = function (express) {
   });
 
   // Update
-  router.put('/app/:id', function(req, res) {
+  router.put('/list/:id', function(req, res) {
     req.body.id = req.params.id;
-    app.update(req.body,function(err){
+    list.update(req.body,function(err){
       // Error Encountered
       res.status(500).json(err);
     },function(data) {
@@ -46,9 +47,9 @@ module.exports = function (express) {
   });
 
   // Delete One
-  router.delete('/app/:id', function(req, res) {
+  router.delete('/list/:id', function(req, res) {
     req.body.id = req.params.id;
-    app.destroy(req.body,function(err){
+    list.destroy(req.body,function(err){
       // Error Encountered
       res.status(500).json(err);
     },function(data) {

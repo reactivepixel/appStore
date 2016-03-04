@@ -19,6 +19,7 @@ module.exports = function(express) {
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
   router.use('/api/', require('./api/app_assets')(express));
+  router.use('/api/', require('./api/list')(express));
 
 
   return router;
