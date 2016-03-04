@@ -10,11 +10,11 @@
   "author": "Chapman",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "0.8.5",
     "body-parser": "1.15.0",
     "express": "4.13.4",
     "mysql": "2.10.2",
     "sequelize": "3.19.3",
-    "supertest": "1.2.0",
     "validator": "4.9.0"
   },
   "devDependencies": {

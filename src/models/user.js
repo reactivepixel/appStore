@@ -1,10 +1,20 @@
 module.exports = function() {
   var db = require('./db.js');
   var sequelize = db.connection;
+  var util = require('../../lib/util');
 
   function _create(payload, err, success) {
     var cleanData = payload;
-    db.user.create(cleanData).then(success).catch(err);
+    var cryptedData;
+
+    // Hash the user's password
+    util.hash(cleanData.password, function(err, hash){
+      cleanData.password = hash;
+      var cryptedData = cleanData;
+
+      // Save the user with crypted hash
+      db.user.create(cryptedData).then(success).catch(err);
+    });
   }
 
   function _update(payload, err, success) {

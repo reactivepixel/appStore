@@ -17,6 +17,11 @@ module.exports = function() {
   //    User
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _user = _sequelize.define('user', {
+    id: {
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      primaryKey: true
+    },
     dispName: {
       type: Sequelize.STRING
     },
@@ -66,6 +71,11 @@ module.exports = function() {
   //    Apps
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _app = _sequelize.define('app', {
+    id: {
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      primaryKey: true
+    },
     title: {
       type: Sequelize.STRING
     },
