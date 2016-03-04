@@ -16,11 +16,17 @@ module.exports = function() {
 
   function _find(payload, err, success){
     var cleanData = payload;
-    db.app.find({where:{id:cleanData.id}}).then(success).catch(err);
+    db.app.find({where:{id:cleanData.id},  include: [{
+        all: true,
+        nested: true
+      }]}).then(success).catch(err);
   }
 
   function _findAll(err, success){
-    db.app.findAll().then(success).catch(err);
+    db.app.findAll({  include: [{
+        all: true,
+        nested: true
+      }]}).then(success).catch(err);
   }
 
   function _destroy(payload, err, success){

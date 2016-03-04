@@ -18,6 +18,8 @@ module.exports = function(express) {
   // Routes
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
+  router.use('/api/', require('./api/app_assets')(express));
+
 
   return router;
 };
