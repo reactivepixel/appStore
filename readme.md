@@ -1,4 +1,11 @@
-# Gravity Outline
+# Gravity App Store
+## Unit Testing
+
+`./test/__app.js` requires that a user exist in the system with id of `3341f2aa-c8dd-465c-b6c8-a793d4426db9`. TODO: refactor this unit test to be more dynamic.
+
+
+## Outline
+
 A Game and Application Store for exclusive use by Full Sail Students and Alumni. This outline serves as a roadmap for features to be developed.
 
 ## Roles
@@ -52,8 +59,3 @@ In addition to a Terms of Service for Users, Developers and Admins will need to 
 |Unit Tests| Mocha will be used to provide the stability over time this project will need.|
 |Automated QA| Codeship will be our build and test runner tool to not encumber our production environment.|
 |Various Notables for Inclusion| CodeClimate, Sequelizejs, Gulp, Papertrailsapp, Github Workflow, PassportJS, JSON Web Tokens (JWT), SemVer |
-
-
-## Unit Testing
-
-`./test/__app.js` requires that a user exist in the system with id of `3341f2aa-c8dd-465c-b6c8-a793d4426db9`. TODO: refactor this unit test to be more dynamic.
