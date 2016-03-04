@@ -156,7 +156,7 @@ module.exports = function() {
   //    Listed Apps
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _listedApp = _sequelize.define('listedApp', {}, {
-    paranoid: true
+    paranoid: false
   });
 
 
@@ -191,6 +191,7 @@ module.exports = function() {
     app: _app,
     appAsset: _appAsset,
     list: _list,
+    listedApp: _listedApp,
     role: _role
   }
 }();

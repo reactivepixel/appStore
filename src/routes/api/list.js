@@ -26,7 +26,7 @@ module.exports = function (express) {
 
   // Create
   router.put('/list', function(req, res) {
-    util.debug('List Route Create Payload', req.body);
+    util.debug('List Route Create Request', req.body);
     list.create(req.body,function(err){
       // Error Encountered
       res.status(500).json(err);
