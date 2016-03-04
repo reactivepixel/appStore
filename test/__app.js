@@ -2,7 +2,7 @@ var request = require('supertest');
 var faker = require('faker');
 var util = require('../lib/util.js');
 
-describe('App Routes', function() {
+describe('API: App Routes', function() {
   var server;
   var testingObjData = {
     title: faker.company.companyName(),

@@ -5,23 +5,24 @@ module.exports = function() {
 
   function _create(payload, err, success) {
     var cleanData = payload;
-    db.app.create(cleanData).then(success).catch(err);
+    db.appAsset.create(cleanData).then(success).catch(err);
   }
 
   function _update(payload, err, success) {
     var cleanData = payload;
-    db.app.find({
+    db.appAsset.find({
       where: {
         id: cleanData.id
       }
-    }).then(function(matchedapp) {
-      matchedapp.updateAttributes(payload).then(success).catch(err);
+    }).then(function(matchedAppAsset) {
+      matchedAppAsset.updateAttributes(payload).then(success).catch(err);
     }).catch(err);
   }
 
   function _find(payload, err, success) {
+    util.debug('App Asset Model _Find Payload', payload)
     var cleanData = payload;
-    db.app.find({
+    db.appAsset.find({
       where: {
         id: cleanData.id
       },
@@ -33,7 +34,7 @@ module.exports = function() {
   }
 
   function _findAll(err, success) {
-    db.app.findAll({
+    db.appAsset.findAll({
       include: [{
         all: true,
         nested: true
@@ -43,7 +44,7 @@ module.exports = function() {
 
   function _destroy(payload, err, success) {
     var cleanData = payload;
-    db.app.destroy({
+    db.appAsset.destroy({
       where: {
         id: cleanData.id
       },

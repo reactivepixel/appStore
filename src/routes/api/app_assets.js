@@ -1,57 +1,69 @@
-module.exports = function (express) {
+module.exports = function(express) {
   var router = express.Router();
-  var app = require('../../models/app.js');
-
+  var appAsset = require('../../models/app_asset.js');
+  var util = require('../../../lib/util');
   // Read One
-  router.get('/app/:id', function(req, res) {
-    req.body.id = req.params.id;
-    app.find(req.body,function(err){
+  router.get('/asset/:asset_id', function(req, res) {
+    req.body.id = req.params.asset_id;
+    appAsset.find(req.body, function(err) {
       // Error Encountered
       res.status(500).json(err);
-    },function(data) {
+    }, function(data) {
       res.status(200).json(data);
     });
   });
 
   // Read All
-  router.get('/apps', function(req, res) {
-    app.findAll(function(err){
+  router.get('/assets', function(req, res) {
+    appAsset.findAll(function(err) {
       // Error Encountered
       res.status(500).json(err);
-    },function(data) {
+    }, function(data) {
       res.status(200).json(data);
     });
   });
 
   // Create
-  router.put('/app', function(req, res) {
-    app.create(req.body,function(err){
-      // Error Encountered
-      res.status(500).json(err);
-    },function(data) {
+  router.put('/app/:app_id/asset', function(req, res) {
+    req.body.app_id = req.params.app_id;
+    appAsset.create(req.body, function(err) {
+
+      // Error Encountered, try removing id and try again.
+      // TODO: Impliment this on other Creates, improve logic and error handling
+      delete req.body.id;
+      appAsset.create(req.body, function(err) {
+        res.status(500).json(err);
+      }, function(data) {
+        res.status(200).json(data);
+      });
+    }, function(data) {
       res.status(200).json(data);
     });
   });
 
   // Update
-  router.put('/app/:id', function(req, res) {
-    req.body.id = req.params.id;
-    app.update(req.body,function(err){
+  router.put('/app/:app_id/asset/:asset_id', function(req, res) {
+    req.body.app_id = req.params.app_id;
+    req.body.id = req.params.asset_id;
+    util.debug('App Asset Update Route Request Body', req.body);
+    appAsset.update(req.body, function(err) {
       // Error Encountered
       res.status(500).json(err);
-    },function(data) {
+    }, function(data) {
       res.status(200).json(data);
     });
   });
 
   // Delete One
-  router.delete('/app/:id', function(req, res) {
-    req.body.id = req.params.id;
-    app.destroy(req.body,function(err){
+  router.delete('/app/:id/asset/:asset_id', function(req, res) {
+    req.body.id = req.params.asset_id;
+    appAsset.destroy(req.body, function(err) {
       // Error Encountered
       res.status(500).json(err);
-    },function(data) {
-      res.status(200).json({success:data});
+    }, function(data) {
+      res.status(200).json({
+        success: data
+      });
     });
   });
 

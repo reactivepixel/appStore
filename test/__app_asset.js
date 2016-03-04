@@ -2,14 +2,14 @@ var request = require('supertest');
 var faker = require('faker');
 var util = require('../lib/util.js');
 
-describe('API: User Routes', function() {
+describe('API: App Asset Routes', function() {
   var server;
   var testingObjData = {
-    dispName: faker.name.findName(),
-    email: faker.internet.email(),
-    password: '',
-    phone: faker.phone.phoneNumber()
+    app_id: '524ba389-53c2-449b-a7d4-e77aa8b5c07f',
+    link: faker.image.imageUrl(),
+    type: 'image'
   }
+
   var testingObj;
 
   // Before / After each test create / destroy the express server to fully simulate unique requests.
@@ -21,16 +21,16 @@ describe('API: User Routes', function() {
     server.close();
   });
 
-  // User Create One
-  it('User Create One', function(done) {
+  // App Asset Create One
+  it('App Asset Create One', function(done) {
     request(server)
-      .put('/api/user')
+      .put('/api/app/' + testingObjData.app_id + '/asset')
       .set('Accept', 'application/json')
       .send(testingObjData)
       .expect('Content-Type', /json/)
       .expect(function(res) {
-        util.debug('User Create Route Request Data', testingObjData);
-        util.debug('User Create Route Response', res.body);
+        util.debug('App Asset Create Route Request Data', testingObjData);
+        util.debug('App Asset Create Route Response', res.body);
 
         if (!util.hayTest(testingObjData, res.body)) throw new Error('hayTest has concluded that data sent to and received from the server does not match.');
 
@@ -40,66 +40,65 @@ describe('API: User Routes', function() {
       .expect(200, done);
   });
 
-  // User Update One
-  it('User Update', function(done) {
+  // App Asset Update One
+  it('App Asset Update', function(done) {
     var payload = testingObj;
-    var testingObjDataKeys = Object.keys(testingObjData);
-    payload[testingObjDataKeys[0]] = faker.company.bs();
+    payload.link = faker.image.imageUrl() + '?update=true';
     request(server)
-      .put('/api/user/' + payload.id.toString())
+      .put('/api/app/' + testingObjData.app_id + '/asset/' + payload.id.toString())
       .set('Accept', 'application/json')
       .send(payload)
       .expect('Content-Type', /json/)
       .expect(function(res) {
-        util.debug('User Update Payload', payload);
-        util.debug('User Update Route Response', res.body);
+        util.debug('App Asset Update Payload', payload);
+        util.debug('App Asset Update Route Response', res.body);
 
         if (!util.hayTest(payload, res.body)) throw new Error('hayTest has concluded that data sent to and received from the server does not match.');
       })
       .expect(200, done);
   });
 
-  // User Read One
-  it('User Read One', function(done) {
+  // App Asset Read One
+  it('App Asset Read One', function(done) {
     request(server)
-      .get('/api/user/' + testingObj.id.toString())
+      .get('/api/asset/' + testingObj.id.toString())
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(function(res) {
-        util.debug('User Read Testing Data', testingObj);
-        util.debug('User Read Route Response', res.body);
+        util.debug('App Asset Read Testing Data', testingObj);
+        util.debug('App Asset Read Route Response', res.body);
 
         if (!util.hayTest(testingObj, res.body)) throw new Error('hayTest has concluded that data sent to and received from the server does not match.');
       })
       .expect(200, done);
   });
 
-  // User Read All
-  it('User Read All', function(done) {
+  // App Asset Read All
+  it('App Asset Read All', function(done) {
     request(server)
-      .get('/api/users')
+      .get('/api/assets')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(function(res) {
-        util.debug('User Read All Route Response', res.body);
+        util.debug('App Asset Read All Route Response', res.body);
 
-        if (res.body.length < 1) throw new Error('Less than 1 entry in the User Table');
+        if (res.body.length < 1) throw new Error('Less than 1 entry in the App Asset Table');
       })
       .expect(200, done);
   });
 
-  // User Destroy
-  it('User Destroy', function(done) {
+  // App Asset Destroy
+  it('App Asset Destroy', function(done) {
     request(server)
-      .delete('/api/user/' + testingObj.id.toString())
+      .delete('/api/app/' + testingObjData.app_id + '/asset/' + testingObj.id.toString())
       .set('Accept', 'application/json')
       .send({
         force: true
       })
       .expect('Content-Type', /json/)
       .expect(function(res) {
-        util.debug('User Delete User Data', testingObj);
-        util.debug('User Delete Route Response', res.body);
+        util.debug('App Asset Delete App Asset Data', testingObj);
+        util.debug('App Asset Delete Route Response', res.body);
 
         if (!res.body.success) throw new Error('Destroy did not correctly work');
       })
