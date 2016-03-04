@@ -43,31 +43,24 @@ module.exports = function() {
   }, {
     paranoid: true
   });
-  //
-  // // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  // //    Social Accounts
-  // // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  // var _socialAccount = _sequelize.define('socialAccount', {
-  //   identNum: {
-  //     type: Sequelize.INTEGER
-  //   },
-  //   publicLink: {
-  //     type: Sequelize.STRING
-  //   }
-  // }, {
-  //   paranoid: true
-  // });
-  //
-  // // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  // //    Social Types
-  // // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  // var _socialType = _sequelize.define('socialAccount', {
-  //   title: {
-  //     type: Sequelize.STRING
-  //   }
-  // }, {
-  //   paranoid: true
-  // });
+
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    Social Accounts
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  var _socialAccount = _sequelize.define('socialAccount', {
+    socialID: {
+      type: Sequelize.INTEGER
+    },
+    publicLink: {
+      type: Sequelize.STRING
+    },
+    type: {
+      type: Sequelize.ENUM,
+      values: ['google', 'twitter', 'facebook']
+    },
+  }, {
+    paranoid: true
+  });
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    Apps
@@ -161,12 +154,9 @@ module.exports = function() {
   _user.belongsTo(_role, {
     foreignKey: 'role_id'
   });
-  // _user.hasMany(_socialAccount, {
-  //   foreignKey: 'user_id'
-  // });
-  // _socialAccount.belongsTo(_socialType, {
-  //   foreignKey: 'social_type_id'
-  // });
+  _user.hasMany(_socialAccount, {
+    foreignKey: 'user_id'
+  });
   _user.hasMany(_app, {
     foreignKey: 'user_id'
   });
