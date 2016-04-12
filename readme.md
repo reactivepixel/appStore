@@ -14,7 +14,7 @@ npm install
 ### ENV File
 
 
-Create your .env file in `./.env` and it should contain the following information with user and password adjustments to match your dev environment.
+Create your .env file in `.env` and it should contain the following information with user and password adjustments to match your dev environment.
 
 ```
 DB_HOST=localhost
