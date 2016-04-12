@@ -2,7 +2,17 @@
 
 ## Installation
 
-`npm install`
+### Package Dependencies
+
+Install the dependencies defined in the package.json file.
+
+```
+npm install
+```
+
+
+### ENV File
+
 
 Create your .env file in `./.env` and it should contain the following information with user and password adjustments to match your dev environment.
 
@@ -13,6 +23,20 @@ DB_PORT=3306
 DB_USER=root
 DB_PASS=
 DB_NAME=appStore
+```
+
+### MySQL
+
+Install MySQL with Brew
+
+```
+brew install mysql
+```
+
+Start Your MySQL Server
+
+```
+mysql.server start
 ```
 
 ## Unit Testing
