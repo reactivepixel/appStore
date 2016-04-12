@@ -1,4 +1,20 @@
 # Gravity App Store
+
+## Installation
+
+`npm install`
+
+Create your .env file in `./.env` and it should contain the following information with user and password adjustments to match your dev environment.
+
+```
+DB_HOST=localhost
+DB_SCHEMA=mysql
+DB_PORT=3306
+DB_USER=root
+DB_PASS=
+DB_NAME=appStore
+```
+
 ## Unit Testing
 
 `./test/__app.js` requires that a user exist in the system with id of `3341f2aa-c8dd-465c-b6c8-a793d4426db9`. TODO: refactor this unit test to be more dynamic.
