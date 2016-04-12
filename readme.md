@@ -33,11 +33,20 @@ Install MySQL with Brew
 brew install mysql
 ```
 
+## Development
+
 Start Your MySQL Server
 
 ```
 mysql.server start
 ```
+
+Run your Development Server.
+```
+nodemon src/server.js
+```
+
+The default port is 3000 and should run on [http://localhost:3000](http://localhost:3000)
 
 ## Unit Testing
 
