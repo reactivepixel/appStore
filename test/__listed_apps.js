@@ -6,7 +6,7 @@ describe('API: Listed App Routes', function() {
   var server;
   var testingObjData = {
     listId: '1',
-    appId: '524ba389-53c2-449b-a7d4-e77aa8b5c07f'
+    appId: '075d3674-e0b4-47f2-9428-d28fb1d53604'
   }
 
   var testingObj;

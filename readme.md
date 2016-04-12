@@ -33,6 +33,8 @@ Install MySQL with Brew
 brew install mysql
 ```
 
+Create a database called `appStore`.
+
 ## Development
 
 Start Your MySQL Server

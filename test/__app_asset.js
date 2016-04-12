@@ -5,7 +5,7 @@ var util = require('../lib/util.js');
 describe('API: App Asset Routes', function() {
   var server;
   var testingObjData = {
-    app_id: '524ba389-53c2-449b-a7d4-e77aa8b5c07f',
+    app_id: '075d3674-e0b4-47f2-9428-d28fb1d53604',
     link: faker.image.imageUrl(),
     type: 'image'
   }
