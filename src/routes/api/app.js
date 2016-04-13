@@ -1,7 +1,23 @@
 module.exports = function (express) {
+
+
   var router = express.Router();
   var app = require('../../models/app.js');
   var util = require('../../../lib/util');
+
+
+
+  //JSdocs index route
+  router.get('/home', function(req,res){
+    res.sendFile(__dirname + '/out/index.html');
+  });
+  router.get('/global', function(req,res){
+    res.sendFile(__dirname + '/out/global.html');
+  });
+
+  router.get('/server', function(req,res){
+    res.sendFile(__dirname + '/out/server.js.html');
+  });
 
   // Read One
   router.get('/app/:id', function(req, res) {
