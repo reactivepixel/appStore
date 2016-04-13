@@ -6,6 +6,12 @@ var app = express();
 // Dot Env File Loader
 if (!process.env.PORT) dotenv = require('dotenv').load();
 
+/**@namespace*/
+/**
+* @default
+* Variable for localhost port
+*/
+
 // Config
 var port = process.env.PORT || 3000;
 

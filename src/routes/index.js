@@ -28,11 +28,13 @@ module.exports = function(express) {
     });
   });
 
+
 /*
   ********************************************************
 */
 // Route for JSDocs
   router.use('/api', express.static(__dirname + '/out'));
+
 
   // Routes
   router.use('/api/', require('./api/user')(express));
