@@ -1,14 +1,10 @@
 {
-  "name": "app_store",
-  "version": "1.0.0",
-  "description": "A Game and Application Store for Exclusive use by Full Sail Students and Alumni",
-  "main": "./src/server.js",
+  "name": "reviewCrud",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "mocha",
-    "start": "node src/server.js"
+    "start": "node app.js"
   },
-  "author": "Chapman",
-  "license": "ISC",
   "dependencies": {
     "async": "^2.0.0-rc.3",
     "bcrypt": "0.8.5",
