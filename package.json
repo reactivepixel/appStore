@@ -1,26 +1,15 @@
 {
-  "name": "app_store",
-  "version": "1.0.0",
-  "description": "A Game and Application Store for Exclusive use by Full Sail Students and Alumni",
-  "main": "./src/server.js",
+  "name": "reviewCrud",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "mocha",
-    "start": "node src/server.js"
+    "start": "node app.js"
   },
-  "author": "Chapman",
-  "license": "ISC",
   "dependencies": {
-    "bcrypt": "0.8.5",
-    "body-parser": "1.15.0",
-    "express": "4.13.4",
-    "mysql": "2.10.2",
-    "sequelize": "3.19.3",
-    "validator": "4.9.0"
-  },
-  "devDependencies": {
-    "dotenv": "^2.0.0",
-    "faker": "^3.0.1",
-    "mocha": "2.4.5",
-    "supertest": "^1.2.0"
+    "ejs": "^1.0.0",
+    "express": "3.5.1",
+    "express-myconnection": "1.0.4",
+    "jade": "*",
+    "mysql": "2.2.0"
   }
 }
