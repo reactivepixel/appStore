@@ -1,36 +1,28 @@
 module.exports = function() {
   var db = require('./db.js');
   var sequelize = db.connection;
-  var util = require('../../lib/util'); 
+  var util = require('../../lib/util');
 
   function _create(payload, err, success) {
-    var cleanData = payload;
-    var cryptedData;
-
-    // Hash the user's password
-    util.hash(cleanData.password, function(err, hash){
-      cleanData.password = hash;
-      var cryptedData = cleanData;
-
-      // Save the user with crypted hash
-      db.user.create(cryptedData).then(success).catch(err);
-    });
+    var cleanData = util.scrubData(payload);
+		
+    db.histories.create(cleanData).then(success).catch(err);
   }
 
   function _update(payload, err, success) {
-    var cleanData = payload;
-    db.user.find({
+    var cleanData = util.scrubData(payload);
+    db.histories.find({
       where: {
         id: cleanData.id
       }
-    }).then(function(matcheduser) {
-      matcheduser.updateAttributes(payload).then(success).catch(err);
+    }).then(function(matchedapp) {
+      matchedapp.updateAttributes(cleanData).then(success).catch(err);
     }).catch(err);
   }
 
   function _find(payload, err, success) {
-    var cleanData = payload;
-    db.user.find({
+    var cleanData = util.scrubData(payload);
+    db.histories.find({
       where: {
         id: cleanData.id
       },
@@ -42,7 +34,7 @@ module.exports = function() {
   }
 
   function _findAll(err, success) {
-    db.user.findAll({
+    db.histories.findAll({
       include: [{
         all: true,
         nested: true
@@ -52,7 +44,7 @@ module.exports = function() {
 
   function _destroy(payload, err, success) {
     var cleanData = payload;
-    db.user.destroy({
+    db.histories.destroy({
       where: {
         id: cleanData.id
       },
