@@ -100,6 +100,21 @@ module.exports = function() {
   }, {
     paranoid: true
   });
+//This is what making the table in sql it is making 3 fields for now: name, post, and star
+  var _review = _sequelize.define('review', {
+    name: {
+      type: Sequelize.STRING
+    },
+    post: {
+      type: Sequelize.TEXT
+    },
+
+    star: {
+      type: Sequelize.INTEGER
+    }
+  }, {
+    paranoid: true
+  });
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    App Assets
@@ -165,6 +180,9 @@ module.exports = function() {
     foreignKey: 'role_id'
   });
   _user.hasMany(_socialAccount, {
+    foreignKey: 'user_id'
+  });
+  _user.hasMany(_review, { //This is what tracks the user so when they log in it will track them here.
     foreignKey: 'user_id'
   });
   _user.hasMany(_app, {
