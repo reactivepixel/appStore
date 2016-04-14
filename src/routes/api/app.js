@@ -1,11 +1,11 @@
 module.exports = function (express) {
 
-/**@namespace*/
+  /**@namespace*/
 
-/**
-*@type {variable}
-*Variable router points to express
-*/
+  /**
+  *@example {variable}
+  *Variable router points to express
+  */
   var router = express.Router();
   var app = require('../../models/app.js');
   var util = require('../../../lib/util');

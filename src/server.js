@@ -8,8 +8,9 @@ if (!process.env.PORT) dotenv = require('dotenv').load();
 
 /**@namespace*/
 /**
-* @default
+* @example
 * Variable for localhost port
+* var port = process.env.PORT || 3000;
 */
 
 // Config
