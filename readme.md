@@ -93,8 +93,6 @@ Create your .env file in `.env` and it should contain the following information 
 DB_HOST=localhost
 
 DB_SCHEMA=mysql
-or
-DB_SCHEMA=mariadb
 
 DB_PORT=3306
 
