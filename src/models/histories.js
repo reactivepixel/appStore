@@ -3,12 +3,12 @@ module.exports = function() {
   var sequelize = db.connection;
   var util = require('../../lib/util');
 
+// Create
   function _create(payload, err, success) {
     var cleanData = util.scrubData(payload);
-		
     db.histories.create(cleanData).then(success).catch(err);
   }
-
+// Update
   function _update(payload, err, success) {
     var cleanData = util.scrubData(payload);
     db.histories.find({
@@ -19,7 +19,7 @@ module.exports = function() {
       matchedapp.updateAttributes(cleanData).then(success).catch(err);
     }).catch(err);
   }
-
+// Find
   function _find(payload, err, success) {
     var cleanData = util.scrubData(payload);
     db.histories.find({
@@ -32,7 +32,7 @@ module.exports = function() {
       }]
     }).then(success).catch(err);
   }
-
+// Find All
   function _findAll(err, success) {
     db.histories.findAll({
       include: [{
@@ -41,7 +41,7 @@ module.exports = function() {
       }]
     }).then(success).catch(err);
   }
-
+// Delete
   function _destroy(payload, err, success) {
     var cleanData = payload;
     db.histories.destroy({
