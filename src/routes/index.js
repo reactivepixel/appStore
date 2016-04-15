@@ -16,8 +16,8 @@ module.exports = function(express) {
   });
 
   //Route for JSdocs
-  router.use('/api', express.static(__dirname + '/out'));
-  
+  router.use('/api', express.static(__dirname + '/out')); // This is a custom route for static files in the out folder, so that everytime you gulp or jsdoc path/to/jsfile.js you don't need to edit the links in the file or add customr routes.
+
   // Routes
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));

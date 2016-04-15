@@ -74,7 +74,10 @@ gulp
 
 '''
 
-​
+####### Out Folder
+
+When you gulp or jsdoc filepath/To/jsfile.js you'll get an out folder.
+The out folder is the documentation.
 
 ​
 
