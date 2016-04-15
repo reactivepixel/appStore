@@ -1,6 +1,6 @@
-var gulp = require('gulp');
-var nodemon = require('gulp-nodemon');
-var shell = require('gulp-shell');
+var gulp = require('gulp'); // Sets gulp to imported file/module gulp
+var nodemon = require('gulp-nodemon'); // Sets nodemon to imported file/module gulp-nodemon
+var shell = require('gulp-shell'); // Sets shell to imported file/module gulp-shell
 
 //Task to initiate JSdocs
 gulp.task('js-doc', shell.task(['jsdoc src/server.js']));
