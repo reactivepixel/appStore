@@ -1,3 +1,12 @@
+/**
+ * Sequelize will setup a connection pool 
+ * on initialization so you should ideally 
+ * only ever create one instance per database.
+ *
+ * if you are reading this sean is awesome...that is all
+ */
+
+
 module.exports = function() {
   var Sequelize = require('sequelize');
   var mysql = require('mysql');
@@ -13,19 +22,27 @@ module.exports = function() {
     logging: false
   });
 
-  //Sequelize will setup a connection pool on initialization so you should ideally only ever create one instance per database.
-
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    User
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _user = _sequelize.define('user', { //to define mapping between a model and table use ".define" . Sequelize will then automatically add the attributes createdAt and updatedAt to it
+
+  /**
+   *   to define mapping between a model and table use 
+   *   ".define" Sequelize will then automatically add the 
+   *   attributes createdAt and updatedAt to it
+   *
+   */
+
+  var _user = _sequelize.define('user', { 
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       primaryKey: true
     },
     dispName: {
-      type: Sequelize.STRING  //.STRING sets the 
+
+        //.STRING sets the datatype to a string
+      type: Sequelize.STRING  
     },
     email: {
       type: Sequelize.STRING
@@ -36,19 +53,26 @@ module.exports = function() {
     phone: {
       type: Sequelize.STRING
     },
-    gender: { //added ability for user to set gender on registration to generate recommendations based on gender
+
+    //added ability for user to set gender in DB on registration to generate recommendations based on gender
+    gender: {
       type: Sequelize.STRING
     },
-    age: { //added ability for user to set age on registration to generate recommendations based on age
+
+    //added ability for user to set age in DB on registration to generate recommendations based on age
+    age: { 
+
+      //.INTEGER sets the datatype to a INTEGER
       type: Sequelize.INTEGER
     },
-    hobby: { //added ability for user to set hobbys on registration to generate recommendations based on degree
+
+    //added ability for user to set hobbys in DB on registration to generate recommendations based on degree
+    hobby: { 
       type: Sequelize.STRING
     }
   }, {
     paranoid: true
   });
-
 
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -63,7 +87,7 @@ module.exports = function() {
   });
 
    // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    degree  - if you are reading this sean is awesome 
+  //    degree  
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _degree = _sequelize.define('degree', {
     title: { 
@@ -197,16 +221,21 @@ module.exports = function() {
     paranoid: false
   });
 
-  _user.belongsTo(_role, { //belongsTo - add a foreign key and singular association mixins to the source.
+    //belongsTo - adds a foreign key and singular association mixins to the _role source.
+  _user.belongsTo(_role, { 
     foreignKey: 'role_id'
   });
-  _genre.hasOne(_app, { //hasOne - adds a foreign key to the target "app" and singular association mixins to the source.
+
+    //hasOne - adds a foreign key to the target "app" and singular association mixins to the source.
+  _genre.hasOne(_app, { 
     foreignKey: 'genre_id'
   });
   _degree.hasOne(_user, {
     foreignKey: 'degree_id'
   });
-  _user.hasMany(_socialAccount, { //hasMany - adds a foreign key to target and plural association mixins to the source.
+
+  //hasMany - adds a foreign key to target _socialAccount and plural association mixins to the source user_id.
+  _user.hasMany(_socialAccount, { 
     foreignKey: 'user_id'
   });
   _user.hasMany(_app, {
@@ -219,11 +248,10 @@ module.exports = function() {
     foreignKey: 'user_id'
   });
 
-  _app.belongsToMany(_list, { //
+  //belongsToMany - creates an N:M association with a join table and adds plural association mixins to the source. The junction table is created with sourceId and targetId.
+  _app.belongsToMany(_list, { 
     through: 'listedApp'
   });
-
-
 
   _sequelize.sync();
 
