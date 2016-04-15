@@ -191,7 +191,7 @@ module.exports = function() {
 
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Listed Apps
+  //    Listed Apps - table joins
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _listedApp = _sequelize.define('listedApp', {}, {
     paranoid: false
@@ -219,7 +219,7 @@ module.exports = function() {
     foreignKey: 'user_id'
   });
 
-  _app.belongsToMany(_list, {
+  _app.belongsToMany(_list, { //
     through: 'listedApp'
   });
 
