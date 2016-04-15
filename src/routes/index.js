@@ -6,10 +6,11 @@ module.exports = function(express) {
 
 
 // NOTES___________________________________________________
-  // made a variable point to histories.js in model folder
-  // middleware function is placed after the route.get
-  // ^^ because middleware won’t execute for GET requests
-  // will fire on every route that comes thru express
+// made a variable point to histories.js in model folder
+// middleware function is placed after the route.get
+// ^^ because middleware won’t execute for GET requests
+// will fire on every route that comes thru express
+
 /*
     ********************************************************
 */
@@ -36,22 +37,21 @@ module.exports = function(express) {
   router.use('/api', express.static(__dirname + '/out'));
 
 
-  // Routes
+  // Routes for Histories.js
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
   router.use('/api/', require('./api/app_assets')(express));
   router.use('/api/', require('./api/list')(express));
   router.use('/api/', require('./api/listed_apps')(express));
-  // router.use('/api/', require('./api/app')(express));
 
 /*
   ********************************************************
 */
 // MIDDLE-WARE
-  //used the existing module on index.js to add track user browsering in the url .
-  // this middleware function has no mount path.
-  // this code is executed for every request to the router.
-  // rawRoute of url is stored in database.
+// used the existing module on index.js to add track user browsering in the url.
+// this middleware function has no mount path.
+// this code is executed for every request to the router.
+// rawRoute of url is stored in database.
   router.use(function (req, res, next) {
     var payload = req.body;
     // create full rawRoute of the url and store in db

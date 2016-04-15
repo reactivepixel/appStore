@@ -1,11 +1,3 @@
-# App Store Project
-
-<<<<<<< HEAD
-## Tracking History
-
-### Files Added
-=======
-​
 
 ## Installation
 
@@ -14,39 +6,12 @@
 ### Package Dependencies
 
 ​
-
 Install the dependencies defined in the package.json file.
 >>>>>>> updated readme for dev dependencies on gulp
 
-​
 
 ```
-<<<<<<< HEAD
-src/models/histories.js
-```
-
-## Overview
-
-Added comments to index.js file.
-Created middleware function to store rawRoute to database.
-Created histories.js file to talk to the database.
-
->>>>>>>Added comments to index.js file.
->>>>>>>Created middleware function to store rawRoute to database.
->>>>>>>created histories.js file to talk to the database.
-
-
-### Issues to take note of
-
-The code is completely functional however, it track/store all url expect the ones listed in the same file the middleware is located
-'http://localhost:3000'
-'http://localhost:3000/status'
-
-=======
-
 npm install dependencyName
-
-​
 
 For dev dependencies
 
@@ -54,7 +19,6 @@ npm install --save-dev dependencyName
 
 ```
 
-​
 
 #### jsdoc Installation
 
@@ -121,6 +85,8 @@ Create your .env file in `.env` and it should contain the following information 
 DB_HOST=localhost
 
 DB_SCHEMA=mysql
+or
+DB_SCHEMA=mariadb
 
 DB_PORT=3306
 
@@ -191,14 +157,7 @@ The default port is 3000 and should run on [http://localhost:3000](http://localh
 
 ## Unit Testing
 
-<<<<<<< HEAD
-I'm running into unit testing error that is now decreased to on two errors..
-=======
-​
-
 `./test/__app.js` requires that a user exist in the system with id of `3341f2aa-c8dd-465c-b6c8-a793d4426db9`. TODO: refactor this unit test to be more dynamic.
-
-​
 
 ​
 
@@ -311,4 +270,4 @@ In addition to a Terms of Service for Users, Developers and Admins will need to 
 |Automated QA| Codeship will be our build and test runner tool to not encumber our production environment.|
 
 |Various Notables for Inclusion| CodeClimate, Sequelizejs, Gulp, Papertrailsapp, Github Workflow, PassportJS, JSON Web Tokens (JWT), SemVer |
->>>>>>> updated readme for dev dependencies on gulp
+
