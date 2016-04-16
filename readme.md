@@ -9,8 +9,8 @@
 ​
 Install the dependencies defined in the package.json file.
 
-
 ```
+<<<<<<< 97f2d3bd469a9a91a762141dc63c492ab5e7402a
 npm install dependencyName --save --save-exact
 ```
 
@@ -18,6 +18,11 @@ For dev dependencies
 
 ```
 npm install dependencyName --save-dev --save-exact
+=======
+npm install dependencyName
+For dev dependencies
+npm install --save-dev dependencyName
+>>>>>>> Removed bad files
 ```
 
 #### jsdoc Installation
