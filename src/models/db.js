@@ -6,7 +6,6 @@
  * if you are reading this sean is awesome...that is all
  */
 
-
 module.exports = function() {
   var Sequelize = require('sequelize');
   var mysql = require('mysql');
@@ -29,7 +28,7 @@ module.exports = function() {
   /**
    *   to define mapping between a model and table use
    *   ".define" Sequelize will then automatically add the
-   *   attributes createdAt and updatedAt to it
+   *   attributes createdAt and updatedAt to it in DB.
    *
    */
 
@@ -41,7 +40,7 @@ module.exports = function() {
     },
     dispName: {
 
-        //.STRING sets the datatype to a string
+    //.STRING sets the datatype to a string
       type: Sequelize.STRING
     },
     email: {
@@ -167,7 +166,6 @@ module.exports = function() {
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   // This is making the table in SQL with 3 fields for now: name, post, & star rating.
-
   var _review = _sequelize.define('review', {
     name: {
       type: Sequelize.STRING
@@ -181,7 +179,6 @@ module.exports = function() {
   }, {
     paranoid: true
   });
-
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    App Assets
@@ -197,7 +194,6 @@ module.exports = function() {
   }, {
     paranoid: true
   });
-
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    Lists
