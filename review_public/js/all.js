@@ -1,8 +1,8 @@
-function addUser(){
+// function addUser(){
 
-    window.location.href = '/reviews/add';
-}
-function cancelAdd(){
+//     window.location.href = '/reviews/add';
+// }
+// function cancelAdd(){
 
-    window.location.href = '/reviews';
-}
+//     window.location.href = '/reviews';
+// }
