@@ -78,6 +78,9 @@ exports.save = function(req,res){
     });
 };
 
+/* Save any edits made to your review 
+Required for UPDATE part of CRUD */
+
 exports.save_edit = function(req,res){
 
     var input = JSON.parse(JSON.stringify(req.body));
@@ -106,7 +109,8 @@ exports.save_edit = function(req,res){
     });
 };
 
-//This is where we delete the comment 
+// This code is required for deleting a review
+
 exports.delete_review = function(req,res){
 
      var id = req.params.id;
