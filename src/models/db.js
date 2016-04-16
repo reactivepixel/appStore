@@ -6,7 +6,6 @@
  * if you are reading this sean is awesome...that is all
  */
 
-
 module.exports = function() {
   var Sequelize = require('sequelize');
   var mysql = require('mysql');
@@ -29,7 +28,7 @@ module.exports = function() {
   /**
    *   to define mapping between a model and table use
    *   ".define" Sequelize will then automatically add the
-   *   attributes createdAt and updatedAt to it
+   *   attributes createdAt and updatedAt to it in DB.
    *
    */
 
@@ -41,7 +40,7 @@ module.exports = function() {
     },
     dispName: {
 
-        //.STRING sets the datatype to a string
+    //.STRING sets the datatype to a string
       type: Sequelize.STRING
     },
     email: {
@@ -73,24 +72,6 @@ module.exports = function() {
   }, {
     paranoid: true
   });
-
-
-    // This is making the table in SQL with 3 fields for now: name, post, & star rating.
-
-  var _review = _sequelize.define('review', {
-    name: {
-      type: Sequelize.STRING
-    },
-    post: {
-      type: Sequelize.TEXT
-    },
-    star: {
-      type: Sequelize.INTEGER
-    }
-  }, {
-    paranoid: true
-  });
-
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    genre
@@ -159,7 +140,7 @@ module.exports = function() {
       type: Sequelize.TEXT
     },
     age: {
-      type: Sequelize.INTEGER
+      type: Sequelize.STRING
     },
     readme: {
       type: Sequelize.TEXT
@@ -185,7 +166,6 @@ module.exports = function() {
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   // This is making the table in SQL with 3 fields for now: name, post, & star rating.
-
   var _review = _sequelize.define('review', {
     name: {
       type: Sequelize.STRING
@@ -199,7 +179,6 @@ module.exports = function() {
   }, {
     paranoid: true
   });
-
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    App Assets
@@ -215,7 +194,6 @@ module.exports = function() {
   }, {
     paranoid: true
   });
-
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    Lists
@@ -287,7 +265,9 @@ module.exports = function() {
   _user.hasMany(_socialAccount, {
     foreignKey: 'user_id'
   });
-  _user.hasMany(_review, { //This is what tracks the user so when they log in it will track them here.
+
+  //This is what tracks the user so when they log in it will track them here.
+  _user.hasMany(_review, {
     foreignKey: 'user_id'
   });
   _user.hasMany(_app, {

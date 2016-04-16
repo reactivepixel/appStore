@@ -47,30 +47,6 @@ gulp
 When you gulp or jsdoc filepath/To/jsfile.js you'll get an out folder.
 The out folder is the documentation.
 
-#### jsdoc Installation
-
-Globally install jsdoc
-
-```
-npm install -g jsdoc
-```
-
-##### gulp Installation
-
-Install dev dependencies for gulp
-
-```
-npm install --save-dev gulp gulp-nodemon gulp-shell
-```
-
-###### Run Server
-
-To run the server now in terminal...
-
-```
-gulp
-```
-
 ### ENV File
 
 Create your .env file in `.env` and it should contain the following information with user and password adjustments to match your dev environment.
