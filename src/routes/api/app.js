@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 module.exports = function (express) {
+=======
+module.exports = function (express) { // Setting module.exports to a new function that excepts express as a paramater of express.
+>>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 
   /**@namespace*/
 
@@ -6,11 +10,17 @@ module.exports = function (express) {
   *@example {variable}
   *Variable router points to express
   */
-  var router = express.Router();
-  var app = require('../../models/app.js');
-  var util = require('../../../lib/util');
+
+  var router = express.Router(); // Sets variable router to express.Router() function
+  var app = require('../../models/app.js'); // Sets app to imported app.js file
+  var util = require('../../../lib/util'); // Sets util to util.js file
 
 
+/*
+  The following are all routes that will either display an error with status 500,
+  Or the proper data with a status of 200.
+
+*/
 
   //JSdocs index route
   router.get('/home', function(req,res){
@@ -77,5 +87,5 @@ module.exports = function (express) {
     });
   });
 
-  return router;
+  return router; // This returns the router to where ever it is called with the appropriate data.
 };

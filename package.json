@@ -25,7 +25,7 @@
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.0.6",
     "gulp-shell": "^0.5.2",
-    "mocha": "^2.4.5",
+    "mocha": "2.4.5", // Do not change
     "supertest": "^1.2.0"
   }
 }

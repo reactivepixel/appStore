@@ -35,9 +35,9 @@ module.exports = function(express) {
 */
 // Route for JSDocs
   router.use('/api', express.static(__dirname + '/out'));
+  
+// Routes
 
-
-  // Routes for Histories.js
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
   router.use('/api/', require('./api/app_assets')(express));
