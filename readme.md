@@ -8,27 +8,17 @@
 ### Package Dependencies
 
 ​
-<<<<<<< HEAD
-=======
-
->>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 Install the dependencies defined in the package.json file.
->>>>>>> updated readme for dev dependencies on gulp
+
 
 
 ​
 
 ```
-<<<<<<< HEAD
-npm install dependencyName
-
-=======
 
 npm install dependencyName
 
-​
 
->>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 For dev dependencies
 
 npm install --save-dev dependencyName
@@ -152,15 +142,6 @@ Create your .env file in `.env` and it should contain the following information 
 
 ```
 
-DB_HOST=localhost
-
-DB_SCHEMA=mysql
-<<<<<<< HEAD
-or
-DB_SCHEMA=mariadb
-=======
->>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
-
 DB_PORT=3306
 
 DB_USER=root
@@ -224,7 +205,7 @@ nodemon src/server.js
 ​
 
 The default port is 3000 and should run on [http://localhost:3000](http://localhost:3000)
->>>>>>> updated readme for dev dependencies on gulp
+
 
 ​
 
@@ -237,11 +218,7 @@ The default port is 3000 and should run on [http://localhost:3000](http://localh
 `./test/__app.js` requires that a user exist in the system with id of `3341f2aa-c8dd-465c-b6c8-a793d4426db9`. TODO: refactor this unit test to be more dynamic.
 
 ​
-<<<<<<< HEAD
-=======
 
-​
->>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 
 ## Outline
 
