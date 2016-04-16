@@ -38,7 +38,7 @@ npm install --save-dev gulp gulp-nodemon gulp-shell gulp-clean
 Good Enough recommendations(GER) - collaborative filtering
 
 ```
-npm install ger
+npm install ger --save
 ```
 ###### Run Server
 
