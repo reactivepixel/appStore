@@ -1,3 +1,10 @@
+/**@namespace*/
+var testList = {
+/**
+* list test
+*/
+}
+
 module.exports = function (express) {
   var router = express.Router();
   var list = require('../../models/list.js');
