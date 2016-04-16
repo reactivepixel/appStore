@@ -1,6 +1,6 @@
-var request = require('supertest');
-var faker = require('faker');
-var util = require('../lib/util.js');
+var request = require('supertest'); // Sets request to imported file of supertest module
+var faker = require('faker'); // Sets faker to imported file of faker module
+var util = require('../lib/util.js'); // Sets util to imported file of util.js
 
 describe('API: User Routes', function() {
   var server;

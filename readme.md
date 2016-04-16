@@ -1,4 +1,3 @@
-# Gravity App Store
 
 ​
 
@@ -9,22 +8,85 @@
 ### Package Dependencies
 
 ​
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 Install the dependencies defined in the package.json file.
+>>>>>>> updated readme for dev dependencies on gulp
+
 
 ​
 
 ```
+<<<<<<< HEAD
+npm install dependencyName
+
+=======
 
 npm install dependencyName
 
 ​
 
+>>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 For dev dependencies
 
 npm install --save-dev dependencyName
 
 ```
+
+​
+
+#### jsdoc Installation
+
+​
+
+Globally install jsdoc
+
+​
+
+'''
+
+npm install -g jsdoc
+
+'''
+
+​
+
+##### gulp Installation
+
+​
+
+Install dev dependencies for gulp
+
+​
+
+'''
+
+npm install --save-dev gulp gulp-nodemon gulp-shell
+
+'''
+
+​
+
+###### Run Server
+
+​
+
+To run the server now in terminal...
+
+​
+
+'''
+
+gulp
+
+'''
+
+####### Out Folder
+
+When you gulp or jsdoc filepath/To/jsfile.js you'll get an out folder.
+The out folder is the documentation.
 
 ​
 
@@ -93,6 +155,11 @@ Create your .env file in `.env` and it should contain the following information 
 DB_HOST=localhost
 
 DB_SCHEMA=mysql
+<<<<<<< HEAD
+or
+DB_SCHEMA=mariadb
+=======
+>>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 
 DB_PORT=3306
 
@@ -157,6 +224,9 @@ nodemon src/server.js
 ​
 
 The default port is 3000 and should run on [http://localhost:3000](http://localhost:3000)
+>>>>>>> updated readme for dev dependencies on gulp
+
+​
 
 ​
 
@@ -167,8 +237,11 @@ The default port is 3000 and should run on [http://localhost:3000](http://localh
 `./test/__app.js` requires that a user exist in the system with id of `3341f2aa-c8dd-465c-b6c8-a793d4426db9`. TODO: refactor this unit test to be more dynamic.
 
 ​
+<<<<<<< HEAD
+=======
 
 ​
+>>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 
 ## Outline
 
@@ -279,3 +352,4 @@ In addition to a Terms of Service for Users, Developers and Admins will need to 
 |Automated QA| Codeship will be our build and test runner tool to not encumber our production environment.|
 
 |Various Notables for Inclusion| CodeClimate, Sequelizejs, Gulp, Papertrailsapp, Github Workflow, PassportJS, JSON Web Tokens (JWT), SemVer |
+
