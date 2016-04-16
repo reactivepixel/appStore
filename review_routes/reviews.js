@@ -8,6 +8,7 @@ exports.list = function(req, res){
         var query = connection.query('SELECT * FROM reviews',function(err,rows)
         {
 
+// If there is an error, display this message:
             if(err)
                 console.log("Error Selecting : %s ",err );
 
@@ -21,9 +22,15 @@ exports.list = function(req, res){
 
 };
 
+/* Code to add your review / comment
+Required for CREATE part of CRUD */
+
 exports.add = function(req, res){
   res.render('add_review',{page_title:"Add Comment"});
 };
+
+/* Edit your review
+Required for UPDATE part of CRUD */
 
 exports.edit = function(req, res){
 
@@ -34,6 +41,7 @@ exports.edit = function(req, res){
         var query = connection.query('SELECT * FROM reviews WHERE id = ?',[id],function(err,rows)
         {
 
+// If there is an error, display this message:
             if(err)
                 console.log("Error Selecting : %s ",err );
 
@@ -66,6 +74,7 @@ exports.save = function(req,res){
         var query = connection.query("INSERT INTO reviews set ? ",data, function(err, rows)
         {
 
+// If there is an error, display this message:
           if (err)
               console.log("Error inserting : %s ",err );
 
@@ -99,6 +108,7 @@ exports.save_edit = function(req,res){
         connection.query("UPDATE review set ? WHERE id = ? ",[data,id], function(err, rows)
         {
 
+// If there is an error, display this message:
           if (err)
               console.log("Error Updating : %s ",err );
 
@@ -109,7 +119,8 @@ exports.save_edit = function(req,res){
     });
 };
 
-// This code is required for deleting a review
+/* Code to Delete your Review
+Required for DELETE part of CRUD */
 
 exports.delete_review = function(req,res){
 
@@ -120,6 +131,7 @@ exports.delete_review = function(req,res){
         connection.query("DELETE FROM reviews  WHERE id = ? ",[id], function(err, rows)
         {
 
+// If there is an error, display this message:
              if(err)
                  console.log("Error deleting : %s ",err );
 
