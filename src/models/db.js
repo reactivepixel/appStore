@@ -25,7 +25,7 @@ module.exports = function() {
       primaryKey: true
     },
     dispName: {
-      type: Sequelize.STRING  //.STRING sets the 
+      type: Sequelize.STRING  //.STRING sets the
     },
     email: {
       type: Sequelize.STRING
@@ -55,7 +55,7 @@ module.exports = function() {
   //    genre
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _genre = _sequelize.define('genre', {
-    title: { 
+    title: {
       type: Sequelize.STRING
     }
   }, {
@@ -63,10 +63,10 @@ module.exports = function() {
   });
 
    // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    degree  - if you are reading this sean is awesome 
+  //    degree  - if you are reading this sean is awesome
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _degree = _sequelize.define('degree', {
-    title: { 
+    title: {
       type: Sequelize.STRING
     }
   }, {
@@ -140,7 +140,7 @@ module.exports = function() {
   });
 
   // This is making the table in SQL with 3 fields for now: name, post, & star rating.
-  
+
   var _review = _sequelize.define('review', {
     name: {
       type: Sequelize.STRING
@@ -224,6 +224,9 @@ module.exports = function() {
     foreignKey: 'degree_id'
   });
   _user.hasMany(_socialAccount, { //hasMany - adds a foreign key to target and plural association mixins to the source.
+    foreignKey: 'user_id'
+  });
+  _user.hasMany(_reviews, { //This is what tracks the user so when they log in it will track them here.
     foreignKey: 'user_id'
   });
   _user.hasMany(_app, {
