@@ -28,7 +28,7 @@ npm install -g jsdoc
 Install dev dependencies for gulp
 
 ```
-npm install --save-dev gulp gulp-nodemon gulp-shell
+npm install --save-dev gulp gulp-nodemon gulp-shell gulp-clean
 ```
 
 ###### Run Server
