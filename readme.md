@@ -79,6 +79,7 @@ Create a database called `appStore`.
 
 Load the SQL from the sequel dump in `seed/appStore_2016-04-12.sql`
 
+
 ## Development
 
 Start Your MySQL Server

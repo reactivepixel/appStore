@@ -125,6 +125,21 @@ module.exports = function() {
   });
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    Voting
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  var _voting = _sequelize.define('voting', {
+    type: {
+      type: Sequelize.ENUM,
+      values: ['image', 'YouTube', 'other']
+    },
+    link: {
+      type: Sequelize.STRING
+    }
+  }, {
+    paranoid: true
+  });
+
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    Apps
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _app = _sequelize.define('app', {
@@ -224,18 +239,6 @@ module.exports = function() {
     },
     target: {
       type: Sequelize.STRING
-    }
-  }, {
-    paranoid: true
-  });
-
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Voting
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _voting = _sequelize.define('voting', {
-    choice: {
-      type: Sequelize.ENUM,
-      values: ['option1', 'option2', 'option3']
     }
   }, {
     paranoid: true
