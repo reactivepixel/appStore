@@ -1,5 +1,5 @@
 
-/* Function to GET user listing from database */
+// Function to GET user listing from database
 
 exports.list = function(req, res){
 
@@ -16,7 +16,7 @@ exports.list = function(req, res){
 
          });
 
-         //console.log(query.sql);
+         //console.log(query.sql); Test to get raw query
     });
 
 };
@@ -73,7 +73,7 @@ exports.save = function(req,res){
 
         });
 
-       // console.log(query.sql); get raw query
+       // console.log(query.sql); Test to get raw query
 
     });
 };
