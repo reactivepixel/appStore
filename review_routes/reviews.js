@@ -46,7 +46,8 @@ exports.edit = function(req, res){
     });
 };
 
-/*  Save the customer  */
+/* Save the customer information in the database.
+We are only keeping this name until a login is created. */
 
 exports.save = function(req,res){
 
