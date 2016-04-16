@@ -1,7 +1,5 @@
 
-/*
- * GET users listing.
- */
+// Function to GET user listing from database
 
 exports.list = function(req, res){
 
@@ -18,7 +16,7 @@ exports.list = function(req, res){
 
          });
 
-         //console.log(query.sql);
+         //console.log(query.sql); Test to get raw query
     });
 
 };
@@ -48,7 +46,9 @@ exports.edit = function(req, res){
     });
 };
 
-/*Save the customer*/
+/* Save the customer information in the database.
+We are only keeping this name until a login is created. */
+
 exports.save = function(req,res){
 
     var input = JSON.parse(JSON.stringify(req.body));
@@ -73,10 +73,13 @@ exports.save = function(req,res){
 
         });
 
-       // console.log(query.sql); get raw query
+       // console.log(query.sql); Test to get raw query
 
     });
 };
+
+/* Save any edits made to your review 
+Required for UPDATE part of CRUD */
 
 exports.save_edit = function(req,res){
 
@@ -106,6 +109,7 @@ exports.save_edit = function(req,res){
     });
 };
 
+// This code is required for deleting a review
 
 exports.delete_review = function(req,res){
 
