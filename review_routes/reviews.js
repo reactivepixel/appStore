@@ -59,7 +59,7 @@ exports.edit = function(req, res){
         var query = connection.query('SELECT * FROM reviews WHERE id = ?',[id],function(err,rows)
         {
 
-// If there is an error, display this message:
+// If there is an error, display this message
             if(err)
                 console.log("Error Selecting : %s ",err );
             // page title.
@@ -92,7 +92,7 @@ exports.save = function(req,res){
         // Insert this information into the "reviews" database
         var query = connection.query("INSERT INTO reviews set ? ",data, function(err, rows)
         {
-
+            if(err)
 // If there is an error, display this message:
               console.log("Error inserting : %s ",err );
 
@@ -112,8 +112,7 @@ Required for UPDATE part of CRUD */
 
        // console.log(query.sql); Test to get raw query
 
-    });
-};
+
 
 exports.save_edit = function(req,res){
     var input = JSON.parse(JSON.stringify(req.body));

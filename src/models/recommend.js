@@ -3,7 +3,7 @@ module.exports = function(express) {
   var router = express.Router();
   var g = require('ger');
   var esm = new g.MemESM();//Event Store Manager
-  var ger = new g.GER(esm);//Good Enough Recommender
+  var ger = new g.GER(esm);//Good Enough Recommender----Added to package.json
 
 //change test parameters
 //might use .put for postman

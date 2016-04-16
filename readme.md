@@ -4,9 +4,12 @@
 
 ### Package Dependencies
 
+​
 Install the dependencies defined in the package.json file.
 
+
 ```
+
 npm install dependencyName
 
 For dev dependencies
@@ -44,35 +47,12 @@ gulp
 When you gulp or jsdoc filepath/To/jsfile.js you'll get an out folder.
 The out folder is the documentation.
 
-#### jsdoc Installation
-
-Globally install jsdoc
-
-```
-npm install -g jsdoc
-```
-
-##### gulp Installation
-
-Install dev dependencies for gulp
-
-```
-npm install --save-dev gulp gulp-nodemon gulp-shell
-```
-
-###### Run Server
-
-To run the server now in terminal...
-
-```
-gulp
-```
-
 ### ENV File
 
 Create your .env file in `.env` and it should contain the following information with user and password adjustments to match your dev environment.
 
 ```
+
 DB_HOST=localhost
 
 DB_SCHEMA=mysql
@@ -84,6 +64,7 @@ DB_USER=root
 DB_PASS=
 
 DB_NAME=appStore
+
 ```
 
 ### MySQL
@@ -114,9 +95,11 @@ nodemon src/server.js
 
 The default port is 3000 and should run on [http://localhost:3000](http://localhost:3000)
 
+
 ## Unit Testing
 
 `./test/__app.js` requires that a user exist in the system with id of `3341f2aa-c8dd-465c-b6c8-a793d4426db9`. TODO: refactor this unit test to be more dynamic.
+
 
 ## Outline
 

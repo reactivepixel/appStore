@@ -29,11 +29,8 @@ module.exports = function(express) {
     });
   });
 
-
-  //Route for JSdocs
-  router.use('/jsdoc', express.static(__dirname + './../../build/JSdocs'));
-
-  // Routes  
+// Routes
+  router.use('/jsdoc', express.static(__dirname + './../../build/JSdocs')); // JSdoc route
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
   router.use('/api/', require('./api/app_assets')(express));
@@ -41,9 +38,6 @@ module.exports = function(express) {
   router.use('/api/', require('./api/listed_apps')(express));
   router.use('/api/', require('./api/recommend')(express));
 
-  /*
-  ********************************************************
-  */
   // MIDDLE-WARE
   // used the existing module on index.js to add track user browsering in the url.
   // this middleware function has no mount path.
