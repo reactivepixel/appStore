@@ -231,6 +231,7 @@ module.exports = function() {
     connection: _sequelize,
     user: _user,
     app: _app,
+    histories: _history,
     appAsset: _appAsset,
     list: _list,
     listedApp: _listedApp,

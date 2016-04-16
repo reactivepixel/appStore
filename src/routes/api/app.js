@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+module.exports = function (express) {
+=======
 module.exports = function (express) { // Setting module.exports to a new function that excepts express as a paramater of express.
+>>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 
   /**@namespace*/
 
@@ -6,6 +10,7 @@ module.exports = function (express) { // Setting module.exports to a new functio
   *@example {variable}
   *Variable router points to express
   */
+
   var router = express.Router(); // Sets variable router to express.Router() function
   var app = require('../../models/app.js'); // Sets app to imported app.js file
   var util = require('../../../lib/util'); // Sets util to util.js file
@@ -17,6 +22,17 @@ module.exports = function (express) { // Setting module.exports to a new functio
 
 */
 
+  //JSdocs index route
+  router.get('/home', function(req,res){
+    res.sendFile(__dirname + '/out/index.html');
+  });
+  router.get('/global', function(req,res){
+    res.sendFile(__dirname + '/out/global.html');
+  });
+
+  router.get('/server', function(req,res){
+    res.sendFile(__dirname + '/out/server.js.html');
+  });
 
   // Read One
   router.get('/app/:id', function(req, res) {
