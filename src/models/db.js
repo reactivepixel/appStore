@@ -139,6 +139,23 @@ module.exports = function() {
     paranoid: true
   });
 
+  // This is making the table in SQL with 3 fields for now: name, post, & star rating.
+  
+  var _review = _sequelize.define('review', {
+    name: {
+      type: Sequelize.STRING
+    },
+    post: {
+      type: Sequelize.TEXT
+    },
+    star: {
+      type: Sequelize.INTEGER
+    }
+  }, {
+    paranoid: true
+  });
+
+
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    App Assets
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
