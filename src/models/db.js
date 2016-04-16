@@ -251,6 +251,17 @@ module.exports = function() {
     paranoid: true
   });
 
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    Voting
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  var _voting = _sequelize.define('voting', {
+    choice: {
+      type: Sequelize.ENUM
+      values: ['option1', 'option2', 'option3']
+    },
+  }, {
+    paranoid: true
+  });
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    Listed Apps - table joins
@@ -301,6 +312,8 @@ module.exports = function() {
     user: _user,
     app: _app,
     histories: _history,
+    review: _reviews, //np sean I got you <3
+    voting: _voting,
     appAsset: _appAsset,
     list: _list,
     listedApp: _listedApp,
