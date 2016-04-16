@@ -77,19 +77,19 @@ module.exports = function() {
 
     // This is making the table in SQL with 3 fields for now: name, post, & star rating.
 
-    var _review = _sequelize.define('review', {
-      name: {
-        type: Sequelize.STRING
-      },
-      post: {
-        type: Sequelize.TEXT
-      },
-      star: {
-        type: Sequelize.INTEGER
-      }
-    }, {
-      paranoid: true
-    });
+  var _review = _sequelize.define('review', {
+    name: {
+      type: Sequelize.STRING
+    },
+    post: {
+      type: Sequelize.TEXT
+    },
+    star: {
+      type: Sequelize.INTEGER
+    }
+  }, {
+    paranoid: true
+  });
 
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -138,7 +138,7 @@ module.exports = function() {
     type: {
       type: Sequelize.ENUM,
       values: ['google', 'twitter', 'facebook']
-    },
+    }
   }, {
     paranoid: true
   });
@@ -226,7 +226,7 @@ module.exports = function() {
     },
     releaseDate: {
       type: Sequelize.DATE
-    },
+    }
   }, {
     paranoid: true
   });
@@ -246,7 +246,7 @@ module.exports = function() {
     },
     target: {
       type: Sequelize.STRING
-    },
+    }
   }, {
     paranoid: true
   });
@@ -258,7 +258,7 @@ module.exports = function() {
     choice: {
       type: Sequelize.ENUM,
       values: ['option1', 'option2', 'option3']
-    },
+    }
   }, {
     paranoid: true
   });
@@ -317,6 +317,6 @@ module.exports = function() {
     appAsset: _appAsset,
     list: _list,
     listedApp: _listedApp,
-    role: _role
+    role: _role,
   }
 }();
