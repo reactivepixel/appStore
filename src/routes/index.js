@@ -30,10 +30,12 @@ module.exports = function(express) {
   });
 
 
-  //Route for JSdocs
-  router.use('/jsdoc', express.static(__dirname + './../../build/JSdocs'));
-
-
+/*
+  ********************************************************
+*/
+// Route for JSDocs
+  router.use('/api', express.static(__dirname + '/out'));
+  
 // Routes
 
   router.use('/api/', require('./api/user')(express));
@@ -41,7 +43,6 @@ module.exports = function(express) {
   router.use('/api/', require('./api/app_assets')(express));
   router.use('/api/', require('./api/list')(express));
   router.use('/api/', require('./api/listed_apps')(express));
-  router.use('/api/', require('./api/recommend')(express));
 
 /*
   ********************************************************
