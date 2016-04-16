@@ -16,8 +16,8 @@ module.exports = function(express) {
   });
 
   //Route for JSdocs
-  router.use('/api', express.static(__dirname + '/out'));
-  
+  router.use('/jsdoc', express.static(__dirname + './../../build/JSdocs'));
+
   // Routes
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
