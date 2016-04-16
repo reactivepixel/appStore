@@ -106,7 +106,7 @@ exports.save_edit = function(req,res){
     });
 };
 
-
+//This is where we delete the comment 
 exports.delete_review = function(req,res){
 
      var id = req.params.id;
