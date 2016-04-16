@@ -256,7 +256,7 @@ module.exports = function() {
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _voting = _sequelize.define('voting', {
     choice: {
-      type: Sequelize.ENUM
+      type: Sequelize.ENUM,
       values: ['option1', 'option2', 'option3']
     },
   }, {
@@ -312,7 +312,7 @@ module.exports = function() {
     user: _user,
     app: _app,
     histories: _history,
-    review: _reviews, //np sean I got you <3
+    review: _review, //np sean I got you <3
     voting: _voting,
     appAsset: _appAsset,
     list: _list,
