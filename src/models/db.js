@@ -40,6 +40,7 @@ module.exports = function() {
       primaryKey: true
     },
     dispName: {
+
         //.STRING sets the datatype to a string
       type: Sequelize.STRING
     },
@@ -74,6 +75,23 @@ module.exports = function() {
   });
 
 
+    // This is making the table in SQL with 3 fields for now: name, post, & star rating.
+
+    var _review = _sequelize.define('review', {
+      name: {
+        type: Sequelize.STRING
+      },
+      post: {
+        type: Sequelize.TEXT
+      },
+      star: {
+        type: Sequelize.INTEGER
+      }
+    }, {
+      paranoid: true
+    });
+
+
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    genre
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -86,11 +104,7 @@ module.exports = function() {
   });
 
    // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-<<<<<<< HEAD
   //    degree
-=======
-  //    degree  - if you are reading this sean is awesome
->>>>>>> 1ac09e8d1ff73d2a28914fdf67b2fc8fef0fd398
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _degree = _sequelize.define('degree', {
     title: {
@@ -165,6 +179,10 @@ module.exports = function() {
   }, {
     paranoid: true
   });
+
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    Review
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   // This is making the table in SQL with 3 fields for now: name, post, & star rating.
 
@@ -258,7 +276,7 @@ module.exports = function() {
   _user.hasMany(_socialAccount, {
     foreignKey: 'user_id'
   });
-  _user.hasMany(_reviews, { //This is what tracks the user so when they log in it will track them here.
+  _user.hasMany(_review, { //This is what tracks the user so when they log in it will track them here.
     foreignKey: 'user_id'
   });
   _user.hasMany(_app, {
