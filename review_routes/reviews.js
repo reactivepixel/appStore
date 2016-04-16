@@ -1,7 +1,5 @@
 
-/*
- * GET users listing.
- */
+// Function to GET user listing from database
 
  /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
    LIST REVIEWS
@@ -20,7 +18,12 @@ exports.list = function(req, res){
             res.render('reviews',{page_title:"Comment Area",data:rows});
 
          });
+
          //console.log(query.sql);
+
+
+         //console.log(query.sql); Test to get raw query
+
     });
 };
 
@@ -54,10 +57,16 @@ exports.edit = function(req, res){
     });
 };
 
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
   SAVE REVIEWS
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 /*Save the customer*/
+
+/* Save the customer information in the database.
+We are only keeping this name until a login is created. */
+
+
 exports.save = function(req,res){
     var input = JSON.parse(JSON.stringify(req.body));
     // get connection to db.
@@ -77,6 +86,7 @@ exports.save = function(req,res){
           // on submit send user back to main page.
           res.redirect('/reviews');
         });
+
        // console.log(query.sql); get raw query
     });
 };
@@ -85,6 +95,16 @@ exports.save = function(req,res){
   SAVE EDITED REVIEWS
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 // save edited review function that saves the edited reviews to the review db.
+
+
+       // console.log(query.sql); Test to get raw query
+
+    });
+};
+
+/* Save any edits made to your review
+Required for UPDATE part of CRUD */
+
 exports.save_edit = function(req,res){
     var input = JSON.parse(JSON.stringify(req.body));
     var id = req.params.id;
@@ -108,10 +128,15 @@ exports.save_edit = function(req,res){
     });
 };
 
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
   DELETE REVIEWS
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 // delete function delete selected review from review db.
+
+// This code is required for deleting a review
+
+
 exports.delete_review = function(req,res){
      var id = req.params.id;
      // get connection to db.
