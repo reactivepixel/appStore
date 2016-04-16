@@ -48,7 +48,7 @@ exports.edit = function(req, res){
     });
 };
 
-/*Save the customer*/
+/*Save the customer information  the  database We are only keeping the name until the login is created*/
 exports.save = function(req,res){
 
     var input = JSON.parse(JSON.stringify(req.body));
