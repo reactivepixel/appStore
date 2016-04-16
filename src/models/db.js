@@ -50,6 +50,22 @@ module.exports = function() {
   });
 
 
+    // This is making the table in SQL with 3 fields for now: name, post, & star rating.
+
+    var _review = _sequelize.define('review', {
+      name: {
+        type: Sequelize.STRING
+      },
+      post: {
+        type: Sequelize.TEXT
+      },
+      star: {
+        type: Sequelize.INTEGER
+      }
+    }, {
+      paranoid: true
+    });
+
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    genre
@@ -226,7 +242,7 @@ module.exports = function() {
   _user.hasMany(_socialAccount, { //hasMany - adds a foreign key to target and plural association mixins to the source.
     foreignKey: 'user_id'
   });
-  _user.hasMany(_reviews, { //This is what tracks the user so when they log in it will track them here.
+  _user.hasMany(_review, { //This is what tracks the user so when they log in it will track them here.
     foreignKey: 'user_id'
   });
   _user.hasMany(_app, {
