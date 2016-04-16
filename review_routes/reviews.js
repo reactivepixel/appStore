@@ -1,7 +1,5 @@
 
-/*
- * GET users listing.
- */
+/* Function to GET user listing from database */
 
 exports.list = function(req, res){
 
@@ -48,7 +46,8 @@ exports.edit = function(req, res){
     });
 };
 
-/*Save the customer*/
+/*  Save the customer  */
+
 exports.save = function(req,res){
 
     var input = JSON.parse(JSON.stringify(req.body));
