@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 var faker = require('faker');
 var util = require('../lib/util.js');
+
 var user = require('../src/models/user');
 
 var userData = {
@@ -93,6 +94,8 @@ describe('Model: User ', function() {
 
   // User Delete
   it('Delete One', function(done) {
+
+    userData.force = true;
     user.destroy(userData,
 
     // On Error

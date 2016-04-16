@@ -305,5 +305,5 @@ module.exports = function() {
     list: _list,
     listedApp: _listedApp,
     role: _role,
-  }
+  };
 }();
