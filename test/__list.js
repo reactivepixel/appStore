@@ -191,11 +191,33 @@ describe('Model: List ', function() {
       expect(data).to.be.equal(1);
       done();
     });
+
     // List Delete
-    it('Delete One', function(done) {
+    it('Delete List', function(done) {
 
       listData.force = true;
       list.destroy(listData,
+
+      // On Error
+      (err) => {
+        util.debug('List Delete One Error', err);
+        throw new Error('List Delete One Error');
+      },
+
+      // On Success
+      (data) => {
+        util.debug('List Delete One Success', data);
+        //Successfully deleting a record results in a bool response of 1
+        expect(data).to.be.equal(1);
+        done();
+      });
+    });
+
+    // List Delete
+    it('Delete User', function(done) {
+
+      userData.force = true;
+      user.destroy(userData,
 
       // On Error
       (err) => {
