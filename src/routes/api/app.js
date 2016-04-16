@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-module.exports = function (express) {
-=======
 module.exports = function (express) { // Setting module.exports to a new function that excepts express as a paramater of express.
->>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 
   /**@namespace*/
 
