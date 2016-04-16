@@ -1,4 +1,4 @@
-module.exports = function (express) {
+çmodule.exports = function (express) {
   var router = express.Router();
   var user = require('../../models/user.js');
   var util = require('../../../lib/util');
