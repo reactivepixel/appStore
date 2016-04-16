@@ -1,4 +1,6 @@
-#Read Me
+[ ![Codeship Status for reactivepixel/appStore](https://codeship.com/projects/455421c0-e26c-0133-d1a4-0229a9d1976f/status?branch=master)](https://codeship.com/projects/145610)
+
+# Gravity App Store
 
 ## Installation
 
@@ -9,13 +11,13 @@ Install the dependencies defined in the package.json file.
 
 
 ```
-
-npm install dependencyName
+npm install dependencyName --save --save-exact
+```
 
 For dev dependencies
 
-npm install --save-dev dependencyName
-
+```
+npm install dependencyName --save-dev --save-exact
 ```
 
 #### jsdoc Installation
@@ -58,19 +60,12 @@ The out folder is the documentation.
 Create your .env file in `.env` and it should contain the following information with user and password adjustments to match your dev environment.
 
 ```
-
 DB_HOST=localhost
-
 DB_SCHEMA=mysql
-
 DB_PORT=3306
-
 DB_USER=root
-
 DB_PASS=
-
 DB_NAME=appStore
-
 ```
 
 ### MySQL
