@@ -1,12 +1,14 @@
 module.exports = function(express) {
-  var express = require('express');
-  var histories = require('../models/histories');
-  var recommend = require('../models/recommend');
-  var db = require('../models/db');
-  var fs=require('fs'); //read from index file in public folder
+  var histories = require('../models/histories.js');
+  var db = require('../models/db.js');
   var router = express.Router();
 
 
+// NOTES
+// made a variable point to histories.js in model folder
+// middleware function is placed after the route.get
+// ^^ because middleware won’t execute for GET requests
+// will fire on every route that comes thru express
 
   // NOTES___________________________________________________
   // made a variable point to histories.js in model folder
@@ -40,6 +42,13 @@ module.exports = function(express) {
       healthy: true
     });
   });
+
+
+/*
+  ********************************************************
+*/
+// Route for JSDocs
+  router.use('/api', express.static(__dirname + '/out'));
 
 // Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/JSdocs')); // JSdoc route
