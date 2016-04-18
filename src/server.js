@@ -1,7 +1,5 @@
 var express = require('express'); // Sets variable express to express module
 var body_parser = require('body-parser'); // Sets variable body_parser to body-parser module
-var fs=require('fs'); //read from index file in public folder
-var http=require('http');
 var app = express(); // Sets variable app to express function
 
 // Dot Env File Loader
