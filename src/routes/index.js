@@ -1,7 +1,15 @@
 module.exports = function(express) {
+<<<<<<< 176439a384f31a2fb667658851d88e45f669d0cb
   var histories = require('../models/histories'); // histories tag will be changed to tracking
   // var path = require('path');
   var db = require('../models/db');
+=======
+  // var express = require('express');
+  var histories = require('../models/histories');
+  // var recommend = require('../models/recommend');
+  var db = require('../models/db');
+  var fs = require('fs'); //read from index file in public folder
+>>>>>>> testing url routing with path join
   var router = express.Router();
 
 
@@ -25,17 +33,15 @@ module.exports = function(express) {
 
   // Standard Routes
   router.get('/', function(req, res) {
+    // res.status(200).json({
+    //   msg: 'Hello World',
+    //   healthy: true
+    // });
 
     //display recommend.html as homepage view by pipeing to client
     fs.createReadStream(__dirname+"/public/index.html").pipe(res);
   });
 
-  // router.get('/', function(req, res) {
-  //   res.status(200).json({
-  //     msg: 'Hello World',
-  //     healthy: true
-  //   });
-  // });
 
   router.get('/status', function(req, res) {
 
