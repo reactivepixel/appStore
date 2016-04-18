@@ -107,7 +107,7 @@ describe('Model: Voter ', function() {
 
   // Voter Read All
   it('Read All', function(done) {
-    app_asset.findAll(
+    voter.findAll(
 
     // On Error
     (err) => {
