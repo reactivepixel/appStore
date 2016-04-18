@@ -32,7 +32,8 @@ npm install -g jsdoc
 Install dev dependencies for gulp
 
 ```
-npm install --save-dev gulp gulp-nodemon gulp-shell gulp-clean
+npm install -g gulp
+npm install --save-dev gulp-nodemon gulp-shell gulp-clean
 ```
 
 ### [GER](https://github.com/grahamjenson/ger) usage
