@@ -1,139 +1,168 @@
+var expect = require('chai').expect;
+var faker = require('faker');
+var util = require('../lib/util.js');
 
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
+var voter = require('../src/models/voter');
+var app = require('../src/models/app');
+var user = require('../src/models/user');
+
+var userData = { // userData stores dispName, email, hashed pass, and phone#
+  dispName: faker.name.findName(),
+  email: faker.internet.email(),
+  password: 'unhash',
+  phone: faker.phone.phoneNumber()
+};
+
+var appData = {
+  title: faker.commerce.productName() // appData will equal the name of the app
+};
+
+var votingData = {
+  link: faker.internet.url() // votingData will equal the URL in the DB
+};
+
+describe('Model: Voter ', function() {
+  // User Create One
+  it('Creating a User as Owner for the Vote', function(done) {
+    user.create(userData,
+
+    // On Error
+    (err) => {
+      util.debug('User Create Error', err);
+      throw new Error('User Create Error');
+    },
+
+    // On Success
+    (data) => {
+      util.debug('User Create Success', data);
+
+      // Overwrite the returned obj to userData
+      appData.user_id = userData.id;
+      expect(data.dispName).to.be.equal(data.dispName);
+      done();
+    });
+  });
 
 
+  // App  Create One
+  it('Create One App', function(done) {
+    app.create(appData,
 
-// In Progress DO NOT touch this file Thank You -Carson
+    // On Error
+    (err) => {
+      util.debug('App Create Error', err);
+      throw new Error('App Create Error');
+    },
 
+    // On Success
+    (data) => {
+      util.debug('App Create Success', data);
 
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
+      // Overwrite the returned obj to votingData
+      expect(data.title).to.be.equal(appData.title);
+      appData = data;
+      votingData.app_id = data.id;// The Link plus appId will equal data.id for later use
+      done();
+    });
+  });
 
+  // Voter Create One
+  it('Create Voter', function(done) {
+    voter.create(votingData,
 
+    // On Error
+    (err) => {
+      util.debug('Vote Create Error', err);
+      throw new Error('Vote Create Error');
+    },
 
+    // On Success
+    (data) => {
+      util.debug('Vote Create Success', data);
 
+      // Overwrite the returned obj to votingData
+      expect(data.link).to.be.equal(votingData.link);
+      votingData = data;
+      done();
+    });
+  });
 
+  // Voter Read One
+  it('Read One', function(done) {
+    voter.find(votingData,
 
+    // On Error
+    (err) => {
+      util.debug('Voter Read One Error', err);
+      throw new Error('Voter Read One Error');
+    },
 
+    // On Success
+    (data) => {
+      util.debug('Voter Read One Success', data);
+      expect(data.link).to.be.equal(votingData.link);
+      done();
+    });
+  });
 
+  // Voter Read All
+  it('Read All', function(done) {
+    app_asset.findAll(
 
+    // On Error
+    (err) => {
+      util.debug('Voter Read All Error', err);
+      throw new Error('Voter Assets Read All Error');
+    },
 
+    // On Success
+    (data) => {
+      util.debug('Voter Read All Success', data);
+      expect(data.length).to.be.above(0);
+      done();
+    });
+  });
 
+  // Voter Update One
+  it('Update One', function(done) {
+    var updateInfo = {id: votingData.id, title: 'xx Force Update xx'};
+    voter.update(updateInfo,
 
+    // On Error
+    (err) => {
+      util.debug('Voter Update One Error', err);
+      throw new Error('Voter Update One Error');
+    },
 
+    // On Success
+    (data) => {
+      // Overwrite the returned obj to votingData
+      votingData = data;
 
-// var request = require('supertest');
-// var faker = require('faker');
-// var util = require('../lib/util.js');
+      util.debug('Voter Update One Success', data);
+      expect(data.dispName).to.be.equal(updateInfo.dispName);
+      done();
+    });
+  });
 
-// describe('API: Voting Routes', function() {
-//   var server;
-//   var testingObjData = {
-//     vote_id: '075d3674-e0b4-47f2-9428-d28fb1d53604',
-//     link: faker.image.imageUrl(), // Also a column in DB holding the URL to image
-//     type: 'image' // Column in DB image
-//   }
+  // Voter Delete
+  it('Delete One', function(done) {
 
-//   var testingObj;
+    votingData.force = true;
+    voter.destroy(votingData,
 
-//   // Before / After each test create / destroy the express server to fully simulate unique requests.
-//   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//   beforeEach(function() {
-//     server = require('../src/server.js');
-//   });
-//   afterEach(function() {
-//     server.close();
-//   });
+    // On Error
+    (err) => {
+      util.debug('Voter Delete One Error', err);
+      throw new Error('Voter Delete One Error');
+    },
 
-//   // Create One
-//   it('Voting Create One', function(done) {
-//     request(server)
-//       .put('/api/vote/' + testingObjData.vote_id + '/voter')
-//       .set('Accept', 'application/json')
-//       .send(testingObjData)
-//       .expect('Content-Type', /json/)
-//       .expect(function(res) {
-//         util.debug('Voting Create Route Request Data', testingObjData);
-//         util.debug('Voting Create Route Response', res.body);
-
-//         if (!util.hayTest(testingObjData, res.body)) throw new Error('hayTest has concluded that data sent to and received from the server does not match.');
-
-//         // Save info about the created as our Testing Object
-//         testingObj = res.body;
-//       })
-//       .expect(200, done);
-//   });
-
-//   // Update One
-//   it('Voting Update', function(done) {
-//     var payload = testingObj;
-//     payload.link = faker.image.imageUrl() + '?update=true';
-//     request(server)
-//       .put('/api/vote/' + testingObjData.vote_id + '/voter/' + payload.id.toString())
-//       .set('Accept', 'application/json')
-//       .send(payload)
-//       .expect('Content-Type', /json/)
-//       .expect(function(res) {
-//         util.debug('Voting Update Payload', payload);
-//         util.debug('Voting Update Route Response', res.body);
-
-//         if (!util.hayTest(payload, res.body)) throw new Error('hayTest has concluded that data sent to and received from the server does not match.');
-//       })
-//       .expect(200, done);
-//   });
-
-//   // Read One
-//   it('Voting Read One', function(done) {
-//     request(server)
-//       .get('/api/voter/' + testingObj.id.toString())
-//       .set('Accept', 'application/json')
-//       .expect('Content-Type', /json/)
-//       .expect(function(res) {
-//         util.debug('Voting Read Testing Data', testingObj);
-//         util.debug('Voting Read Route Response', res.body);
-
-//         if (!util.hayTest(testingObj, res.body)) throw new Error('hayTest has concluded that data sent to and received from the server does not match.');
-//       })
-//       .expect(200, done);
-//   });
-
-//   // Read All
-//   it('Voting Read All', function(done) {
-//     request(server)
-//       .get('/api/votes')
-//       .set('Accept', 'application/json')
-//       .expect('Content-Type', /json/)
-//       .expect(function(res) {
-//         util.debug('Voting Read All Route Response', res.body);
-
-//         if (res.body.length < 1) throw new Error('Less than 1 entry in the Voting Table');
-//       })
-//       .expect(200, done);
-//   });
-
-//   // Destroy
-//   it('Voting Destroy', function(done) {
-//     request(server)
-//       .delete('/api/vote/' + testingObjData.vote_id + '/voter/' + testingObj.id.toString())
-//       .set('Accept', 'application/json')
-//       .send({
-//         force: true
-//       })
-//       .expect('Content-Type', /json/)
-//       .expect(function(res) {
-//         util.debug('Voting Delete App Asset Data', testingObj);
-//         util.debug('Voting Delete Route Response', res.body);
-
-//         if (!res.body.success) throw new Error('Destroy did not correctly work');
-//       })
-//       .expect(200, done);
-//   });
-
-// });
+    // On Success
+    (data) => {
+      util.debug('Voter Delete One Success', data);
+      //Successfully deleting a record results in a bool response of 1
+      expect(data).to.be.equal(1);
+      done();
+    });
+  });
+});
