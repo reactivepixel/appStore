@@ -129,12 +129,12 @@ module.exports = function() {
   });
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Voting
+  //    Votings
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _voting = _sequelize.define('voting', {
     type: {
       type: Sequelize.ENUM,
-      values: ['image', 'YouTube', 'other']
+      values: ['A', 'B', 'C']
     },
     link: {
       type: Sequelize.STRING

@@ -53,8 +53,6 @@ describe('Model: App ', function() {
     // On Success
     (data) => {
       util.debug('App Create Success', data);
-
-      // Overwrite the returned obj to appData
       appData = data;
       expect(data.dispName).to.be.equal(appData.dispName);
       done();
@@ -74,6 +72,7 @@ describe('Model: App ', function() {
     // On Success
     (data) => {
       util.debug('App Read One Success', data);
+      appData = data;
       expect(data.dispName).to.be.equal(appData.dispName);
       done();
     });
