@@ -1,7 +1,8 @@
 module.exports = function(express) {
   var express = require('express');
-  var histories = require('../models/histories.js');
-  var db = require('../models/db.js');
+  var histories = require('../models/histories');
+  var recommend = require('../models/recommend');
+  var db = require('../models/db');
   var fs=require('fs'); //read from index file in public folder
   var router = express.Router();
 
@@ -47,7 +48,7 @@ module.exports = function(express) {
   router.use('/api/', require('./api/app_assets')(express));
   router.use('/api/', require('./api/list')(express));
   router.use('/api/', require('./api/listed_apps')(express));
-  router.use('/api/', require('./api/recommend')(express));
+  // router.use('/api/', require('./api/recommend')(express));
 
 
   // MIDDLE-WARE
