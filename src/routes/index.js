@@ -1,7 +1,8 @@
 module.exports = function(express) {
   var express = require('express');
-  var histories = require('../models/histories.js');
-  var db = require('../models/db.js');
+  var histories = require('../models/histories');
+  var db = require('../models/db');
+  var path = require('path');
   var fs=require('fs'); //read from index file in public folder
   var router = express.Router();
 
@@ -40,8 +41,9 @@ module.exports = function(express) {
     });
   });
 
+
 // Routes
-  router.use('/jsdoc', express.static(__dirname + './../../build/JSdocs')); // JSdoc route
+  router.use('/jsdoc', express.static(path.join(__dirname + './../../build/JSdocs'))); // JSdoc route
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
   router.use('/api/', require('./api/app_assets')(express));
@@ -57,6 +59,7 @@ module.exports = function(express) {
   // rawRoute of url is stored in database.
   router.use(function (req, res, next) {
     var payload = req.body;
+    //rawRoute is db name
     // create full rawRoute of the url and store in db
     payload.rawRoute = req.protocol + '://' + req.get('host') + req.originalUrl;
     histories.create(payload,function(err){
