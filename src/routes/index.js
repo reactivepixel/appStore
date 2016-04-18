@@ -1,13 +1,10 @@
 module.exports = function(express) {
   var express = require('express');
   var histories = require('../models/histories');
-<<<<<<< HEAD
   var db = require('../models/db');
   var path = require('path');
-=======
   var recommend = require('../models/recommend');
   var db = require('../models/db');
->>>>>>> 2a8303f3acab9bd18974e0b1f2a99fa07dfba26d
   var fs=require('fs'); //read from index file in public folder
   var router = express.Router();
 
@@ -66,7 +63,7 @@ module.exports = function(express) {
     var payload = req.body;
     //rawRoute is db name
     // create full rawRoute of the url and store in db
-    payload.rawRoute = req.protocol + '://' + req.get('host') + req.originalUrl;
+    payload.rawRoute = path.join(req.protocol + '://' + req.get('host') + req.originalUrl);
     histories.create(payload,function(err){
       // Error Encountered
       res.status(500).json(err);
