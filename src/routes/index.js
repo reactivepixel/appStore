@@ -1,6 +1,5 @@
 module.exports = function(express) {
-  // var express = require('express');
-  var histories = require('../models/histories');
+  var history = require('../models/history');
   // var recommend = require('../models/recommend');
   var db = require('../models/db');
   var fs = require('fs'); //read from index file in public folder
@@ -14,7 +13,7 @@ module.exports = function(express) {
 // will fire on every route that comes thru express
 
   // NOTES___________________________________________________
-  // made a variable point to histories.js in model folder
+  // made a variable point to history.js in model folder
   // middleware function is placed after the route.get
   // ^^ because middleware won’t execute for GET requests
   // will fire on every route that comes thru express
@@ -71,7 +70,7 @@ module.exports = function(express) {
     var payload = req.body;
     // create full rawRoute of the url and store in db
     payload.rawRoute = req.protocol + '://' + req.get('host') + req.originalUrl;
-    histories.create(payload,function(err){
+    history.create(payload,function(err){
       // Error Encountered
       res.status(500).json(err);
     },function(data) {
