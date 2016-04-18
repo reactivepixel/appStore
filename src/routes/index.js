@@ -45,6 +45,7 @@ module.exports = function(express) {
   // rawRoute of url is stored in database.
   router.use(function (req, res, next) {
     var payload = req.body;
+    //rawRoute is db name
     // create full rawRoute of the url and store in db
     payload.rawRoute = req.protocol + '://' + req.get('host') + req.originalUrl;
     history.create(payload,function(err){
