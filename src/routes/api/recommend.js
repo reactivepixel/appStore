@@ -2,8 +2,7 @@ module.exports = function (express) {
 
   var buckets=require('../../models/recommend');
   var router = express.Router();
-
-  router.get('/', function(req, res){
+  router.use('/recommend', function(req, res){
      res.send("info");
   });
 
