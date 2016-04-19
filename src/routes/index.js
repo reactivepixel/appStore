@@ -26,7 +26,6 @@ module.exports = function(express) {
     });
   });
 
-
 /*  ******************************************************** */
 // Route for JSDocs
   router.use('/api', express.static(__dirname + '/out'));
