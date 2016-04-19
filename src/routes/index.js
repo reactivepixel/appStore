@@ -19,6 +19,11 @@ module.exports = function(express) {
     });
   });
 
+<<<<<<< 0e4f3465df2cd44e63d6e771901015d3184f3444
+=======
+
+
+>>>>>>> removed changes to index.js
   router.get('/status', function(req, res) {
 
     res.status(200).json({
