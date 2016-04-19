@@ -74,7 +74,6 @@ describe('Model: App ', function() {
     // On Success
     (data) => {
       util.debug('App Read One Success', data);
-      appData = data;
       expect(data.dispName).to.be.equal(appData.dispName);
       done();
     });
