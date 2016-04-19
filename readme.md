@@ -61,19 +61,6 @@ ger.recommendations_for_thing('movies', 'xmen', {actions: {likes: 1}})
 * neighbourhood - variable that quantifies the amount of users who 'like' the same 'thing' (or in this case, game);
 
 
-### fs usage
-
-fs is native to node. no installation needed.
-fs needs to be required.
-
-```
-var fs=require('fs');
-```
-fs will read and write to file systems.
-Use fs to write to your views.
-
-create your views in the public folder.
-
 ## Run Server
 
 #### To run the server now in terminal...
