@@ -7,12 +7,6 @@ module.exports = function(express) {
 
 
 // NOTES
-// made a variable point to histories.js in model folder
-// middleware function is placed after the route.get
-// ^^ because middleware won’t execute for GET requests
-// will fire on every route that comes thru express
-
-  // NOTES___________________________________________________
   // made a variable point to history.js in model folder
   // middleware function is placed after the route.get
   // ^^ because middleware won’t execute for GET requests
