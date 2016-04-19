@@ -21,16 +21,6 @@
     "validator": "4.9.0"
   },
   "devDependencies": {
-<<<<<<< 3e2d30444bd4aab7c3ff4b8d3a583d0e6f739343
-    "dotenv": "2.0.0",
-    "faker": "3.0.1",
-    "gulp": "3.9.1",
-    "gulp-clean": "0.3.2",
-    "gulp-nodemon": "2.0.6",
-    "gulp-shell": "0.5.2",
-    "mocha": "2.4.5",
-    "supertest": "1.2.0"
-=======
     "chai": "^3.5.0",
     "dotenv": "^2.0.0",
     "faker": "^3.0.1",
@@ -40,6 +30,5 @@
     "gulp-shell": "^0.5.2",
     "mocha": "^2.4.5",
     "supertest": "^1.2.0"
->>>>>>> HOTFIX fixed package.json HEAD bs
   }
 }
