@@ -26,12 +26,10 @@ module.exports = function(express) {
     });
   });
 
-/*  ******************************************************** */
-// Route for JSDocs
-  router.use('/api', express.static(__dirname + '/out'));
+
 
 // Routes
-  router.use('/jsdoc', express.static(__dirname + './../../build/JSdocs')); // JSdoc route
+  router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs')); // JSdoc route
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
   router.use('/api/', require('./api/app_assets')(express));
