@@ -129,12 +129,12 @@ module.exports = function() {
   });
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Voting
+  //    Votings
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _voting = _sequelize.define('voting', {
     type: {
       type: Sequelize.ENUM,
-      values: ['image', 'YouTube', 'other']
+      values: ['A', 'B', 'C']
     },
     link: {
       type: Sequelize.STRING
@@ -298,7 +298,7 @@ module.exports = function() {
     connection: _sequelize,
     user: _user,
     app: _app,
-    histories: _history,
+    history: _history,
     review: _review, //np sean I got you <3
     voting: _voting,
     appAsset: _appAsset,

@@ -1,28 +1,29 @@
 module.exports = function() {
-  var db = require('./db.js');
-  var sequelize = db.connection;
-  var util = require('../../lib/util');
+  var db = require('./db.js'); // Sets db to imported file db.js
+  var sequelize = db.connection; // Sets sequelize to db.connection
+  var util = require('../../lib/util'); // Sets util to imported util.js
 
-// Create
-  function _create(payload, err, success) {
-    var cleanData = util.scrubData(payload);
-    db.histories.create(cleanData).then(success).catch(err);
+  function _create(payload, err, success) // Cleans the data within voting in DB
+  {
+    var cleanData = payload;
+    db.voting.create(cleanData).then(success).catch(err);
   }
-// Update
+
   function _update(payload, err, success) {
-    var cleanData = util.scrubData(payload);
-    db.histories.find({
+    var cleanData = payload;
+    db.voting.find({
       where: {
         id: cleanData.id
       }
-    }).then(function(matchedhistories) {
-      matchedhistories.updateAttributes(cleanData).then(success).catch(err);
+    }).then(function(matchedvoting) {
+      matchedvoting.updateAttributes(payload).then(success).catch(err);
     }).catch(err);
   }
-// Find
+
   function _find(payload, err, success) {
-    var cleanData = util.scrubData(payload);
-    db.histories.find({
+    util.debug('Voting Model _Find Payload', payload)
+    var cleanData = payload;
+    db.voting.find({
       where: {
         id: cleanData.id
       },
@@ -32,19 +33,19 @@ module.exports = function() {
       }]
     }).then(success).catch(err);
   }
-// Find All
+
   function _findAll(err, success) {
-    db.histories.findAll({
+    db.voting.findAll({
       include: [{
         all: true,
         nested: true
       }]
     }).then(success).catch(err);
   }
-// Delete
+
   function _destroy(payload, err, success) {
     var cleanData = payload;
-    db.histories.destroy({
+    db.voting.destroy({
       where: {
         id: cleanData.id
       },
