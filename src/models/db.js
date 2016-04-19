@@ -159,7 +159,7 @@ module.exports = function() {
       type: Sequelize.TEXT
     },
     age: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
     readme: {
       type: Sequelize.TEXT
