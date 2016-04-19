@@ -3,7 +3,6 @@ module.exports = function(express) {
   var db = require('../models/db');
   var router = express.Router();
 
-
 // NOTES
   // made a variable point to history.js in model folder.
   // middleware function is placed after the route.get
@@ -12,7 +11,6 @@ module.exports = function(express) {
   //created a homepage view to test bootstrap and routing connection
 
   /*  ******************************************************** */
-
   // Standard Routes
   router.get('/', function(req, res) {
     res.status(200).json({
@@ -21,8 +19,6 @@ module.exports = function(express) {
     });
   });
 
-
-
   router.get('/status', function(req, res) {
 
     res.status(200).json({
@@ -30,10 +26,7 @@ module.exports = function(express) {
     });
   });
 
-
-/*
-  ********************************************************
-*/
+/*  ******************************************************** */
 // Route for JSDocs
   router.use('/api', express.static(__dirname + '/out'));
 
@@ -46,7 +39,6 @@ module.exports = function(express) {
   router.use('/api/', require('./api/listed_apps')(express));
   router.use('/api/', require('./api/voting')(express));
   // router.use('/api/', require('./api/recommend')(express));
-
 
   // MIDDLE-WARE
   // used the existing module on index.js to add track user browsering in the url.
