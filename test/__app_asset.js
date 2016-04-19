@@ -14,7 +14,7 @@ var userData = {
 };
 
 var appData = {
-  title: faker.commerce.productName()
+  type: faker.commerce.productName()
 };
 
 var appAssetData = {
@@ -125,7 +125,7 @@ describe('Model: App Assets ', function() {
 
   // App Assets Update One
   it('Update One', function(done) {
-    var updateInfo = {id: appAssetData.id, title: 'xx Force Update xx'};
+    var updateInfo = {id: appAssetData.id, type: 'xx Force Update xx'};
     app_asset.update(updateInfo,
 
     // On Error

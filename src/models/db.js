@@ -159,7 +159,7 @@ module.exports = function() {
       type: Sequelize.TEXT
     },
     age: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
     readme: {
       type: Sequelize.TEXT
@@ -260,7 +260,7 @@ module.exports = function() {
     foreignKey: 'role_id'
   });
 
-    //hasOne - adds a foreign key to the target "app" and singular association mixins to the source.
+    // hasOne - adds a foreign key to the target "app" and singular association mixins to the source.
   _genre.hasOne(_app, {
     foreignKey: 'genre_id'
   });

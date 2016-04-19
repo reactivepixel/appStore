@@ -4,23 +4,23 @@ module.exports = function() {
   var util = require('../../lib/util');
 
   function _create(payload, err, success) {
-    var cleanData = util.scrubData(payload);
+    var cleanData = payload;
     db.app.create(cleanData).then(success).catch(err);
   }
 
   function _update(payload, err, success) {
-    var cleanData = util.scrubData(payload);
+    var cleanData = payload;
     db.app.find({
       where: {
         id: cleanData.id
       }
-    }).then(function(matchedapp) {
-      matchedapp.updateAttributes(cleanData).then(success).catch(err);
+    }).then(function(matchedApp) {
+      matchedApp.updateAttributes(payload).then(success).catch(err);
     }).catch(err);
   }
 
   function _find(payload, err, success) {
-    var cleanData = util.scrubData(payload);
+    var cleanData = payload;
     db.app.find({
       where: {
         id: cleanData.id

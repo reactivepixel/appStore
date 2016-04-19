@@ -19,7 +19,7 @@ For dev dependencies
 npm install dependencyName --save-dev --save-exact
 ```
 
-### jsdoc Installation
+### [jsdoc](https://github.com/jsdoc3/jsdoc) Installation
 
 Globally install jsdoc
 
@@ -27,7 +27,7 @@ Globally install jsdoc
 npm install -g jsdoc
 ```
 
-### gulp Installation
+### [gulp](https://github.com/gulpjs/gulp) Installation
 
 Install dev dependencies for gulp
 
@@ -38,7 +38,9 @@ npm install --save-dev gulp-nodemon gulp-shell gulp-clean
 
 ### [GER](https://github.com/grahamjenson/ger) usage
 
+
 #### Good Enough recommendations(GER) - collaborative filtering
+
 
 * used for recommendation algorithm
 * dependent on data from: *game voting, game genres, user degree, user download and viewing histories*
@@ -60,19 +62,6 @@ ger.recommendations_for_thing('movies', 'xmen', {actions: {likes: 1}})
 * confidence - variable that quantifies what 'thing' to first recommend.
 * neighbourhood - variable that quantifies the amount of users who 'like' the same 'thing' (or in this case, game);
 
-
-### fs usage
-
-fs is native to node. no installation needed.
-fs needs to be required.
-
-```
-var fs=require('fs');
-```
-fs will read and write to file systems.
-Use fs to write to your views.
-
-create your views in the public folder.
 
 ## Run Server
 
