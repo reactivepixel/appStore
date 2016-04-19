@@ -159,7 +159,7 @@ module.exports = function() {
       type: Sequelize.TEXT
     },
     age: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
     readme: {
       type: Sequelize.TEXT
@@ -260,20 +260,7 @@ module.exports = function() {
     foreignKey: 'role_id'
   });
 
-    //hasOne - adds a foreign key to the target "app" and singular association mixins to the source.
-  _genre.hasOne(_app, {
-    foreignKey: 'genre_id'
-  });
-  _degree.hasOne(_user, {
-    foreignKey: 'degree_id'
-  });
 
-  //hasMany - adds a foreign key to target _socialAccount and plural association mixins to the source user_id.
-  _user.hasMany(_socialAccount, {
-    foreignKey: 'user_id'
-  });
-
-  //This is what tracks the user so when they log in it will track them here.
   _user.hasMany(_review, {
     foreignKey: 'user_id'
   });
