@@ -38,7 +38,9 @@ npm install --save-dev gulp-nodemon gulp-shell gulp-clean
 
 ### [GER](https://github.com/grahamjenson/ger) usage
 
+
 #### Good Enough recommendations(GER) - collaborative filtering
+
 
 * used for recommendation algorithm
 * dependent on data from: *game voting, game genres, user degree, user download and viewing histories*
