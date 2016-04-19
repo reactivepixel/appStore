@@ -11,12 +11,9 @@ module.exports = function(express) {
   // middleware function is placed after the route.get
   // ^^ because middleware won’t execute for GET requests
   // will fire on every route that comes thru express
-
   //created a homepage view to test bootstrap and routing connection
 
-  /*
-  ********************************************************
-  */
+  /*  ******************************************************** */
 
   // Standard Routes
   router.get('/', function(req, res) {
