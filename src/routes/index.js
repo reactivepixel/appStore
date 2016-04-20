@@ -1,11 +1,6 @@
 module.exports = function(express) {
-
   var history = require('../models/history');
-  var express = require('express');
-  var histories = require('../models/history');
   var db = require('../models/db');
-  var path = require('path');
-  var recommend = require('../models/recommend');
   var router = express.Router();
 
 // NOTES
@@ -47,11 +42,6 @@ module.exports = function(express) {
   // router.use('/api/', require('./api/recommend')(express));
 
   // MIDDLE-WARE
-
-  router.use('/api/', require('./api/recommend')(express));
-
-
-  // MIDDLE-WARE FOR history
   // used the existing module on index.js to add track user browsering in the url.
   // this middleware function has no mount path.
   // this code is executed for every request to the router.
@@ -61,7 +51,7 @@ module.exports = function(express) {
     //rawRoute is db name
     // create full rawRoute of the url and store in db
     payload.rawRoute = path.join(req.protocol + '://' + req.get('host') + req.originalUrl);
-    histories.create(payload,function(err){
+    history.create(payload,function(err){
       // Error Encountered
       res.status(500).json(err);
     },function(data) {
