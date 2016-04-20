@@ -58,7 +58,7 @@ exports.save = function(req,res){
         var data = {
 
             name    : input.name,
-            post : input.post,
+            content : input.content,
             star   : input.star
 
         };
@@ -88,7 +88,7 @@ exports.save_edit = function(req,res){
         var data = {
 
             name    : input.name,
-            post : input.post,
+            content : input.content,
             star   : input.star
 
         };
