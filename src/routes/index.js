@@ -6,7 +6,7 @@ module.exports = function(express) {
   var history = require('../models/history');
       /**
         * @var {file} path
-        * This is 
+        * This is
       */
   var path = require('path');
       /**
@@ -15,7 +15,7 @@ module.exports = function(express) {
       */
   var router = express.Router();
 
- // NOTES 
+ // NOTES
  //  made a variable point to history.js in model folder.
  //  middleware function is placed after the route.get
  //  ^^ because middleware won’t execute for GET requests
@@ -24,7 +24,7 @@ module.exports = function(express) {
 
 
 
-// Standard Routes 
+// Standard Routes
   router.get('/', function(req, res) {
     res.status(200).json({
       msg: 'Hello World',
@@ -42,7 +42,7 @@ module.exports = function(express) {
 
 
 
-// Routes 
+// Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs'));
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
@@ -50,42 +50,39 @@ module.exports = function(express) {
   router.use('/api/', require('./api/list')(express));
   router.use('/api/', require('./api/listed_apps')(express));
   router.use('/api/', require('./api/voting')(express));
-  // router.use('/api/', require('./api/recommend')(express)); 
+  // router.use('/api/', require('./api/recommend')(express));
 
-
-/** MIDDLE-WARE 
-  * Used the existing module on index.js to add track user browsering in the url.
-  * This middleware function has no mount path.
-  * This code is executed for every request to the router.
-*/
-
-         // THE USE FUNCTION MUST COME AFTER THE GET FUNCTIONS ABOVE
+  // MIDDLE-WARE
+  // used the existing module on index.js to add track user browsering in the url.
+  // this middleware function has no mount path.
+  // this code is executed for every request to the router.
+  // rawRoute of url is stored in database.
   router.use(function (req, res, next) {
         /**
           * @var {Data} payload
           * Payload is where we store the req.body data for later use
-        */        
+        */
     var payload = req.body;
             /**
               * @function rawRoute
-              * @Create full url and store in db under rawRoute 
+              * @Create full url and store in db under rawRoute
             */
     payload.rawRoute = path.join(req.protocol + '://' + req.get('host') + req.originalUrl);
             /**
               * @function create
               * @Uses the create function in the history model
-              * @param payload 
+              * @param payload
               * Holds the req.body in a variable
               * @param err
               * Errors
             */
     history.create(payload,function(err){
-      // Error Encountered 
+      // Error Encountered
       res.status(500).json(err);
     },function(data) {
       res.status(200).json(data);
-      // End the request 
-      next(); 
+      // End the request
+      next();
     });
   });
   return router;
