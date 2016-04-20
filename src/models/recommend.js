@@ -7,7 +7,7 @@ module.exports = function(express) {
 
 //change test parameters
 //might use .put for postman
-var person='jeff';
+var person='matt';
 var sports='sports';
 var thing='swimming';
 

@@ -10,7 +10,7 @@ module.exports = function(express) {
   // will fire on every route that comes thru express
   //created a homepage view to test bootstrap and routing connection
 
-  /*  ******************************************************** */
+
   // Standard Routes
   router.get('/', function(req, res) {
     res.status(200).json({
