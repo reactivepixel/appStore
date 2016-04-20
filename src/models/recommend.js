@@ -31,12 +31,12 @@ ger.initialize_namespace('movies')
       expires_at: '2020-06-06'
     }
   ])
-  })
-  .then( function() {
-  // What things might alice like?
-    return ger.recommendations_for_person('movies', person3, {actions: {likes: 1}})
-  })
-  .then( function(recommendations) {
-    // console.log(JSON.stringify(recommendations,null,2))
-  });
+});
+sports_bucket_say = console.log("model and route connectted");
+sayit: "like this cause json";
+sayw=function(){
+  console.log('"like this cause json"');
 };
+
+return sports_bucket_say;
+}
