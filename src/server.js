@@ -1,7 +1,6 @@
 /**
  * @var {module} express
  * This is the express module being put into a variable, express.
- *
 */
 var express = require('express'); // Sets variable express to express module
 
