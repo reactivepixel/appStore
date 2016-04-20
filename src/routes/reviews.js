@@ -110,11 +110,6 @@ exports.save = function(req,res){
 /* Save any edits made to your review
 Required for UPDATE part of CRUD */
 
-       // console.log(query.sql); Test to get raw query
-
-    });
-};
-
 exports.save_edit = function(req,res){
     var input = JSON.parse(JSON.stringify(req.body));
     var id = req.params.id;

@@ -43,7 +43,7 @@ module.exports = function() {
   }
 // Delete
   function _destroy(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     db.history.destroy({
       where: {
         id: cleanData.id

@@ -4,7 +4,7 @@ module.exports = function() {
   var util = require('../../lib/util'); 
 
   function _create(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     var cryptedData;
 
     // Hash the user's password
@@ -18,18 +18,18 @@ module.exports = function() {
   }
 
   function _update(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     db.user.find({
       where: {
         id: cleanData.id
       }
     }).then(function(matcheduser) {
-      matcheduser.updateAttributes(payload).then(success).catch(err);
+      matcheduser.updateAttributes(cleanData).then(success).catch(err);
     }).catch(err);
   }
 
   function _find(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     db.user.find({
       where: {
         id: cleanData.id
@@ -51,7 +51,7 @@ module.exports = function() {
   }
 
   function _destroy(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     db.user.destroy({
       where: {
         id: cleanData.id

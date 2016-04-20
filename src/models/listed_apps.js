@@ -4,12 +4,12 @@ module.exports = function() {
   var util = require('../../lib/util');
 
   function _create(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     db.listedApp.create(cleanData).then(success).catch(err);
   }
 
   function _destroy(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     util.debug('Listed Apps Model Destroy Payload', cleanData);
     db.listedApp.destroy({
       where: cleanData,
