@@ -19,49 +19,49 @@ var sports_bucket = ger.initialize_namespace('sports')//bucket of events with na
   return ger.events([
     {
       namespace: 'sports',
-      person: 'bob',
+      person: 'leeroy',
       action: 'likes',
       thing: 'soccer',
       expires_at: '2020-06-06'
     },
     {
       namespace: 'sports',
-      person: 'bob',
+      person: 'leeroy',
       action: 'likes',
       thing: 'swimming',
       expires_at: '2020-06-06'
     },
     {
       namespace: 'sports',
-      person: 'bob',
+      person: 'leeroy',
       action: 'likes',
       thing: 'baseball',
       expires_at: '2020-06-06'
     }
     ,{
       namespace: 'sports',
-      person: 'jeff',
+      person: 'matt',
       action: 'likes',
       thing: 'swimming',
       expires_at: '2020-06-06'
     },
     {
       namespace: 'sports',
-      person: 'jeff',
+      person: 'matt',
       action: 'likes',
       thing: 'basketball',
       expires_at: '2020-06-06'
     },
     {
       namespace: 'sports',
-      person: 'alice',
+      person: 'lita',
       action: 'likes',
       thing: 'soccer',
       expires_at: '2020-06-06'
     }
     ,{
       namespace: 'sports',
-      person: 'alice',
+      person: 'lita',
       action: 'likes',
       thing: 'voleyball',
       expires_at: '2020-06-06'
