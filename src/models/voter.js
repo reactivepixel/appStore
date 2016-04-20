@@ -5,24 +5,24 @@ module.exports = function() {
 
   function _create(payload, err, success) // Cleans the data within voting in DB
   {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);;
     db.voting.create(cleanData).then(success).catch(err);
   }
 
   function _update(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);;
     db.voting.find({
       where: {
         id: cleanData.id
       }
     }).then(function(matchedvoting) {
-      matchedvoting.updateAttributes(payload).then(success).catch(err);
+      matchedvoting.updateAttributes(cleanData).then(success).catch(err);
     }).catch(err);
   }
 
   function _find(payload, err, success) {
     util.debug('Voting Model _Find Payload', payload)
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);;
     db.voting.find({
       where: {
         id: cleanData.id
@@ -44,7 +44,7 @@ module.exports = function() {
   }
 
   function _destroy(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);;
     db.voting.destroy({
       where: {
         id: cleanData.id

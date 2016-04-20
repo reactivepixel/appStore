@@ -1,8 +1,6 @@
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var shell = require('gulp-shell');
-var clean = require('gulp-clean');
-var runSequence = require('run-sequence');
 
 //Task to initiate JSdocs
 gulp.task('js-doc', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
