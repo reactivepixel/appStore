@@ -10,7 +10,6 @@
   "author": "Chapman",
   "license": "ISC",
   "dependencies": {
-    "run-sequence": "1.1.5",
     "async": "^2.0.0-rc.3",
     "bcrypt": "0.8.5",
     "body-parser": "1.15.0",
