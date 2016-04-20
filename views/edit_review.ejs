@@ -2,15 +2,15 @@
 
         <div class="page-data">
 
-            <form method="post" action="/reviews/edit/<%=data[0].id%>">
+            <form method="content" action="/reviews/edit/<%=data[0].id%>">
                 <table cellpadding="11">
                 <tr>
                     <td class="label">Name</td><td>: <input type="text" name="name" value="<%=data[0].name%>" required></td>
                  </tr>
                  <tr>
-                    <td class="label" valign="top">Post</td>
+                    <td class="label" valign="top">Content</td>
                     <td valign="top">:
-                        <textarea name="post" required cols="30" rows="5"><%=data[0].post%></textarea>
+                        <textarea name="content" required cols="30" rows="5"><%=data[0].content%></textarea>
                     </td>
                 </tr>
                 <tr>
