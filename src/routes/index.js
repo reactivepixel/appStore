@@ -31,13 +31,11 @@ module.exports = function(express) {
 
 // Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs')); // JSdoc route
-
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
   router.use('/api/', require('./api/app_assets')(express));
   router.use('/api/', require('./api/list')(express));
   router.use('/api/', require('./api/listed_apps')(express));
-
   router.use('/api/', require('./api/voting')(express));
   // router.use('/api/', require('./api/recommend')(express));
 
