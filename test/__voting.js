@@ -2,11 +2,11 @@ var expect = require('chai').expect;
 var faker = require('faker');
 var util = require('../lib/util.js');
 
-var app_asset = require('../src/models/app_asset');
+var voter = require('../src/models/voter');
 var app = require('../src/models/app');
 var user = require('../src/models/user');
 
-var userData = {
+var userData = { // userData stores dispName, email, hashed pass, and phone#
   dispName: faker.name.findName(),
   email: faker.internet.email(),
   password: 'unhash',
@@ -14,16 +14,16 @@ var userData = {
 };
 
 var appData = {
-  type: faker.commerce.productName()
+  title: faker.commerce.productName() // appData will equal the name of the app from title in the DB
 };
 
-var appAssetData = {
-  link: faker.internet.url()
+var votingData = {
+  link: faker.internet.url() // votingData will equal the URL in the DB
 };
 
-describe('Model: App Assets ', function() {
+describe('Model: Voter ', function() {
   // User Create One
-  it('Creating a User as Owner for the App Assets', function(done) {
+  it('Creating a User as Owner for the Vote', function(done) {
     user.create(userData,
 
     // On Error
@@ -58,108 +58,108 @@ describe('Model: App Assets ', function() {
     (data) => {
       util.debug('App Create Success', data);
 
-      // Overwrite the returned obj to appAssetData
+      // Overwrite the returned obj to votingData
       expect(data.title).to.be.equal(appData.title);
       appData = data;
-      appAssetData.app_id = data.id;
+      votingData.app_id = data.id;// The Link plus appId will equal data.id for later use
       done();
     });
   });
 
-  // App Assets Create One
-  it('Create App Asset', function(done) {
-    app_asset.create(appAssetData,
+  // Voter Create One
+  it('Create Voter', function(done) {
+    voter.create(votingData,
 
     // On Error
     (err) => {
-      util.debug('App Create Error', err);
-      throw new Error('App Create Error');
+      util.debug('Vote Create Error', err);
+      throw new Error('Vote Create Error');
     },
 
     // On Success
     (data) => {
-      util.debug('App Create Success', data);
+      util.debug('Vote Create Success', data);
 
-      // Overwrite the returned obj to appAssetData
-      expect(data.link).to.be.equal(appAssetData.link);
-      appAssetData = data;
+      // Overwrite the returned obj to votingData
+      expect(data.link).to.be.equal(votingData.link);
+      votingData = data;
       done();
     });
   });
 
-  // App Assets Read One
+  // Voter Read One
   it('Read One', function(done) {
-    app_asset.find(appAssetData,
+    voter.find(votingData,
 
     // On Error
     (err) => {
-      util.debug('App Assets Read One Error', err);
-      throw new Error('App Assets Read One Error');
+      util.debug('Voter Read One Error', err);
+      throw new Error('Voter Read One Error');
     },
 
     // On Success
     (data) => {
-      util.debug('App Assets Read One Success', data);
-      expect(data.link).to.be.equal(appAssetData.link);
+      util.debug('Voter Read One Success', data);
+      expect(data.link).to.be.equal(votingData.link);
       done();
     });
   });
 
-  // App Assets Read All
+  // Voter Read All
   it('Read All', function(done) {
-    app_asset.findAll(
+    voter.findAll(
 
     // On Error
     (err) => {
-      util.debug('App Assets Read All Error', err);
-      throw new Error('App Assets Read All Error');
+      util.debug('Voter Read All Error', err);
+      throw new Error('Voter Assets Read All Error');
     },
 
     // On Success
     (data) => {
-      util.debug('App Assets Read All Success', data);
+      util.debug('Voter Read All Success', data);
       expect(data.length).to.be.above(0);
       done();
     });
   });
 
-  // App Assets Update One
+  // Voter Update One
   it('Update One', function(done) {
-    var updateInfo = {id: appAssetData.id, type: 'xx Force Update xx'};
-    app_asset.update(updateInfo,
+    var updateInfo = {id: votingData.id, title: 'xx Force Update xx'};
+    voter.update(updateInfo,
 
     // On Error
     (err) => {
-      util.debug('App Assets Update One Error', err);
-      throw new Error('App Assets Update One Error');
+      util.debug('Voter Update One Error', err);
+      throw new Error('Voter Update One Error');
     },
 
     // On Success
     (data) => {
-      // Overwrite the returned obj to appAssetData
-      appAssetData = data;
+      // Overwrite the returned obj to votingData
+      votingData = data;
 
-      util.debug('App Assets Update One Success', data);
+      util.debug('Voter Update One Success', data);
       expect(data.dispName).to.be.equal(updateInfo.dispName);
       done();
     });
   });
 
-  // App Assets Delete
+  // Voter Delete
   it('Delete One', function(done) {
 
-    appAssetData.force = true;
-    app_asset.destroy(appAssetData,
+    votingData.force = true;
+    voter.destroy(votingData,
 
     // On Error
     (err) => {
-      util.debug('App Assets Delete One Error', err);
-      throw new Error('App Assets Delete One Error');
+      util.debug('Voter Delete One Error', err);
+      throw new Error('Voter Delete One Error');
     },
 
     // On Success
     (data) => {
-      util.debug('App Assets Delete One Success', data);
+      util.debug('Voter Delete One Success', data);
       //Successfully deleting a record results in a bool response of 1
       expect(data).to.be.equal(1);
       done();

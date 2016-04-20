@@ -6,10 +6,13 @@
  * if you are reading this sean is awesome...that is all
  */
 
-
 module.exports = function() {
   var Sequelize = require('sequelize');
   var mysql = require('mysql');
+
+  // Dot Env File Loader
+  if (!process.env.PORT) dotenv = require('dotenv').load();
+
   var _sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
     host: process.env.DB_HOST,
     dialect: process.env.DB_SCHEMA,
@@ -29,7 +32,7 @@ module.exports = function() {
   /**
    *   to define mapping between a model and table use
    *   ".define" Sequelize will then automatically add the
-   *   attributes createdAt and updatedAt to it
+   *   attributes createdAt and updatedAt to it in DB.
    *
    */
 
@@ -40,7 +43,8 @@ module.exports = function() {
       primaryKey: true
     },
     dispName: {
-        //.STRING sets the datatype to a string
+
+    //.STRING sets the datatype to a string
       type: Sequelize.STRING
     },
     email: {
@@ -73,7 +77,6 @@ module.exports = function() {
     paranoid: true
   });
 
-
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    genre
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -86,11 +89,7 @@ module.exports = function() {
   });
 
    // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-<<<<<<< HEAD
   //    degree
-=======
-  //    degree  - if you are reading this sean is awesome
->>>>>>> 1ac09e8d1ff73d2a28914fdf67b2fc8fef0fd398
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _degree = _sequelize.define('degree', {
     title: {
@@ -124,7 +123,22 @@ module.exports = function() {
     type: {
       type: Sequelize.ENUM,
       values: ['google', 'twitter', 'facebook']
+    }
+  }, {
+    paranoid: true
+  });
+
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    Votings
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  var _voting = _sequelize.define('voting', {
+    type: {
+      type: Sequelize.ENUM,
+      values: ['A', 'B', 'C']
     },
+    link: {
+      type: Sequelize.STRING
+    }
   }, {
     paranoid: true
   });
@@ -166,8 +180,11 @@ module.exports = function() {
     paranoid: true
   });
 
-  // This is making the table in SQL with 3 fields for now: name, post, & star rating.
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    Review
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+  // This is making the table in SQL with 3 fields for now: name, post, & star rating.
   var _review = _sequelize.define('review', {
     name: {
       type: Sequelize.STRING
@@ -181,7 +198,6 @@ module.exports = function() {
   }, {
     paranoid: true
   });
-
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    App Assets
@@ -198,7 +214,6 @@ module.exports = function() {
     paranoid: true
   });
 
-
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    Lists
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -208,7 +223,7 @@ module.exports = function() {
     },
     releaseDate: {
       type: Sequelize.DATE
-    },
+    }
   }, {
     paranoid: true
   });
@@ -228,11 +243,10 @@ module.exports = function() {
     },
     target: {
       type: Sequelize.STRING
-    },
+    }
   }, {
     paranoid: true
   });
-
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    Listed Apps - table joins
@@ -246,7 +260,7 @@ module.exports = function() {
     foreignKey: 'role_id'
   });
 
-    //hasOne - adds a foreign key to the target "app" and singular association mixins to the source.
+    // hasOne - adds a foreign key to the target "app" and singular association mixins to the source.
   _genre.hasOne(_app, {
     foreignKey: 'genre_id'
   });
@@ -258,7 +272,9 @@ module.exports = function() {
   _user.hasMany(_socialAccount, {
     foreignKey: 'user_id'
   });
-  _user.hasMany(_reviews, { //This is what tracks the user so when they log in it will track them here.
+
+  //This is what tracks the user so when they log in it will track them here.
+  _user.hasMany(_review, {
     foreignKey: 'user_id'
   });
   _user.hasMany(_app, {
@@ -282,10 +298,12 @@ module.exports = function() {
     connection: _sequelize,
     user: _user,
     app: _app,
-    histories: _history,
+    history: _history,
+    review: _review, //np sean I got you <3
+    voting: _voting,
     appAsset: _appAsset,
     list: _list,
     listedApp: _listedApp,
-    role: _role
-  }
+    role: _role,
+  };
 }();

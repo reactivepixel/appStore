@@ -1,25 +1,29 @@
-<<<<<<< HEAD
+/**
+ * @var {module} gulp
+ * This is setting the gulp module to the variable, gulp.
+*/
 var gulp = require('gulp');
+
+/**
+ * @var {module} nodemon
+ * This is setting the gulp-nodemon module to the variable, nodemon.
+*/
 var nodemon = require('gulp-nodemon');
+
+/**
+ * @var {module} shell
+ * This is setting the gulp-shell module to the variable, shell.
+*/
 var shell = require('gulp-shell');
-=======
-var gulp = require('gulp'); // Sets gulp to imported file/module gulp
-var nodemon = require('gulp-nodemon'); // Sets nodemon to imported file/module gulp-nodemon
-var shell = require('gulp-shell'); // Sets shell to imported file/module gulp-shell
->>>>>>> 7fa607fbc5e62b74ff67ffdf4c6a908cb3830d44
 
 //Task to initiate JSdocs
-gulp.task('js-doc', shell.task(['jsdoc src/server.js']));
+gulp.task('js-doc', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
 
-// Task to move JSdoc 'out' folder to correct place
-gulp.task('default', ['dev','js-doc'], function() {
-  gulp.src("./out/*")
-  .pipe(gulp.dest('src/routes/out'));
-});
-
-//Task to run server using gulp
-gulp.task('dev', function () {
+// Task to run server using gulp
+gulp.task('server', function () {
   nodemon({
     script: './src/server.js'
-  })
-})
+  });
+});
+
+gulp.task('default', ['js-doc','server']);

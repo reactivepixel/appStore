@@ -28,7 +28,7 @@ module.exports = function() {
         id: cleanData.id
       }
     }).then(function(matchedAppAsset) {
-      matchedAppAsset.updateAttributes(payload).then(success).catch(err);
+      matchedAppAsset.updateAttributes(cleanData).then(success).catch(err);
     }).catch(err);
   }
 
@@ -38,7 +38,7 @@ module.exports = function() {
     todos' research line 41 and lines 43 - 51
   */
   function _find(payload, err, success) {
-    util.debug('App Asset Model _Find Payload', payload)
+    util.debug('App Asset Model _Find Payload', payload);
     var cleanData = payload;
     db.appAsset.find({
       where: {
@@ -91,5 +91,5 @@ module.exports = function() {
     find: _find,
     findAll: _findAll,
     destroy: _destroy,
-  }
+  };
 }();

@@ -6,23 +6,23 @@ module.exports = function() {
 // Create
   function _create(payload, err, success) {
     var cleanData = util.scrubData(payload);
-    db.histories.create(cleanData).then(success).catch(err);
+    db.history.create(cleanData).then(success).catch(err);
   }
 // Update
   function _update(payload, err, success) {
     var cleanData = util.scrubData(payload);
-    db.histories.find({
+    db.history.find({
       where: {
         id: cleanData.id
       }
-    }).then(function(matchedapp) {
-      matchedapp.updateAttributes(cleanData).then(success).catch(err);
+    }).then(function(matchedhistory) {
+      matchedhistory.updateAttributes(cleanData).then(success).catch(err);
     }).catch(err);
   }
 // Find
   function _find(payload, err, success) {
     var cleanData = util.scrubData(payload);
-    db.histories.find({
+    db.history.find({
       where: {
         id: cleanData.id
       },
@@ -34,7 +34,7 @@ module.exports = function() {
   }
 // Find All
   function _findAll(err, success) {
-    db.histories.findAll({
+    db.history.findAll({
       include: [{
         all: true,
         nested: true
@@ -43,8 +43,8 @@ module.exports = function() {
   }
 // Delete
   function _destroy(payload, err, success) {
-    var cleanData = payload;
-    db.histories.destroy({
+    var cleanData = util.scrubData(payload);
+    db.history.destroy({
       where: {
         id: cleanData.id
       },
