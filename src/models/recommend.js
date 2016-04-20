@@ -76,5 +76,7 @@ var sports_bucket = ger.initialize_namespace('sports')//bucket of events with na
   ])
 });
 
+
+
 return sports_bucket;
 }
