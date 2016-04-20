@@ -75,6 +75,11 @@ var sports_bucket = ger.initialize_namespace('sports')//bucket of events with na
     // }
   ])
 });
+sports_bucket_say = console.log("model and route connectted");
+sayit: "like this cause json";
+sayw=function(){
+  console.log('"like this cause json"');
+};
 
-return sports_bucket;
+return sports_bucket_say;
 }
