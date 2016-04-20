@@ -28,7 +28,7 @@ module.exports = function() {
         id: cleanData.id
       }
     }).then(function(matchedAppAsset) {
-      matchedAppAsset.updateAttributes(payload).then(success).catch(err);
+      matchedAppAsset.updateAttributes(cleanData).then(success).catch(err);
     }).catch(err);
   }
 
