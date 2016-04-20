@@ -1,6 +1,5 @@
 
 // Function to GET user listing from database
-// Lucas says this needs to be fixed for jsdocs, not sure where but will fix it once I talk to him further.
 
  /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
    LIST REVIEWS
@@ -110,11 +109,6 @@ exports.save = function(req,res){
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 /* Save any edits made to your review
 Required for UPDATE part of CRUD */
-
-       // console.log(query.sql); Test to get raw query
-
-    });
-};
 
 exports.save_edit = function(req,res){
     var input = JSON.parse(JSON.stringify(req.body));
