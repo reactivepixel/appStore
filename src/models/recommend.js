@@ -7,7 +7,7 @@ module.exports = function(express) {
 
 //change test parameters
 //might use .put for postman
-var person='jeff';
+var person='matt';
 var sports='sports';
 var thing='swimming';
 
@@ -75,6 +75,8 @@ var sports_bucket = ger.initialize_namespace('sports')//bucket of events with na
     // }
   ])
 });
+
+
 
 return sports_bucket;
 }
