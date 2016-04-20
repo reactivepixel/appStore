@@ -1,5 +1,6 @@
 
 // Function to GET user listing from database
+// Lucas says this needs to be fixed for jsdocs, not sure where but will fix it once I talk to him further.
 
  /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
    LIST REVIEWS
