@@ -14,7 +14,7 @@ var userData = { // userData stores dispName, email, hashed pass, and phone#
 };
 
 var appData = {
-  title: faker.commerce.productName() // appData will equal the name of the app
+  title: faker.commerce.productName() // appData will equal the name of the app from title in the DB
 };
 
 var votingData = {
