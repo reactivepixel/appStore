@@ -1,6 +1,20 @@
 module.exports = function() {
-  var db = require('./db.js'); // Sets db to imported file db.js
-  var sequelize = db.connection; // Sets sequelize to db.connection
+  /**
+   * @var {file} db
+   * This imports the file db.js and sets it to the variable, db.
+  */
+  var db = require('./db.js');
+
+  /**
+   * @var {connection} sequelize
+   * This sets up the database connection and sets it to the variable, sequelize.
+  */
+  var sequelize = db.connection;
+
+  /**
+   * @var {file} util
+   * This imports the file util.js and sets it to the variable, util.
+  */
   var util = require('../../lib/util'); // Sets util to imported util.js
 
 
@@ -8,6 +22,15 @@ module.exports = function() {
     New function _create accepts 3 parameters, payload, err, and success
     Sets in scope variable cleanData to passed paramaeter payload.
     todo's, research line 15 and explain
+  */
+  /**
+   * @function _create
+   * @param payload
+   * Test info for payload param.
+   * @param err
+   * Test info for err param.
+   * @param success
+   * Test info for success param.
   */
   function _create(payload, err, success)
   {
