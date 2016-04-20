@@ -1,7 +1,3 @@
-/**
- *
- *
-*/
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var shell = require('gulp-shell');
