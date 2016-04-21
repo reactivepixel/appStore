@@ -125,7 +125,7 @@ describe('Model: App Assets ', function() {
 
   // App Assets Update One
   it('Update One', function(done) {
-    var updateInfo = {id: appAssetData.id, type: 'xx Force Update xx'};
+    var updateInfo = {id: appAssetData.id, type: 'image'};
     app_asset.update(updateInfo,
 
     // On Error
