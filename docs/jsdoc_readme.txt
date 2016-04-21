@@ -15,7 +15,7 @@ Basic JSDoc Documentation
 
 The above is is how to document variables.
 @var tells the JSDoc parser to output the variable
-and format it properly. 
+and format it properly.
 
 The {dataType} will output the data type of the variable
 to let anyone looking at the documentation know what
@@ -52,3 +52,16 @@ is that with the addition of @param a table gets
 added to the output file and you can describe the
 parameters as well.
 
+------------------------------------------------
+
+/**
+ * @var {number} x
+ * This is the variable x
+ * @example
+ * var x = 5;
+*/
+
+@example allows the JSDoc parser to show the
+snippet of code under the @example.
+
+------------------------------------------------
