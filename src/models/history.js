@@ -1,15 +1,47 @@
 module.exports = function() {
   var db = require('./db');
+/**
+ * @var {module} db
+ * Sets db to imported file db.js
+*/
   var sequelize = db.connection;
+/**
+ * @var {module} db
+ * Sets sequelize to db.connection
+*/
   var util = require('../../lib/util');
+/**
+ * @var {module} db
+ * Sets util to imported util.js
+*/
 
-// Create
+
   function _create(payload, err, success) {
+/**
+ * @function _create
+ * Cleans the data within voting in DB
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/
     var cleanData = util.scrubData(payload);
     db.history.create(cleanData).then(success).catch(err);
   }
-// Update
+
   function _update(payload, err, success) {
+/**
+ * @function _update
+ * Accepts the parameters and then updates table data
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/
     var cleanData = util.scrubData(payload);
     db.history.find({
       where: {
@@ -19,8 +51,18 @@ module.exports = function() {
       matchedhistory.updateAttributes(cleanData).then(success).catch(err);
     }).catch(err);
   }
-// Find
+
   function _find(payload, err, success) {
+/**
+ * @function _find
+ * Accepts the parameters and then updates table data
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/
     var cleanData = util.scrubData(payload);
     db.history.find({
       where: {
@@ -32,8 +74,18 @@ module.exports = function() {
       }]
     }).then(success).catch(err);
   }
-// Find All
+
   function _findAll(err, success) {
+/**
+ * @function _findAll
+ * Accepts the parameters and then finds all the table data
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/
     db.history.findAll({
       include: [{
         all: true,
@@ -41,8 +93,18 @@ module.exports = function() {
       }]
     }).then(success).catch(err);
   }
-// Delete
+
   function _destroy(payload, err, success) {
+/**
+ * @function _destroy
+ * Accepts the parameters and then destroys all the table data in given ID
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/  
     var cleanData = util.scrubData(payload);
     db.history.destroy({
       where: {
