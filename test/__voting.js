@@ -177,7 +177,7 @@ describe('Model: Voter ', function() {
     /** On Error */
     (err) => {
       util.debug('Voter Delete One Error', err);
-      throw new Error('Voter Delete One Error');
+      throw new Error('Voter Delete One Error'); /** Shows ERROR */
     },
 
     /** On Success */
