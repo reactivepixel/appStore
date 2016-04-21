@@ -2,7 +2,9 @@ var faker = require('faker');
 var async = require('async');
 
 // Dot Env File Loader
-if (!process.env.PORT) dotenv = require('dotenv').load();
+util.ifExists(process.env.PORT, function(){
+   dotenv = require('dotenv').load();
+});
 
 // Include all the models to inject seed info into
 var user = require('../src/models/user.js');
