@@ -48,7 +48,7 @@ module.exports = function(express) {
 
   // MIDDLE-WARE
 
-  router.use('/api/', require('./api/recommend')(express));
+  // router.use('/api/', require('./api/recommend')(express));
 
 
   // MIDDLE-WARE FOR history
