@@ -17,9 +17,8 @@ var body_parser = require('body-parser'); // Sets variable body_parser to body-p
 var app = express(); // Sets variable app to express function
 
 // Dot Env File Loader
-util.ifExists(process.env.PORT, function(){
-   dotenv = require('dotenv').load();
-});
+if (!util.exists(process.env.PORT)) dotenv = require('dotenv').load(); // If
+
 
 
 /**
