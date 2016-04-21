@@ -304,6 +304,6 @@ module.exports = function() {
     appAsset: _appAsset,
     list: _list,
     listedApp: _listedApp,
-    role: _role,
+    role: _role
   };
 }();
