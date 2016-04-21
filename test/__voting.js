@@ -148,7 +148,7 @@ describe('Model: Voter ', function() {
 
   /** Voter Update One */
   it('Update One', function(done) {
-    var updateInfo = {id: votingData.id, title: 'xx Force Update xx'};
+    var updateInfo = {id: votingData.id, title: 'image'};
     voter.update(updateInfo,
 
     /** On Error */
