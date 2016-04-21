@@ -8,7 +8,7 @@ module.exports = function (express) { // Setting module.exports to a new functio
   */
 
   var router = express.Router(); // Sets variable router to express.Router() function
-  var app = require('../../models/app.js'); // Sets app to imported app.js file
+  var app = require('../../models/app'); // Sets app to imported app.js file
   var util = require('../../../lib/util'); // Sets util to util.js file
 
 
@@ -71,5 +71,9 @@ module.exports = function (express) { // Setting module.exports to a new functio
     });
   });
 
-  return router; // This returns the router to where ever it is called with the appropriate data.
+   saytest=function(){
+    return "testing works";
+  };
+   // This returns the router to where ever it is called with the appropriate data.
+   return router;
 };
