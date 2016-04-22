@@ -5,6 +5,5 @@
  * This needs the selected file.
 */
 
-
 var buckets=require('../../models/recommend');
 buckets();
