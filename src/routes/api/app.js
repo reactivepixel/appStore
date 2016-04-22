@@ -14,6 +14,14 @@ module.exports = function (express) { // Setting module.exports to a new functio
 
 */
 
+/**
+ * @function get
+ * @param filePath
+ * ATTN: A route or filepath with unqiue data.
+ * @param function(req,res)
+ * This is a function that takes in req and res as parameters
+ * @desc ATTN: What does this do?
+*/
   // Read One
   router.get('/app/:id', function(req, res) {
     req.body.id = req.params.id;
@@ -25,6 +33,14 @@ module.exports = function (express) { // Setting module.exports to a new functio
     });
   });
 
+  /**
+   * @function get
+   * @param filePath
+   * ATTN: A route or filepath.
+   * @param function(req,res)
+   * This is a function that takes in req and res as parameters
+   * @desc ATTN: What does this do?
+  */
   // Read All
   router.get('/apps', function(req, res) {
     app.findAll(function(err){
@@ -35,6 +51,14 @@ module.exports = function (express) { // Setting module.exports to a new functio
     });
   });
 
+  /**
+   * @function put
+   * @param filePath
+   * ATTN: A route or filepath.
+   * @param function(req,res)
+   * This is a function that takes in req and res as parameters
+   * @desc ATTN: What does this do?
+  */
   // Create
   router.put('/app', function(req, res) {
     app.create(req.body,function(err){
@@ -45,6 +69,14 @@ module.exports = function (express) { // Setting module.exports to a new functio
     });
   });
 
+  /**
+   * @function put
+   * @param filePath
+   * ATTN: A route or filepath with unqiue data.
+   * @param function(req,res)
+   * This is a function that takes in req and res as parameters
+   * @desc ATTN: What does this do?
+  */
   // Update
   router.put('/app/:id', function(req, res) {
     req.body.id = req.params.id;
@@ -56,6 +88,14 @@ module.exports = function (express) { // Setting module.exports to a new functio
     });
   });
 
+  /**
+   * @function delete
+   * @param filePath
+   * ATTN: A route or filepath with unqiue data.
+   * @param function(req,res)
+   * This is a function that takes in req and res as parameters
+   * @desc ATTN: What does this do?
+  */
   // Delete One
   router.delete('/app/:id', function(req, res) {
     req.body.id = req.params.id;
