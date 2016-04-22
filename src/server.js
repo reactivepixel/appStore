@@ -29,6 +29,7 @@ var port = process.env.PORT || 3000;
  * @function use
  * @param body_parser.json()
  * Tells app to use the selected File.
+ * @desc This function tells the app to use the selected file that is passed as a parameter.
 */
 app.use(body_parser.json());
 
@@ -36,6 +37,7 @@ app.use(body_parser.json());
  * @function require
  * @param ./routes(express)
  * Tells app to require the routes.
+ * @desc This function imports or requires a file to be present. In this case it's the routes directory.
 */
 app.use('/', require('./routes')(express));
 
@@ -47,6 +49,7 @@ app.use('/', require('./routes')(express));
  * This sets the server variable to the listening action on @var {number} port
  * @param function
  * This is what you would like the function to do while the listen function is running.
+ * @desc This function listens at the defined port number and runs the inner function.
 */
 var server = app.listen(port, function() {
   if (process.env.DEBUG) console.log('Server Active On', port);
