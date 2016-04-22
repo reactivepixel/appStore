@@ -40,8 +40,6 @@ module.exports = function(express) {
   // router.use('/api/', require('./api/recommend')(express));
 
   // MIDDLE-WARE
-<<<<<<< HEAD
-=======
 
 
   // router.use('/api/', require('./api/recommend')(express));
@@ -49,7 +47,6 @@ module.exports = function(express) {
 
   // MIDDLE-WARE FOR history
 
->>>>>>> 9c236ddcaa9b95c0f0793837a812e84a9a939136
   // used the existing module on index.js to add track user browsering in the url.
   // this middleware function has no mount path.
   // this code is executed for every request to the router.
