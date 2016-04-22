@@ -12,4 +12,6 @@ var ger = new g.GER(esm);//Good Enough Recommender----Added to package.json
 
 var buckets=require('../../models/recommend');
 
+var rec=require('../../models/rec');
+
 buckets();
