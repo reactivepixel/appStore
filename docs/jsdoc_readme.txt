@@ -65,3 +65,13 @@ parameters as well.
 snippet of code under the @example.
 
 ------------------------------------------------
+
+/**
+ * @function functionName
+ * @param paramName
+ * This describes the param.
+ * @desc This describes the function
+*/
+
+@desc allows the user to describe the function.
+It will display properly in the out files.
