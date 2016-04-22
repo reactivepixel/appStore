@@ -8,4 +8,4 @@
 var buckets=require('../../models/recommend');
 
 
-// console.log(buckets());
+console.log(buckets());
