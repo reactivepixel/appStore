@@ -1,6 +1,20 @@
 module.exports = function (express) {
+  /**
+   * @var {module} router
+   * This sets the express.Router function to the variable, router.
+  */
   var router = express.Router();
+
+  /**
+   * @var {file} list
+   * This sets the imported file listed_apps.js to the variable, list.
+  */
   var list = require('../../models/listed_apps.js');
+
+  /**
+   * @var {file} util
+   * This sets the imported file util.js to the variable, util.
+  */
   var util = require('../../../lib/util');
 
   // Create
