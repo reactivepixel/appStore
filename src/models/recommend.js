@@ -166,6 +166,10 @@ ger.initialize_namespace('movies')
     "recommendations_per_neighbour":4,
     "filter_previous_actions":["watch"]//if user has done the watch action then discard next watch action
   })
+  .then( function(express) {
+    // What things might alice like?
+    // return ger.recommendations_for_person('movies', express, {actions: {likes: 1}})
+    return console.log(express);
 
 //find_events use
 //4 types in api: person: string, thign: string, actionLstring, weight:integer

@@ -51,8 +51,8 @@ module.exports = function(express) {
   router.use('/api/', require('./api/listed_apps')(express));
   router.use('/api/', require('./api/voting')(express));
   // router.use('/api/', require('./api/recommend')(express));
-  // router.use('/api/', require('./api/recommend')(express));
 
+  // MIDDLE-WARE
   // MIDDLE-WARE FOR history
 
   // used the existing module on index.js to add track user browsering in the url.
