@@ -22,6 +22,14 @@ module.exports = function (express) {
   var util = require('../../../lib/util');
 
   // Create
+  /**
+   * @function put
+   * @param filePath
+   * ATTN: A route or filepath with unqiue data.
+   * @param function(req, res)
+   * This is a function that takes in req and res as parameters
+   *
+  */
   router.put('/listed_app/:list_id/:app_id', function(req, res) {
     req.body.listId = req.params.list_id;
     req.body.appId = req.params.app_id;
