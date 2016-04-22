@@ -5,7 +5,12 @@
  * This needs the selected file.
 */
 
-var buckets=require('../../models/recommend');
+var g = require('ger');
+var esm = new g.MemESM();//Event Store Manager
+var ger = new g.GER(esm);//Good Enough Recommender----Added to package.json
 
+
+var buckets=require('../../models/recommend');
+var rec=require('../../models/rec');
 
 console.log(buckets());
