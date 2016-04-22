@@ -26,6 +26,9 @@ Globally install jsdoc
 ```
 npm install -g jsdoc
 ```
+usage - when server is running visit
+
+[http://localhost:3000/jsdoc/] (http://localhost:3000/jsdoc/)
 
 ### [gulp](https://github.com/gulpjs/gulp) Installation
 
