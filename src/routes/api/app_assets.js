@@ -1,8 +1,23 @@
 module.exports = function(express) {
+
+  /**
+   * @var {module} router
+   * This sets the express.Router function to the variable, router.
+  */
   var router = express.Router();
+
+  /**
+   * @var {file} appAsset
+   * This sets the imported file app_asset.js to the variable, appAsset.
+  */
   var appAsset = require('../../models/app_asset.js');
+
+  /**
+   * @var {file} util
+   * This sets the imported file util.js to the variable, util.
+  */
   var util = require('../../../lib/util');
-  
+
   // Read One
   router.get('/asset/:asset_id', function(req, res) {
     req.body.id = req.params.asset_id;
