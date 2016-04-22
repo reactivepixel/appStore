@@ -9,3 +9,4 @@ var buckets=require('../../models/recommend');
 
 
 var buckets=require('../../models/recommend');
+buckets();
