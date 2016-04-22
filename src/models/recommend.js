@@ -85,7 +85,7 @@ ger.initialize_namespace('movies')
     "filter_previous_actions":["watch"]//if user has done the watch action then discard next watch action
   })
 }
-//find_events
+//find_events use
 //4 types in api: person: string, thign: string, actionLstring, weight:integer
 //an event is a person performing an aciotn on a thing
 //set_action_weight(action, weight);
