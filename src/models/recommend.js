@@ -31,6 +31,7 @@ ger.initialize_namespace('movies')
       expires_at: '2020-06-06'
     }
   ])
+<<<<<<< 5fecd5f596735fda6eba1976d2674a3d69b7a6e4
   })
   .then( function() {
   // What things might alice like?
@@ -40,3 +41,14 @@ ger.initialize_namespace('movies')
     // console.log(JSON.stringify(recommendations,null,2))
   });
 };
+=======
+});
+sports_bucket_say = console.log("model and route connectted");
+sayit: "like this cause json";
+sayw=function(){
+  console.log('"like this cause json"');
+};
+
+return sports_bucket_say;
+}
+>>>>>>> updating from master
