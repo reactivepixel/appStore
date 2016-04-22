@@ -41,8 +41,6 @@ module.exports = function() {
       primaryKey: true
     },
     dispName: {
-
-    //.STRING sets the datatype to a string
       type: Sequelize.STRING
     },
     email: {
@@ -297,7 +295,7 @@ module.exports = function() {
     user: _user,
     app: _app,
     history: _history,
-    review: _review, //np sean I got you <3
+    review: _review,
     voting: _voting,
     appAsset: _appAsset,
     list: _list,
