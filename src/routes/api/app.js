@@ -75,5 +75,9 @@ module.exports = function (express) { // Setting module.exports to a new functio
     return "testing works";
   };
    // This returns the router to where ever it is called with the appropriate data.
+<<<<<<< HEAD
    return router;
+=======
+   return Router;
+>>>>>>> 9c236ddcaa9b95c0f0793837a812e84a9a939136
 };
