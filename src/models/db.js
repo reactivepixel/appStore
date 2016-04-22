@@ -30,6 +30,8 @@ module.exports = function() {
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   /**
+   *
+   * @var {connection} .define
    *   to define mapping between a model and table use
    *   ".define" Sequelize will then automatically add the
    *   attributes createdAt and updatedAt to it in DB.
