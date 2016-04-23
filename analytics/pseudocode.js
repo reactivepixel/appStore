@@ -1,5 +1,6 @@
 /* 
 App Store Analytics Pseudocode
+Using BucketAdmin Bootstrap Theme
 
 ~ Global Clock
 	- Uses moment.js
@@ -10,10 +11,16 @@ App Store Analytics Pseudocode
 		* Moment.js timezone
 			(http://momentjs.com/timezone/)
 	- Styled with CSS / Bootstrap / choice framework
-	- Clock can be created two ways
+	- Clock can be created three ways
 		* HTML5 Canvas
 		* CSS animation property
 			(https://cssanimation.rocks/clocks/)
+		* BucketAdmin's Clock Widget
+			(http://bucketadmin.themebucket.net/widget.html)
+				- This relies on a JS interaction
+				- Not sure if this would play well with moment.js
+	- Having multiple time zones is important because apps that launch at midnight in certain places will not launch at midnight in others.
+		* Allows us to convert that time easier
 
 ~ Toolbar
 	- Simple HTML & CSS Build
@@ -28,7 +35,7 @@ App Store Analytics Pseudocode
 ~ App Updates Section
 
 ~ Visitors Per Hour
-	- Use bucketadmin's bootstrap theme as suggested
+	- Use bucketadmin's bootstrap theme
 			* Has pre-made charts that would suit this perfectly
 			* See "Area Chart"
 				(http://bucketadmin.themebucket.net/chartjs.html)
@@ -36,20 +43,25 @@ App Store Analytics Pseudocode
 				(http://bucketadmin.themebucket.net/flot_chart.html)
 
 ~ Most Popular Apps
+	- Styled section
+	- Displays database information
+		* Ordered by highest grossing applications
 
 ~ Daily Planner / To Do List
 
 ~ Daily Sales
-	- Use bucketadmin's bootstrap theme as suggested
+	- Use bucketadmin's bootstrap theme
 		* Has pre-made charts that would suit this perfectly
 		* See "Bar Chart"
 			(http://bucketadmin.themebucket.net/chartjs.html)
 
 ~ Users
-	- Use bucketadmin's bootstrap theme as suggested
+	- Use bucketadmin's bootstrap theme
 			* Has pre-made charts that would suit this perfectly
 			* See "Donut Chart"
-			* Alternatively, "Pie Chart" would also work
+			(http://bucketadmin.themebucket.net/morris.html)
+					- Notice that it has the text in the center of the donut, just as is mocked up in the AI file.
+			* Alternatively, "Donut Chart" or "Pie Chart" from here would also work
 				(http://bucketadmin.themebucket.net/chartjs.html)
 
 */
