@@ -5,8 +5,18 @@ module.exports = function(express) {
 //   var history =require('./history');
 //   var db =require('./db');
   var g = require('ger');
-  var esm = new g.MemESM();//Event Store Manager
-  var ger = new g.GER(esm);//Good Enough Recommender----Added to package.json
+
+  /**
+   * @var {connection} esm
+   *   Event Store Manager
+   */
+  var esm = new g.MemESM();
+
+  /**
+   * @var {connection} ger
+   *   Good Enough Recommender----Added to package.json
+   */
+  var ger = new g.GER(esm);
 
   //captured by express
   ger.initialize_namespace('movies')
