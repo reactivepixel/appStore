@@ -1,7 +1,17 @@
 module.exports = function(express) {
   var g = require('ger');
-  var esm = new g.MemESM();//Event Store Manager
-  var ger = new g.GER(esm);//Good Enough Recommender----Added to package.json
+
+  /**
+   * @var {connection} esm
+   *   Event Store Manager
+   */
+  var esm = new g.MemESM();
+
+  /**
+   * @var {connection} ger
+   *   Good Enough Recommender----Added to package.json
+   */
+  var ger = new g.GER(esm);
 
 var genre='sports';
 
