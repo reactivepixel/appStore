@@ -37,7 +37,7 @@ var userData = { /** userData stores dispName, email, hashed pass, and phone# */
 };
 
 var appData = {
-  title: faker.commerce.productName() /** appData will equal the name of the app from title in the DB */
+  type: faker.commerce.productName() /** appData will equal the name of the app from title in the DB */
 };
 
 var votingData = {
@@ -83,7 +83,7 @@ describe('Model: Voter ', function() {
 
       /** Overwrite the returned obj to votingData */
       expect(data.title).to.be.equal(appData.title);
-      appData = data;
+      //appData = data;
       votingData.app_id = data.id; /** The Link plus appId will equal data.id for later use */
       done();
     });
@@ -148,7 +148,7 @@ describe('Model: Voter ', function() {
 
   /** Voter Update One */
   it('Update One', function(done) {
-    var updateInfo = {id: votingData.id, title: 'image'};
+    var updateInfo = {id: votingData.id, type: 'xx Force Update xx'};
     voter.update(updateInfo,
 
     /** On Error */
@@ -177,7 +177,7 @@ describe('Model: Voter ', function() {
     /** On Error */
     (err) => {
       util.debug('Voter Delete One Error', err);
-      throw new Error('Voter Delete One Error'); /** Shows ERROR */
+      throw new Error('Voter Delete One Error');
     },
 
     /** On Success */
