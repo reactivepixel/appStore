@@ -4,23 +4,23 @@ module.exports = function() {
   var util = require('../../lib/util');
 
   function _create(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     db.app.create(cleanData).then(success).catch(err);
   }
 
   function _update(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     db.app.find({
       where: {
         id: cleanData.id
       }
     }).then(function(matchedapp) {
-      matchedapp.updateAttributes(payload).then(success).catch(err);
+      matchedapp.updateAttributes(cleanData).then(success).catch(err);
     }).catch(err);
   }
 
   function _find(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     db.app.find({
       where: {
         id: cleanData.id
@@ -42,7 +42,7 @@ module.exports = function() {
   }
 
   function _destroy(payload, err, success) {
-    var cleanData = payload;
+    var cleanData = util.scrubData(payload);
     db.app.destroy({
       where: {
         id: cleanData.id

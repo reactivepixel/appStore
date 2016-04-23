@@ -1,6 +1,18 @@
+/**
+ * Sequelize will setup a connection pool
+ * on initialization so you should ideally
+ * only ever create one instance per database.
+ *
+ * if you are reading this sean is awesome...that is all
+ */
+
 module.exports = function() {
   var Sequelize = require('sequelize');
   var mysql = require('mysql');
+
+  // Dot Env File Loader
+  if (!process.env.PORT) dotenv = require('dotenv').load();
+
   var _sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
     host: process.env.DB_HOST,
     dialect: process.env.DB_SCHEMA,
@@ -16,6 +28,14 @@ module.exports = function() {
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    User
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  /**
+   *   to define mapping between a model and table use
+   *   ".define" Sequelize will then automatically add the
+   *   attributes createdAt and updatedAt to it in DB.
+   *
+   */
+
   var _user = _sequelize.define('user', {
     id: {
       type: Sequelize.UUID,
@@ -23,6 +43,8 @@ module.exports = function() {
       primaryKey: true
     },
     dispName: {
+
+    //.STRING sets the datatype to a string
       type: Sequelize.STRING
     },
     email: {
@@ -32,6 +54,45 @@ module.exports = function() {
       type: Sequelize.STRING
     },
     phone: {
+      type: Sequelize.STRING
+    },
+
+    //added ability for user to set gender in DB on registration to generate recommendations based on gender
+    gender: {
+      type: Sequelize.STRING
+    },
+
+    //added ability for user to set age in DB on registration to generate recommendations based on age
+    age: {
+
+      //.INTEGER sets the datatype to a INTEGER
+      type: Sequelize.INTEGER
+    },
+
+    //added ability for user to set hobbys in DB on registration to generate recommendations based on degree
+    hobby: {
+      type: Sequelize.STRING
+    }
+  }, {
+    paranoid: true
+  });
+
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    genre
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  var _genre = _sequelize.define('genre', {
+    title: {
+      type: Sequelize.STRING
+    }
+  }, {
+    paranoid: true
+  });
+
+   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    degree
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  var _degree = _sequelize.define('degree', {
+    title: {
       type: Sequelize.STRING
     }
   }, {
@@ -62,7 +123,22 @@ module.exports = function() {
     type: {
       type: Sequelize.ENUM,
       values: ['google', 'twitter', 'facebook']
+    }
+  }, {
+    paranoid: true
+  });
+
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    Votings
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  var _voting = _sequelize.define('voting', {
+    type: {
+      type: Sequelize.ENUM,
+      values: ['A', 'B', 'C']
     },
+    link: {
+      type: Sequelize.STRING
+    }
   }, {
     paranoid: true
   });
@@ -81,6 +157,9 @@ module.exports = function() {
     },
     description: {
       type: Sequelize.TEXT
+    },
+    age: {
+      type: Sequelize.INTEGER
     },
     readme: {
       type: Sequelize.TEXT
@@ -102,6 +181,25 @@ module.exports = function() {
   });
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //    Review
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  // This is making the table in SQL with 3 fields for now: name, post, & star rating.
+  var _review = _sequelize.define('review', {
+    name: {
+      type: Sequelize.STRING
+    },
+    post: {
+      type: Sequelize.TEXT
+    },
+    star: {
+      type: Sequelize.INTEGER
+    }
+  }, {
+    paranoid: true
+  });
+
+  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    App Assets
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _appAsset = _sequelize.define('appAsset', {
@@ -116,7 +214,6 @@ module.exports = function() {
     paranoid: true
   });
 
-
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    Lists
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -126,7 +223,7 @@ module.exports = function() {
     },
     releaseDate: {
       type: Sequelize.DATE
-    },
+    }
   }, {
     paranoid: true
   });
@@ -146,25 +243,38 @@ module.exports = function() {
     },
     target: {
       type: Sequelize.STRING
-    },
+    }
   }, {
     paranoid: true
   });
 
-
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Listed Apps
+  //    Listed Apps - table joins
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   var _listedApp = _sequelize.define('listedApp', {}, {
     paranoid: false
   });
 
-
-
+    //belongsTo - adds a foreign key and singular association mixins to the _role source.
   _user.belongsTo(_role, {
     foreignKey: 'role_id'
   });
+
+    // hasOne - adds a foreign key to the target "app" and singular association mixins to the source.
+  _genre.hasOne(_app, {
+    foreignKey: 'genre_id'
+  });
+  _degree.hasOne(_user, {
+    foreignKey: 'degree_id'
+  });
+
+  //hasMany - adds a foreign key to target _socialAccount and plural association mixins to the source user_id.
   _user.hasMany(_socialAccount, {
+    foreignKey: 'user_id'
+  });
+
+  //This is what tracks the user so when they log in it will track them here.
+  _user.hasMany(_review, {
     foreignKey: 'user_id'
   });
   _user.hasMany(_app, {
@@ -177,11 +287,10 @@ module.exports = function() {
     foreignKey: 'user_id'
   });
 
+  //belongsToMany - creates an N:M association with a join table and adds plural association mixins to the source. The junction table is created with sourceId and targetId.
   _app.belongsToMany(_list, {
     through: 'listedApp'
   });
-
-
 
   _sequelize.sync();
 
@@ -189,9 +298,12 @@ module.exports = function() {
     connection: _sequelize,
     user: _user,
     app: _app,
+    history: _history,
+    review: _review, //np sean I got you <3
+    voting: _voting,
     appAsset: _appAsset,
     list: _list,
     listedApp: _listedApp,
     role: _role
-  }
+  };
 }();
