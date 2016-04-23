@@ -6,7 +6,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './src/index.jsx' // Change the index file extension
+    './src/client/js/index.jsx' // Change the index file extension
   ],
   module: {
   loaders: [{
@@ -22,7 +22,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + 'src/client/js',
     publicPath: '/',
     filename: 'bundle.js'
   },

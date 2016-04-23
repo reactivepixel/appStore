@@ -17,10 +17,6 @@ module.exports = function(express) {
     });
   });
 
-  router.get('/react', function(req,res){
-    res.sendFile(__dirname + './../../dist/index.html');
-  });
-
   router.get('/', function(req,res){
     res.sendFile(__dirname + './../client/html/index.html');
   });
@@ -29,9 +25,7 @@ module.exports = function(express) {
     res.sendFile(__dirname + './../../client/html/charge.html');
   });
 
-  router.get('/dashboard', function(req,res){
-    res.sendFile(__dirname + '/public/dashboard.html');
-  });
+  
 
   // Routes
   router.use('/home', express.static(__dirname + './../client/html/index.html'));
