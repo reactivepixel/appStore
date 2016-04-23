@@ -10,15 +10,6 @@ module.exports = function(express) {
   // will fire on every route that comes thru express
   //created a homepage view to test bootstrap and routing connection
 
-
-  // Standard Routes
-  // router.get('/', function(req, res) {
-  //   res.status(200).json({
-  //     msg: 'Hello World',
-  //     healthy: true
-  //   });
-  // });
-
   router.get('/status', function(req, res) {
 
     res.status(200).json({
@@ -27,11 +18,11 @@ module.exports = function(express) {
   });
 
   router.get('/', function(req,res){
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + './../client/html/index.html');
   });
 
   router.get('/charge', function(req,res){
-    res.sendFile(__dirname + '/public/charge.html');
+    res.sendFile(__dirname + './../../client/html/charge.html');
   });
 
   router.get('/dashboard', function(req,res){
@@ -39,6 +30,7 @@ module.exports = function(express) {
   });
 
   // Routes
+  router.use('/home', express.static(__dirname + './../client/html/index.html'));
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs')); // JSdoc route
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
