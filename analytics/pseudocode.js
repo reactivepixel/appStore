@@ -16,6 +16,14 @@ App Store Analytics Pseudocode
 			(https://cssanimation.rocks/clocks/)
 
 ~ Toolbar
+	- Simple HTML & CSS Build
+	- Detect which user is logged in
+		* Display this information on left hand side
+	- Notifications, Messages, and Search icons floated right
+		* All drop down menus
+		* Display information specific to that user
+	- This relies heavily upon user information
+	- User MUST be logged in for anything to display
 
 ~ App Updates Section
 
