@@ -34,6 +34,9 @@ App Store Analytics Pseudocode
 ~ Daily Planner / To Do List
 
 ~ Daily Sales
+	- Use bucketadmin's bootstrap theme as suggested
+		* Has pre-made charts that would suit this perfectly
+			(http://bucketadmin.themebucket.net/chartjs.html)
 
 ~ Users
 
