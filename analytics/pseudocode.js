@@ -68,6 +68,12 @@ Blues:
 			- If not, just top 3 or 4 visible
 
 ~ Daily Planner / To Do List
+	- Basic to do list
+	- Offered through BucketAdmin
+		(http://bucketadmin.themebucket.net/index.html)
+		* It's called Event List on BucketAdmin
+	- Can also be coded out by hand if necessary
+		* Simple CRUD
 
 ~ Daily Sales
 	- Use bucketadmin's bootstrap theme
