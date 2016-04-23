@@ -2,6 +2,16 @@
 App Store Analytics Pseudocode
 Using BucketAdmin Bootstrap Theme
 
+HEX colors in AI file:
+
+Reds:
+#EF5948
+#C8493B
+
+Blues:
+#AFD1D0
+#7ABCC1
+
 ~ Global Clock
 	- Uses moment.js
 			(http://momentjs.com/)
