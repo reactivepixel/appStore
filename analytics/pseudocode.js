@@ -2,6 +2,7 @@
 App Store Analytics Pseudocode
 Using BucketAdmin Bootstrap Theme
 
+*************************************
 HEX colors in AI file:
 
 Reds:
@@ -11,6 +12,7 @@ Reds:
 Blues:
 #AFD1D0
 #7ABCC1
+*************************************
 
 ~ Global Clock
 	- Uses moment.js
@@ -46,16 +48,24 @@ Blues:
 
 ~ Visitors Per Hour
 	- Use bucketadmin's bootstrap theme
-			* Has pre-made charts that would suit this perfectly
-			* See "Area Chart"
-				(http://bucketadmin.themebucket.net/chartjs.html)
-			* "Area Chart" from this section would also look nice
-				(http://bucketadmin.themebucket.net/flot_chart.html)
+		* Has pre-made charts that would suit this perfectly
+		* See "Area Chart"
+			(http://bucketadmin.themebucket.net/chartjs.html)
+		* "Area Chart" from this section would also look nice
+			(http://bucketadmin.themebucket.net/flot_chart.html)
 
 ~ Most Popular Apps
 	- Styled section
 	- Displays database information
 		* Ordered by highest grossing applications
+		* Displays App Name
+		* Displays Number of Downloads
+		* Displays Total Revenue
+	- Possible horizontal scroll to see more apps?
+		* Would need to use Carousel
+			- These are often frowned upon these days
+			- Look into alternatives
+			- If not, just top 3 or 4 visible
 
 ~ Daily Planner / To Do List
 
@@ -67,11 +77,11 @@ Blues:
 
 ~ Users
 	- Use bucketadmin's bootstrap theme
-			* Has pre-made charts that would suit this perfectly
-			* See "Donut Chart"
-			(http://bucketadmin.themebucket.net/morris.html)
-					- Notice that it has the text in the center of the donut, just as is mocked up in the AI file.
-			* Alternatively, "Donut Chart" or "Pie Chart" from here would also work
-				(http://bucketadmin.themebucket.net/chartjs.html)
+		* Has pre-made charts that would suit this perfectly
+		* See "Donut Chart"
+		(http://bucketadmin.themebucket.net/morris.html)
+				- Notice that it has the text in the center of the donut, just as is mocked up in the AI file.
+		* Alternatively, "Donut Chart" or "Pie Chart" from here would also work
+			(http://bucketadmin.themebucket.net/chartjs.html)
 
 */
