@@ -28,6 +28,12 @@ App Store Analytics Pseudocode
 ~ App Updates Section
 
 ~ Visitors Per Hour
+	- Use bucketadmin's bootstrap theme as suggested
+			* Has pre-made charts that would suit this perfectly
+			* See "Area Chart"
+				(http://bucketadmin.themebucket.net/chartjs.html)
+			* "Area Chart" from this section would also look nice
+				(http://bucketadmin.themebucket.net/flot_chart.html)
 
 ~ Most Popular Apps
 
