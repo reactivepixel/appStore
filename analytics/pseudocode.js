@@ -36,8 +36,14 @@ App Store Analytics Pseudocode
 ~ Daily Sales
 	- Use bucketadmin's bootstrap theme as suggested
 		* Has pre-made charts that would suit this perfectly
+		* See "Bar Chart"
 			(http://bucketadmin.themebucket.net/chartjs.html)
 
 ~ Users
+	- Use bucketadmin's bootstrap theme as suggested
+			* Has pre-made charts that would suit this perfectly
+			* See "Donut Chart"
+			* Alternatively, "Pie Chart" would also work
+				(http://bucketadmin.themebucket.net/chartjs.html)
 
 */
