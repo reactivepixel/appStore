@@ -2,17 +2,17 @@ module.exports = function() {
 
   var db = require('./db');
 /**
- * @var {module} db
+ * @var {file} db
  * Sets db to imported file db.js
 */
   var sequelize = db.connection;
 /**
- * @var {module} db
+ * @var {connection} db
  * Sets sequelize to db.connection
 */
   var util = require('../../lib/util');
 /**
- * @var {module} db
+ * @var {file} util
  * Sets util to imported util.js
 */
 
@@ -20,8 +20,13 @@ module.exports = function() {
   function _create(payload, err, success) {
 /**
  * @function _create
+<<<<<<< 8d3e701ba546e1800719e32252153fa7faa0b03d
  * Cleans the data within voting in DB
  * @param payload
+=======
+ * @description Cleans the data within voting in DB
+ * @param payload 
+>>>>>>> Looking for Mocha Error
  * Holds the req.body in a variable
  * @param err
  * Errors
@@ -35,8 +40,13 @@ module.exports = function() {
   function _update(payload, err, success) {
 /**
  * @function _update
+<<<<<<< 8d3e701ba546e1800719e32252153fa7faa0b03d
  * Accepts the parameters and then updates table data
  * @param payload
+=======
+ * @description Accepts the parameters and then updates table data
+ * @param payload 
+>>>>>>> Looking for Mocha Error
  * Holds the req.body in a variable
  * @param err
  * Errors
@@ -56,8 +66,13 @@ module.exports = function() {
   function _find(payload, err, success) {
 /**
  * @function _find
+<<<<<<< 8d3e701ba546e1800719e32252153fa7faa0b03d
  * Accepts the parameters and then updates table data
  * @param payload
+=======
+ * @description Accepts the parameters and then updates table data
+ * @param payload 
+>>>>>>> Looking for Mocha Error
  * Holds the req.body in a variable
  * @param err
  * Errors
@@ -79,8 +94,13 @@ module.exports = function() {
   function _findAll(err, success) {
 /**
  * @function _findAll
+<<<<<<< 8d3e701ba546e1800719e32252153fa7faa0b03d
  * Accepts the parameters and then finds all the table data
  * @param payload
+=======
+ * @description Accepts the parameters and then finds all the table data
+ * @param payload 
+>>>>>>> Looking for Mocha Error
  * Holds the req.body in a variable
  * @param err
  * Errors
@@ -98,8 +118,13 @@ module.exports = function() {
   function _destroy(payload, err, success) {
 /**
  * @function _destroy
+<<<<<<< 8d3e701ba546e1800719e32252153fa7faa0b03d
  * Accepts the parameters and then destroys all the table data in given ID
  * @param payload
+=======
+ * @description Accepts the parameters and then destroys all the table data in given ID
+ * @param payload 
+>>>>>>> Looking for Mocha Error
  * Holds the req.body in a variable
  * @param err
  * Errors
@@ -110,6 +135,10 @@ module.exports = function() {
     db.history.destroy({
       where: {
         id: cleanData.id
+/**
+ * @var {attribute} id
+ * Defines a unique identifier (ID) which must be unique in the whole document. Its purpose is to identify the element when linking
+*/
       },
       force: payload.force
     }).then(success).catch(err);

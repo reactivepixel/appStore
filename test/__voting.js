@@ -1,31 +1,31 @@
 var expect = require('chai').expect;
 /**
- * @var {module} expect
+ * @var {connection} expect
  * This sets the var expect to equal chai
 */
 var faker = require('faker');
 /**
- * @var {module} faker
+ * @var {connection} faker
  * This sets the var faker to equal faker
 */
 var util = require('../lib/util.js');
 /**
- * @var {module} util
+ * @var {file} util
  * This sets the var util to equal the path to the lib/util.js
 */
 var voter = require('../src/models/voter');
 /**
- * @var {module} voter
+ * @var {file} voter
  * This sets the var voter to equal the path to the src/models/voter.js
 */
 var app = require('../src/models/app');
 /**
- * @var {module} app
+ * @var {file} app
  * This sets the var app to equal the path to the src/models/app.js
 */
 var user = require('../src/models/user');
 /**
- * @var {module} user
+ * @var {file} user
  * This sets the var user to equal the path to the src/models/user.js
 */
 
