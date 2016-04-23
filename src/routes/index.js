@@ -17,6 +17,10 @@ module.exports = function(express) {
     });
   });
 
+  router.get('/react', function(req,res){
+    res.sendFile(__dirname + './../../dist/index.html');
+  });
+
   router.get('/', function(req,res){
     res.sendFile(__dirname + './../client/html/index.html');
   });
