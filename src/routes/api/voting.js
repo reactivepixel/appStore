@@ -16,7 +16,7 @@ module.exports = function(express) {
 */
 
   /** Read One. */
-  router.get('/voting/:vote_id', function(req, res) {
+  router.get('/vote/:vote_id', function(req, res) {
 /**
  * @function get
  * @description Gathers Data
