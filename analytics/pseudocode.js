@@ -3,10 +3,12 @@ App Store Analytics Pseudocode
 
 ~ Global Clock
 	- Uses moment.js
+			(http://momentjs.com/)
 		* Will detect the date and time
 		* Moment timezone can be used to detect each timezone for the dropdown menu
 	- Drop down menu for different time zones
 		* Moment.js timezone
+			(http://momentjs.com/timezone/)
 	- Styled with CSS / Bootstrap / choice framework
 	- Clock can be created two ways
 		* HTML5 Canvas
