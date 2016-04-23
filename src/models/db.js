@@ -52,20 +52,12 @@ module.exports = function() {
     phone: {
       type: Sequelize.STRING
     },
-
-    //added ability for user to set gender in DB on registration to generate recommendations based on gender
     gender: {
       type: Sequelize.STRING
     },
-
-    //added ability for user to set age in DB on registration to generate recommendations based on age
     age: {
-
-      //.INTEGER sets the datatype to a INTEGER
       type: Sequelize.INTEGER
     },
-
-    //added ability for user to set hobbys in DB on registration to generate recommendations based on degree
     hobby: {
       type: Sequelize.STRING
     }
@@ -180,7 +172,6 @@ module.exports = function() {
   //    Review
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  // This is making the table in SQL with 3 fields for now: name, post, & star rating.
   var _review = _sequelize.define('review', {
     name: {
       type: Sequelize.STRING
@@ -283,7 +274,13 @@ module.exports = function() {
     foreignKey: 'user_id'
   });
 
-  //belongsToMany - creates an N:M association with a join table and adds plural association mixins to the source. The junction table is created with sourceId and targetId.
+  /**
+   *
+   * @var {attributes} .belongsToMany
+   *  creates an N:M association with a join table and adds plural association
+   *  mixins to the source. The junction table is created with sourceId and targetId.
+   *
+   */
   _app.belongsToMany(_list, {
     through: 'listedApp'
   });
