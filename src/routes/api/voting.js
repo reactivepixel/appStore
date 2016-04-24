@@ -47,34 +47,34 @@ module.exports = function(express) {
 
 /**
  * @function get
- * @description Gathers Data
+ * @description This gathers data.
  * @param req
- * Requests Data
+ * This requests Data.
  * @param res
- * Listens for response
+ * This listens for response.
 */
   /** Read One. */
   router.get('/voting/:vote_id', function(req, res) {
 
     /**
      * @property req.body
-     * @description holds parameters that are sent up from the client as part of a POST request
+     * @description Holds parameters that are sent up from the client as part of a POST request.
     */
     /**
      * @property {attribute} id
-     * Defines a unique identifier (ID) which must be unique in the whole document. Its purpose is to identify the element when linking
+     * Defines a unique identifier (ID) which must be unique in the whole document. Its purpose is to identify the element when linking.
     */
     /**
      * @property req.params
-     * @description will return parameters in the matched route
+     * @description This will return parameters in the matched route.
     */
     req.body.id = req.params.vote_id;
 
     /**
      * @function find
-     * @description Finds ID in DB using _find in models/voting.js
+     * @description Finds ID in DB using _find in models/voting.js.
      * @param req.body
-     * Requests the body information
+     * This requests the body information.
     */
     voting.find(req.body, function(err) {
 
@@ -96,11 +96,11 @@ module.exports = function(express) {
 =======
   /**
    * @function get
-   * @description Gathers Data
+   * @description This gathers data.
    * @param req
-   * Requests Data
+   * This requests data.
    * @param res
-   * Listens for response
+   * This listens for response.
   */
   /** Read All */
   router.get('/votes', function(req, res) {
@@ -109,7 +109,7 @@ module.exports = function(express) {
      * @function findAll
      * @description Finds all in DB using _findAll in model/voting.js
      * @param err
-     * Error
+     * This is an error.
     */
     voting.findAll(function(err) {
 
@@ -143,11 +143,11 @@ module.exports = function(express) {
 
   /**
    * @function put
-   * @description Places Data
+   * @description This places data.
    * @param req
-   * Requests Data
+   * This requests data.
    * @param res
-   * Listens for response
+   * This listens for response.
   */
   /** Create */
   router.put('/app/:app_id/vote', function(req, res) {
@@ -155,9 +155,9 @@ module.exports = function(express) {
     req.body.app_id = req.params.app_id;
     /**
      * @function create
-     * @description Runs _create in models to clean data and add to DB from app
+     * @description Runs _create in models to clean data and add to DB from app.
      * @param req.body
-     * Requests the body information
+     * This requests the body information.
     */
     voting.create(req.body, function(err) {
 
@@ -191,11 +191,11 @@ module.exports = function(express) {
 =======
   /**
    * @function put
-   * @description Places Data
+   * @description This places data.
    * @param req
-   * Requests Data
+   * This requests data.
    * @param res
-   * Listens for response
+   * This listens for response.
   */
   /** Update */
   router.put('/app/:app_id/vote/:vote_id', function(req, res) {
@@ -206,9 +206,9 @@ module.exports = function(express) {
 
     /**
      * @function update
-     * @description varifies that app id and body.id match and runs _update in models
+     * @description This varifies that app id and body.id match and runs _update in models.
      * @param req.body
-     * Requests the body information
+     * This requests the body information.
     */
     voting.update(req.body, function(err) {
 
@@ -235,9 +235,9 @@ module.exports = function(express) {
 =======
     /**
      * @function destroy
-     * @description Deletes User ID using _destroy in models
+     * @description This deletes User ID using _destroy in models.
      * @param req.body
-     * Requests the body information
+     * This requests the body information.
     */
     voting.destroy(req.body, function(err) {
 
