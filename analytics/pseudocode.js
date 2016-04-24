@@ -45,6 +45,11 @@ Blues:
 	- User MUST be logged in for anything to display
 
 ~ App Updates Section
+	- Used to show which Applications have recently been updated, added, or deleted from our database.
+		(https://sqlandme.com/2014/03/11/sql-server-how-to-get-last-accessupdate-time-for-a-table/)
+	- Put this information into a table and stylize
+	- moment.js can humanize the date if we'd like
+		* Will say "one hour ago" rather than the time it was created
 
 ~ Visitors Per Hour
 	- Use bucketadmin's bootstrap theme
