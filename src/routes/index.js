@@ -1,6 +1,10 @@
 module.exports = function(express) {
   var history = require('../models/history');
+<<<<<<< 32f773070dd74397530fbe51ac661c12f73feb63
   var db = require('../models/db');
+=======
+  var path = require('path');
+>>>>>>> removed variables that were not needed and made histories singular
   var router = express.Router();
 
 // NOTES
@@ -26,9 +30,6 @@ module.exports = function(express) {
     });
   });
 
-
-
-
 // Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs')); // JSdoc route
   router.use('/api/', require('./api/user')(express));
@@ -37,9 +38,8 @@ module.exports = function(express) {
   router.use('/api/', require('./api/list')(express));
   router.use('/api/', require('./api/listed_apps')(express));
   router.use('/api/', require('./api/voting')(express));
-  // router.use('/api/', require('./api/recommend')(express));
 
-  // MIDDLE-WARE
+  // MIDDLE-WARE FOR history
   // used the existing module on index.js to add track user browsering in the url.
   // this middleware function has no mount path.
   // this code is executed for every request to the router.
