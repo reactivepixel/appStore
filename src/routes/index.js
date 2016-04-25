@@ -3,6 +3,10 @@ module.exports = function(express) {
   var path = require('path');
   var router = express.Router();
 
+  // Import NPM dependencies like this:
+var React = require('react');
+var ReactDOM = require('react-dom');
+
 // NOTES
   // made a variable point to history.js in model folder.
   // middleware function is placed after the route.get
@@ -13,10 +17,7 @@ module.exports = function(express) {
 
   // Standard Routes
   router.get('/', function(req, res) {
-    res.status(200).json({
-      msg: 'Hello World',
-      healthy: true
-    });
+    res.render('../src/routes/public/index');
   });
 
   router.get('/status', function(req, res) {
@@ -28,6 +29,8 @@ module.exports = function(express) {
 
 // Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs')); // JSdoc route
+
+  //router.use('/home', require('./public/index'); // route to index.html
 
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
