@@ -1,3 +1,5 @@
+var buckets=require('../../models/recommend');
+
 /**
  * @var {module} buckets
  * @function require
