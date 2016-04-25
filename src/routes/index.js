@@ -1,11 +1,11 @@
 module.exports = function(express) {
   var history = require('../models/history');
-<<<<<<< 32f773070dd74397530fbe51ac661c12f73feb63
-  var db = require('../models/db');
-=======
   var path = require('path');
->>>>>>> removed variables that were not needed and made histories singular
   var router = express.Router();
+
+  // Import NPM dependencies like this:
+var React = require('react');
+var ReactDOM = require('react-dom');
 
 // NOTES
   // made a variable point to history.js in model folder.
@@ -17,10 +17,7 @@ module.exports = function(express) {
 
   // Standard Routes
   router.get('/', function(req, res) {
-    res.status(200).json({
-      msg: 'Hello World',
-      healthy: true
-    });
+    res.render('../src/routes/public/index');
   });
 
   router.get('/status', function(req, res) {
