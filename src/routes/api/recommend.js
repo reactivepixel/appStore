@@ -4,7 +4,6 @@
  * @param filename
  * This needs the selected file.
 */
-
 var g = require('ger');
 var esm = new g.MemESM();
 var ger = new g.GER(esm);
