@@ -5,13 +5,11 @@ module.exports = function(express) {
 //   var history =require('./history');
 //   var db =require('./db');
   var g = require('ger');
-
   /**
    * @var {connection} esm
    *   Event Store Manager
    */
   var esm = new g.MemESM();
-
   /**
    * @var {connection} ger
    *   Good Enough Recommender----Added to package.json
