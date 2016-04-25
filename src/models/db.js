@@ -100,12 +100,12 @@ module.exports = function() {
   }, {
     paranoid: true
   });
-//This is what making the table in sql it is making 3 fields for now: name, post, and star
+//This is what making the table in sql it is making 3 fields for now: name, content, and star
   var _review = _sequelize.define('review', {
     name: {
       type: Sequelize.STRING
     },
-    post: {
+    content: {
       type: Sequelize.TEXT
     },
 
