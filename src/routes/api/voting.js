@@ -1,35 +1,48 @@
 module.exports = function(express) {
   var router = express.Router();
 /**
- * @var {module} router
+ * @var {connection} router
  * This sets the var router equal to express.Router()
 */
   var voting = require('../../models/voter.js');
 /**
- * @var {module} voting
+ * @var {file} voting
  * This sets the var voting to equal the path to the models/voting.js
 */
   var util = require('../../../lib/util');
 /**
- * @var {module} util
+ * @var {file} util
  * This sets the util voting to equal the path to the lib/util
 */
 
   /** Read One. */
-  router.get('/vote/:vote_id', function(req, res) {
+  router.get('/voting/:vote_id', function(req, res) {
 /**
  * @function get
- * Gathers Data
+ * @description Gathers Data
  * @param req 
  * Requests Data
  * @param res
  * Listens for response  
 */
     req.body.id = req.params.vote_id;
+/**
+ * @property req.body
+ * @description holds parameters that are sent up from the client as part of a POST request 
+*/
+/**
+ * @property {attribute} id
+ * Defines a unique identifier (ID) which must be unique in the whole document. Its purpose is to identify the element when linking
+*/
+/**
+ * @property req.params
+ * @description will return parameters in the matched route
+*/
+
     voting.find(req.body, function(err) { 
 /**
  * @function find
- * Finds ID in DB using _find in models/voting.js
+ * @description Finds ID in DB using _find in models/voting.js
  * @param req.body
  * Requests the body information
 */
@@ -45,7 +58,7 @@ module.exports = function(express) {
   router.get('/votes', function(req, res) {
 /**
  * @function get
- * Gathers Data 
+ * @description Gathers Data 
  * @param req 
  * Requests Data
  * @param res
@@ -54,7 +67,7 @@ module.exports = function(express) {
     voting.findAll(function(err) {
 /**
  * @function findAll
- * Finds all in DB using _findAll in model/voting.js
+ * @description Finds all in DB using _findAll in model/voting.js
  * @param err
  * Error
 */
@@ -69,7 +82,7 @@ module.exports = function(express) {
   router.put('/app/:app_id/vote', function(req, res) {
 /**
  * @function put
- * Places Data
+ * @description Places Data
  * @param req 
  * Requests Data
  * @param res
@@ -79,7 +92,7 @@ module.exports = function(express) {
     voting.create(req.body, function(err) { 
 /**
  * @function create
- * Runs _create in models to clean data and add to DB from app
+ * @description Runs _create in models to clean data and add to DB from app
  * @param req.body
  * Requests the body information
 */
@@ -99,7 +112,7 @@ module.exports = function(express) {
   router.put('/app/:app_id/vote/:vote_id', function(req, res) { 
 /**
  * @function put
- * Places Data
+ * @description Places Data
  * @param req 
  * Requests Data
  * @param res
@@ -111,7 +124,7 @@ module.exports = function(express) {
     voting.update(req.body, function(err) { 
 /**
  * @function update
- * varifies that app id and body.id match and runs _update in models
+ * @description varifies that app id and body.id match and runs _update in models
  * @param req.body
  * Requests the body information
 */  
@@ -128,7 +141,7 @@ module.exports = function(express) {
     voting.destroy(req.body, function(err) {
 /**
  * @function destroy
- * Deletes User ID using _destroy in models
+ * @description Deletes User ID using _destroy in models
  * @param req.body
  * Requests the body information
 */
