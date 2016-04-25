@@ -4,13 +4,8 @@ module.exports = function(express) {
   var router = express.Router();
 
   // Import NPM dependencies like this:
-<<<<<<< 9d51c639ca57cd9be1f6d076e0769bbdd1c144b0
 // var React = require('react');
 // var ReactDOM = require('react-dom');
-=======
-var React = require('react');
-var ReactDOM = require('react-dom');
->>>>>>> connect a route to homepage in public  folder
 
 // NOTES
   // made a variable point to history.js in model folder.
@@ -34,12 +29,6 @@ var ReactDOM = require('react-dom');
 
 // Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs')); // JSdoc route
-<<<<<<< 9d51c639ca57cd9be1f6d076e0769bbdd1c144b0
-=======
-
-  //router.use('/home', require('./public/index'); // route to index.html
-
->>>>>>> connect a route to homepage in public  folder
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
   router.use('/api/', require('./api/app_assets')(express));
