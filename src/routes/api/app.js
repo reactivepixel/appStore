@@ -75,9 +75,6 @@ module.exports = function (express) { // Setting module.exports to a new functio
     return "testing works";
   };
    // This returns the router to where ever it is called with the appropriate data.
-<<<<<<< 8c90be1f53d4fcedcddd286e5f97fb2bf02f9600
    return router;
-=======
-   return Router;
->>>>>>> recommend model set up with recommend api
+
 };
