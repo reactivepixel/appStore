@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/history.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/history.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>module.exports = function() {
+  var db = require('./db');
+/**
+ * @var {file} db
+ * Sets db to imported file db.js
+*/
+  var sequelize = db.connection;
+/**
+ * @var {connection} db
+ * Sets sequelize to db.connection
+*/
+  var util = require('../../lib/util');
+/**
+ * @var {file} util
+ * Sets util to imported util.js
+*/
+
+
+  function _create(payload, err, success) {
+/**
+ * @function _create
+ * @description Cleans the data within voting in DB
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/
+    var cleanData = util.scrubData(payload);
+    db.history.create(cleanData).then(success).catch(err);
+  }
+
+  function _update(payload, err, success) {
+/**
+ * @function _update
+ * @description Accepts the parameters and then updates table data
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/
+    var cleanData = util.scrubData(payload);
+    db.history.find({
+      where: {
+        id: cleanData.id
+      }
+    }).then(function(matchedhistory) {
+      matchedhistory.updateAttributes(cleanData).then(success).catch(err);
+    }).catch(err);
+  }
+
+  function _find(payload, err, success) {
+/**
+ * @function _find
+ * @description Accepts the parameters and then updates table data
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/
+    var cleanData = util.scrubData(payload);
+    db.history.find({
+      where: {
+        id: cleanData.id
+      },
+      include: [{
+        all: true,
+        nested: true
+      }]
+    }).then(success).catch(err);
+  }
+
+  function _findAll(err, success) {
+/**
+ * @function _findAll
+ * @description Accepts the parameters and then finds all the table data
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/
+    db.history.findAll({
+      include: [{
+        all: true,
+        nested: true
+      }]
+    }).then(success).catch(err);
+  }
+
+  function _destroy(payload, err, success) {
+/**
+ * @function _destroy
+ * @description Accepts the parameters and then destroys all the table data in given ID
+ * @param payload 
+ * Holds the req.body in a variable
+ * @param err
+ * Errors
+ * @success
+ * Run  
+*/  
+    var cleanData = util.scrubData(payload);
+    db.history.destroy({
+      where: {
+        id: cleanData.id
+/**
+ * @var {attribute} id
+ * Defines a unique identifier (ID) which must be unique in the whole document. Its purpose is to identify the element when linking
+*/
+      },
+      force: payload.force
+    }).then(success).catch(err);
+  }
+
+  return {
+    create: _create,
+    update: _update,
+    find: _find,
+    findAll: _findAll,
+    destroy: _destroy,
+  }
+}();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#_create">_create</a></li><li><a href="global.html#_destroy">_destroy</a></li><li><a href="global.html#_find">_find</a></li><li><a href="global.html#_findAll">_findAll</a></li><li><a href="global.html#_update">_update</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#body_parser">body_parser</a></li><li><a href="global.html#catch">catch</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#db">db</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#find">find</a></li><li><a href="global.html#findAll">findAll</a></li><li><a href="global.html#force">force</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#id">id</a></li><li><a href="global.html#listen">listen</a></li><li><a href="global.html#nested">nested</a></li><li><a href="global.html#port">port</a></li><li><a href="global.html#put">put</a></li><li><a href="global.html#require">require</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sequelize">sequelize</a></li><li><a href="global.html#then">then</a></li><li><a href="global.html#update">update</a></li><li><a href="global.html#use">use</a></li><li><a href="global.html#util">util</a></li><li><a href="global.html#voting">voting</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Apr 25 2016 22:06:07 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
