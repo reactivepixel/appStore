@@ -243,20 +243,16 @@ module.exports = function() {
   });
 
   /**
-   *
-   * @var {attributes} .belongsTo
-   * adds a foreign key and singular association mixins to the _role source.
-   *
+   * @var {attributes} belongsTo
+   * Adds a foreign key and singular association mixins to the _role source.
    */
   _user.belongsTo(_role, {
     foreignKey: 'role_id'
   });
 
   /**
-   *
-   * @var {attributes} .hasOne
-   * adds a foreign key to the target "app" and singular association mixins to the source.
-   *
+   * @var {attributes} hasOne
+   * Adds a foreign key to the target "app" and singular association mixins to the source.
    */
   _genre.hasOne(_app, {
     foreignKey: 'genre_id'
