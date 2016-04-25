@@ -1,12 +1,10 @@
 module.exports = function(express) {
   var g = require('ger');
-
   /**
    * @var {connection} esm
    *   Event Store Manager
    */
   var esm = new g.MemESM();
-
   /**
    * @var {connection} ger
    *   Good Enough Recommender----Added to package.json
@@ -52,7 +50,5 @@ var genre='sports';
   }).then(function(recommendations){
     // console.log(`Person: ${person}`+JSON.stringify(recommendations, null,2));
   });
-
-
 
 };
