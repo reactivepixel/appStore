@@ -56,3 +56,62 @@ Using JSX
 	Notice that var name is called in XML style
 	HTML is returned and rendered to the body
 
+
+How to tell if a page is using React
+	React compnents are compostable.
+		UI comprised of different components.
+	Any website built with react has the react logo on the right side of teh address bar.
+	You can open a react developer panel
+		Opens in the same way you would inspect an element
+		This will tell you where on the page react is being used.
+
+Creating a React Component
+	React.Render can only return one compnent at a time unless wrapped inside of a container
+	ex:
+		React.Render(<div>
+					<helloworld/>
+					<helloworld/>
+					<helloworld/>
+				</div>, document.body);
+
+Properties
+	Sending properties to a compnent in a similar to adding some attributes to HTML
+	this.props.(var name)
+		how you would call your function ft. the defined var.
+
+		ex:
+		<helloworld text="stuffandthings"/>
+		<h1>{this.props.text}</h1>
+
+		This would create an h1 saying stuff and things".
+
+
+Other Notes:
+	When declaring functions within a class you do not need to declare a var
+		Syntax similar to backbone
+	Instead of declaring a class, declare a className
+	JQuery can be used inside of obejcts.
+	ex:
+		<button onClick={this.Remove} className="btn">
+
+Checkboxes
+	var checkbox = React.createClass({
+					getInitialState: function({
+								  return {checked:false}
+								  }. //checkbox is unchecked at start
+								  handleCheck:function(){
+											this.setState({checked:!this.state.checked})
+											},
+										Render: function(){
+												  var msg;
+											if(this.state.checked){
+													      msg = "checked";
+													      }
+													       else
+													      {
+     														 msg = "unchecked";
+      													      }
+														return(<div><input type="checkbox" onChange={this.handleCheck}/><p>{msg}</p></div>);
+													      
+												   }
+												});
