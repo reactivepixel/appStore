@@ -266,11 +266,9 @@ module.exports = function() {
   });
 
   /**
-   *
    * @var {attributes} .hasMany
    *  adds a foreign key to target _socialAccount and plural association mixins to the source
    *  user_id.
-   *
    */
   _user.hasMany(_socialAccount, {
     foreignKey: 'user_id'
@@ -289,11 +287,9 @@ module.exports = function() {
   });
 
   /**
-   *
    * @var {attributes} .belongsToMany
    *  creates an N:M association with a join table and adds plural association
    *  mixins to the source. The junction table is created with sourceId and targetId.
-   *
    */
   _app.belongsToMany(_list, {
     through: 'listedApp'
