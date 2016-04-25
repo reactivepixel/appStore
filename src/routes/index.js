@@ -4,8 +4,8 @@ module.exports = function(express) {
   var router = express.Router();
 
   // Import NPM dependencies like this:
-var React = require('react');
-var ReactDOM = require('react-dom');
+// var React = require('react');
+// var ReactDOM = require('react-dom');
 
 // NOTES
   // made a variable point to history.js in model folder.
