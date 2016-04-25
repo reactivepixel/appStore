@@ -1,0 +1,58 @@
+React.JS
+	a JS Library used for UI
+	Started by Facebook
+	Maintained by Facebook and Instagram
+	Is a View - the V in MVC
+	For developing single page applications
+
+Virtual Dom
+	Is a JS Object
+	Faster than Real DOM
+	Only writes to real dom when necessary
+	Only renders data that has been changed 
+		This is unlike DOM which must render all data
+		This is why the DOM is so slow
+	Get state info from the virtual DOM with getDOMNode()
+
+Using React
+	Click on download link on the React website
+	Find the "Production" script tag (currently v.0.13.3)
+	Insert into document head
+	React.Render() starts any piece of react code
+
+	React.Render(React.CreateElement('div', null, 'hello world'), document.body);
+		This code will create a div element with no properties that says
+		hellow world inside of the document body.
+
+	React.createElement(what, properties, content);
+
+JSX
+	JSX - Javascript XML
+	Makes code similar to XML
+	Must first be converted to Javascript before it will run in the browser.
+
+Babel
+	JS Compiler
+	http://www.babeljs.io
+	Use v.5.8 for now - it's Quicker!
+	Link in Script tag in header
+	Give React Code Script a type of text/babel 
+		- <script type="text/babel">
+	
+
+Using JSX
+	var HelloWord = React.createClass({
+		Render: function(){
+			return{
+				<div>
+					<h1>hello world</h1>
+				</div>
+				);
+				}
+			});
+
+	React.render(<helloworld/>, document.body);
+
+	Notice that var name is called in XML style
+	HTML is returned and rendered to the body
+
