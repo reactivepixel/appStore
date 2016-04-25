@@ -16,10 +16,11 @@ module.exports = function(express) {
    */
   var ger = new g.GER(esm);
 
-  //captured by express
-  ger.initialize_namespace('movies')
-  .then( function() {
-    return ger.events([
+var genre='sports';
+
+  ger.initialize_namespace('sports') //Creates tracking history for 'sports'
+  .then(function(){
+    return ger.events([ //Passing to a method through an array
       {
         namespace: 'movies',
         person: 'bob',
