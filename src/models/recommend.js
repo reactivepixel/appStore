@@ -57,17 +57,12 @@ var a='patrick';
 
 }).then(function(){
     // return ger.recommendations_for_thing('sports', 'game3', {actions: {likes: 1}});
+    return ger.recommendations_for_thing('sports', 'game3', {actions: {likes: 1}});
     return ger.recommendations_for_person('sports', a, {actions: {likes: 1}})
 
   }).then(function(recommendations){
     return console.log(JSON.stringify(recommendations,null,2)+'//////// %s', ger.events.a)
   });
-
-  //returns object literal or function
-
-
-
-
 
 
 
