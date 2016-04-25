@@ -40,7 +40,7 @@ module.exports = function(express) {
     })
     .then(function(recommendations){
       //display result of recommendations_for_person()
-      return console.log(JSON.stringify(recommendations,null,2)+'//////// %s', ger.events.a)
+      return console.log(JSON.stringify(recommendations,null,2)); //Confidence section
     });
 });
 
