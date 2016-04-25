@@ -22,7 +22,7 @@ module.exports = function() {
       min: 0,
       idle: 10000
     },
-    logging: true;
+    logging: false;
   });
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
