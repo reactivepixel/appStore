@@ -5,10 +5,10 @@ module.exports = function(express) {
       */
   var history = require('../models/history');
       /**
-        * @var {file} db
-        * Sets db to imported file db.js
+        * @var {file} path
+        * This is 
       */
-  var db = require('../models/db');
+  var path = require('path');
       /**
         * @var {connection} router
         * This sets the var router equal to express.Router()
