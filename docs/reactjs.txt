@@ -115,3 +115,109 @@ Checkboxes
 													      
 												   }
 												});
+
+State
+	When a component state changes, Render is called to Rerender that change
+	Think of a checkbox - has 2 states
+		checked
+		unchecked
+	This.setState ~ primary way to trigger an ui updates from event handlers
+
+
+Parent/Child Relationships
+	getDOMNode() looks for the value of whatever it is attached to
+	Refs are a reliable way to access the properties of DOM
+		Can also be used to flow data to a child component
+	PropTypes ~ a method in the React Library used to handle validation
+		ex:
+			if (typeof props[propname] !== "number")
+			{
+				return new error('Must be a number!");
+			}
+
+		This is an example of validation in react.
+	To populate from an array, use the .map method
+		The key will be i or some other placeholder
+	Child components can inherit state and props
+	arr.splice still removes items in an array
+	arr.push still adds items to an array
+	if adding items, use .bind(null, "text") for
+	a placeholder. Otherwise it will default to object.
+	Key properties are passed to components when its part of an array of children.
+	React decides what to rerender based on ids.
+	Components have unique keys to maintain their state and identity.
+
+
+Random Numbers
+	Takes two arguments
+		min
+		max
+	(min + Math.Ciel(Math.Random() + max));
+	For ids:
+		this.uniqueid = this.uniqueid || 0;
+		uniqueid++;			
+
+
+Component Life Cycle:
+	The times at which changes in state will occur during a components lifetime.
+	React provides hooks for creating, lifetime, and teardown of a component.
+	getdefaultprops and getinitialstate are called once, set defaults for props and state respectively
+	
+	ComponentWillMount ~ Last chance to affect the state prior to render
+	ComponentWillReceiveProps ~ changes the obj, update state
+	ShouldComponentUpdate and ComponentWillUpdate ~ used to enhance performance.
+	ComponentWillUnmount ~ Clean up DOM and invalidate timers
+	React.UnmountComponentAtNode('location');
+
+Passing in CSS:
+	Return an Object
+	Continue as normal CSS
+		Camelcase instead of hyphens
+		Commas instead of semicolons
+		No pixel values are necessary
+	Style = {this.props}
+	React is better than css because it is reusable
+		No need to share ids or classes
+	React plays well with jquery
+
+NPM
+	the package manager for node.js
+	includes pacakge.json file *
+	in terimal:
+		type npm init + fill out
+	Creates a new package.json file
+	in terminal:
+		npm install --save-dev babel-cli@6.4.0
+		npm install --save-dev babel-preset-React
+	
+	Back in package.json
+		Should have 2 new dev dependencies
+			babel-cli
+			babel-preset-react
+
+		erase "test" + replace with "build"
+		erase following text and replace with "babel js -d built"
+		add a node called "babel"  this is an object
+			"presets": ["react"]
+	In terminal:
+		npm install --save httpster
+			should show up in package.json
+		npm run build
+	In package.json
+		Under "build"
+			"start":"open http://localhost:3000 + httpster -p 3000"
+	In terminal:
+		npm start
+			opens app in browser
+
+Other libraries
+	Babel documentation
+	Webpack
+		Most popular tool used with react
+		Create a config file defining steps to take prior to launch
+	Grunt
+		A task runner
+		Automates necessary processes
+	React Native
+	Flux
+		NOT MVC
