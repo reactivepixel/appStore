@@ -1,6 +1,6 @@
 module.exports = function (express) {
   var router = express.Router();
-  var list = require('../../models/listed_apps.js');
+  var list = require('../../models/listed_apps');
   var util = require('../../../lib/util');
 
   // Create
