@@ -1,4 +1,4 @@
- 
+
   // Sequelize will setup a connection pool
   // on initialization so you should ideally
   // only ever create one instance per database.
@@ -32,7 +32,7 @@ module.exports = function() {
    // to define mapping between a model and table use
    // ".define" Sequelize will then automatically add the
    // attributes createdAt and updatedAt to it in DB.
-  
+
 
   var _user = _sequelize.define('user', {
     id: {
@@ -41,8 +41,6 @@ module.exports = function() {
       primaryKey: true
     },
     dispName: {
-
-    //.STRING sets the datatype to a string
       type: Sequelize.STRING
     },
     email: {
@@ -54,20 +52,12 @@ module.exports = function() {
     phone: {
       type: Sequelize.STRING
     },
-
-    //added ability for user to set gender in DB on registration to generate recommendations based on gender
     gender: {
       type: Sequelize.STRING
     },
-
-    //added ability for user to set age in DB on registration to generate recommendations based on age
     age: {
-
-      //.INTEGER sets the datatype to a INTEGER
       type: Sequelize.INTEGER
     },
-
-    //added ability for user to set hobbys in DB on registration to generate recommendations based on degree
     hobby: {
       type: Sequelize.STRING
     }
@@ -182,7 +172,6 @@ module.exports = function() {
   //    Review
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  // This is making the table in SQL with 3 fields for now: name, post, & star rating.
   var _review = _sequelize.define('review', {
     name: {
       type: Sequelize.STRING
@@ -253,12 +242,18 @@ module.exports = function() {
     paranoid: false
   });
 
-    //belongsTo - adds a foreign key and singular association mixins to the _role source.
+  /**
+   * @var {attributes} belongsTo
+   * Adds a foreign key and singular association mixins to the _role source.
+   */
   _user.belongsTo(_role, {
     foreignKey: 'role_id'
   });
 
-    // hasOne - adds a foreign key to the target "app" and singular association mixins to the source.
+  /**
+   * @var {attributes} hasOne
+   * Adds a foreign key to the target "app" and singular association mixins to the source.
+   */
   _genre.hasOne(_app, {
     foreignKey: 'genre_id'
   });
@@ -266,12 +261,14 @@ module.exports = function() {
     foreignKey: 'degree_id'
   });
 
-  //hasMany - adds a foreign key to target _socialAccount and plural association mixins to the source user_id.
+  /**
+   * @var {attributes} .hasMany
+   *  adds a foreign key to target _socialAccount and plural association mixins to the source
+   *  user_id.
+   */
   _user.hasMany(_socialAccount, {
     foreignKey: 'user_id'
   });
-
-  //This is what tracks the user so when they log in it will track them here.
   _user.hasMany(_review, {
     foreignKey: 'user_id'
   });
@@ -285,7 +282,11 @@ module.exports = function() {
     foreignKey: 'user_id'
   });
 
-  //belongsToMany - creates an N:M association with a join table and adds plural association mixins to the source. The junction table is created with sourceId and targetId.
+  /**
+   * @var {attributes} .belongsToMany
+   *  creates an N:M association with a join table and adds plural association
+   *  mixins to the source. The junction table is created with sourceId and targetId.
+   */
   _app.belongsToMany(_list, {
     through: 'listedApp'
   });
@@ -297,7 +298,7 @@ module.exports = function() {
     user: _user,
     app: _app,
     history: _history,
-    review: _review, //np sean I got you <3
+    review: _review,
     voting: _voting,
     appAsset: _appAsset,
     list: _list,
