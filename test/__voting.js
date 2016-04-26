@@ -3,6 +3,7 @@
       * This sets the var expect to equal chai
     */
 var expect = require('chai').expect;
+<<<<<<< HEAD
     /**
       * @var {connection} faker
       * This sets the var faker to equal faker
@@ -33,6 +34,39 @@ var user = require('../src/models/user');
       * Stores dispName, email, hashed pass, and phone#
     */
 var userData = { 
+=======
+/**
+ * @var {connection} expect
+ * This sets the var expect to equal chai
+*/
+var faker = require('faker');
+/**
+ * @var {connection} faker
+ * This sets the var faker to equal faker
+*/
+var util = require('../lib/util.js');
+/**
+ * @var {file} util
+ * This sets the var util to equal the path to the lib/util.js
+*/
+var voter = require('../src/models/voter');
+/**
+ * @var {file} voter
+ * This sets the var voter to equal the path to the src/models/voter.js
+*/
+var app = require('../src/models/app');
+/**
+ * @var {file} app
+ * This sets the var app to equal the path to the src/models/app.js
+*/
+var user = require('../src/models/user');
+/**
+ * @var {file} user
+ * This sets the var user to equal the path to the src/models/user.js
+*/
+
+var userData = { /** userData stores dispName, email, hashed pass, and phone# */
+>>>>>>> history
   dispName: faker.name.findName(),
   email: faker.internet.email(),
   password: 'unhash',
