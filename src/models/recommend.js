@@ -65,6 +65,9 @@ var a='patrick';
   });
 
 
+  //initialize namespace
+  //namespace will be the game genre
+  ger.initialize_namespace('sports').then(function(){
 
 
 
