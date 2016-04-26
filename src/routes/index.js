@@ -3,7 +3,7 @@ module.exports = function(express) {
   var path = require('path');
   var router = express.Router();
 
-  // Import NPM dependencies like this:
+// Import NPM dependencies like this:
 // var React = require('react');
 // var ReactDOM = require('react-dom');
 
@@ -30,7 +30,6 @@ module.exports = function(express) {
 // Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs')); // JSdoc route
 
-
   //router.use('/home', require('./public/index'); // route to index.html
 
   router.use('/api/', require('./api/user')(express));
@@ -56,7 +55,7 @@ module.exports = function(express) {
       res.status(500).json(err); //spits out error
     },function(data) {
       res.status(200).json(data); //spits out data
-      next(); // end the request
+      next(); // end the request - restarts process
     });
   });
   return router;
