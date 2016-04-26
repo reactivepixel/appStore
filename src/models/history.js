@@ -1,4 +1,5 @@
 module.exports = function() {
+
   var db = require('./db');
 /**
  * @var {file} db
@@ -19,7 +20,9 @@ module.exports = function() {
   function _create(payload, err, success) {
 /**
  * @function _create
- * @description Cleans the data within voting in DB
+
+ * Cleans the data within voting in DB
+
  * @param payload
  * Holds the req.body in a variable
  * @param err
@@ -34,6 +37,7 @@ module.exports = function() {
   function _update(payload, err, success) {
 /**
  * @function _update
+
  * @description Accepts the parameters and then updates table data
  * @param payload
  * Holds the req.body in a variable
@@ -55,6 +59,7 @@ module.exports = function() {
   function _find(payload, err, success) {
 /**
  * @function _find
+
  * @description Accepts the parameters and then updates table data
  * @param payload
  * Holds the req.body in a variable
@@ -78,6 +83,7 @@ module.exports = function() {
   function _findAll(err, success) {
 /**
  * @function _findAll
+
  * @description Accepts the parameters and then finds all the table data
  * @param payload
  * Holds the req.body in a variable
@@ -97,6 +103,7 @@ module.exports = function() {
   function _destroy(payload, err, success) {
 /**
  * @function _destroy
+
  * @description Accepts the parameters and then destroys all the table data in given ID
  * @param payload
  * Holds the req.body in a variable
