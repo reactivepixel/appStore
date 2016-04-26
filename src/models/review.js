@@ -1,15 +1,15 @@
 module.exports= function() {
-  var db require('./db.js');
+  var db = require('./db.js');
   var sequelize = db.connection;
   var util = require('../../lib/util');
 
   function _create(payload,err,success) {
-    var cleanData = util scrubData(payload);
-    db.review.create(cryptedData).then(success).catch(err);
+    var cleanData = util.scrubData(payload);
+    db.review.create(cleanData).then(success).catch(err);
   }
 
   function _update(payload,err,success) {
-    var cleanData = util scrubData(payload);
+    var cleanData = util.scrubData(payload);
     db.review.find({
       where: {
         id: cleanData.id
@@ -20,7 +20,7 @@ module.exports= function() {
   }
 
   function _destroy(payload,err,success) {
-    var cleanData = util scrubData(payload);
+    var cleanData = util.scrubData(payload);
     db.review.destroy({
       where: {
         id: cleanData.id
