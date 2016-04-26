@@ -11,57 +11,43 @@ module.exports = function(express) {
    */
   var ger = new g.GER(esm);
 
-var genre='sports';
+    //initialize namespace
+    //namespace will be the game genre
+    ger.initialize_namespace('sports').then(function(){
 
-var a='patrick';
-
-//initialize_namespace
-  ger.initialize_namespace('sports')
-  .then(function(){//send variable a into function
-    var genre='sports';
-    var person1='patrick';
-    var person2='selena';
-    var person3='sean';
-
-     ger.events([
+      //create array treated as a 'bucket'
+      //buckets will contain user information
+      var bucket_array=[
       {
-        namespace: genre,
-        person: person1,
-        action: 'likes',
-        thing: 'game1',
+        namespace : '',
+        person    : 'patrick',
+        action    : 'likes',
+        thing     : 'game1',
         expires_at: '2020-06-06'
       },
       {
-        namespace: genre,
-        person: person2,
-        action: 'likes',
-        thing: 'game2',
+        namespace : 'sports',
+        person    : 'sean',
+        action    : 'likes',
+        thing     : 'game2',
         expires_at: '2020-06-06'
-      },
-      {
-        namespace: genre,
-        person: person3,
-        action: 'likes',
-        thing: 'game3',
-        expires_at: '2020-06-06'
-      },
-      {
-        namespace: genre,
-        person: person1,
-        action: 'likes',
-        thing: 'game3',
-        expires_at: '2020-06-06'
-      }
+      }];
 
-  ]);
-
-}).then(function(){
-    // return ger.recommendations_for_thing('sports', 'game3', {actions: {likes: 1}});
-    return ger.recommendations_for_thing('sports', 'game3', {actions: {likes: 1}});
-    return ger.recommendations_for_person('sports', a, {actions: {likes: 1}})
-
-  }).then(function(recommendations){
-    return console.log(JSON.stringify(recommendations,null,2)+'//////// %s', ger.events.a)
+      //send bucket_array into events method
+      //events method will allow algortihm to be run on user information
+      //we will then use that algortihm to return the recommendations methods
+      //those methods will display the game or 'thing' to recommend to user
+      ger.events(bucket_array)
+      .then(function(){
+        //display our array for testing purpose
+        console.log(bucket_array);
+        //run recommendation method to recommend a game or 'thing' to user
+        return ger.recommendations_for_person('sports', 'patrick', {actions: {likes: 1}});
+      })
+      .then(function(recommendations){
+        //display result of recommendations_for_person()
+        return console.log(JSON.stringify(recommendations,null,2));
+      });
   });
 
 

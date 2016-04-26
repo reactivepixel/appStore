@@ -65,19 +65,9 @@ module.exports = function(express) {
           * Payload is where we store the req.body data for later use
         */
     var payload = req.body;
-            /**
-              * @function rawRoute
-              * @Create full url and store in db under rawRoute
-            */
-    payload.rawRoute = path.join(req.protocol + '://' + req.get('host') + req.originalUrl);
-            /**
-              * @function create
-              * @Uses the create function in the history model
-              * @param payload
-              * Holds the req.body in a variable
-              * @param err
-              * Errors
-            */
+    //rawRoute is db name
+    // create full rawRoute of the url and store in db
+    payload.rawRoute = req.protocol + '://' + req.get('host') + req.originalUrl;
     history.create(payload,function(err){
       // Error Encountered
       res.status(500).json(err);
