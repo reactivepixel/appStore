@@ -46,16 +46,16 @@ module.exports = function(express) {
   // this middleware function has no mount path.
   // this code is executed for every request to the router.
   // rawRoute of url is stored in database.
-  router.use(function (req, res, next) {
+  router.use(function (req, res, next) { //no slash to save every page
     var payload = req.body;
     //rawRoute is db name
     // create full rawRoute of the url and store in db
-    payload.rawRoute = req.protocol + '://' + req.get('host') + req.originalUrl;
+    payload.rawRoute = req.protocol + '://' + req.get('host') + req.originalUrl; //original - anything with slash
     history.create(payload,function(err){
       // Error Encountered
-      res.status(500).json(err);
+      res.status(500).json(err); //spits out error
     },function(data) {
-      res.status(200).json(data);
+      res.status(200).json(data); //spits out data
       next(); // end the request
     });
   });
