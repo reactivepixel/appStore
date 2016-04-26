@@ -1,25 +1,15 @@
-module.exports = function(genre) {
+module.exports = function(userObj) {
 
     var g = require('ger');
     var esm = new g.MemESM();
     var ger = new g.GER(esm);
 
 
-
     //initialize namespace
     //namespace will be the game genre
-    ger.initialize_namespace(genre).then(function(){
+    ger.initialize_namespace(userObj.namespace).then(function(){
 
-      //create array treated as a 'bucket'
-      //buckets will contain user information
-      // bucket_array[1].namespace = 'blah'
-      //
-      // for(i=0;i<bucket_array.length;i++){
-      //   bucketarray[i].namespace;
-      // }
-      // var object = {}
-      // bucket_arrray.push(object)
-
+      //create an empty array of objects treated as a 'bucket' in ger module
       var bucket_array=[
       {
         namespace : '',
@@ -30,12 +20,13 @@ module.exports = function(genre) {
       }
     ];
 
-    //push into bucket
-    bucket_array[0].namespace=genre;
-    bucket_array[0].person=genre;
-    bucket_array[0].action='likes';
-    bucket_array[0].thing='game1';
-    bucket_array[0].expires_at='2020-06-06';
+
+    //store our info from the recommend route into our array/bucket
+    bucket_array[0].namespace=userObj.namespace;
+    bucket_array[0].person=userObj.person;
+    bucket_array[0].action=userObj.action;
+    bucket_array[0].thing=userObj.thing;
+    bucket_array[0].expires_at=userObj.expires_at;
 
     //create new object to push into bucket array
 
