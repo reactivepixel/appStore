@@ -1,10 +1,14 @@
 {
-  "name": "reviewCrud",
-  "version": "0.0.1",
-  "private": true,
+  "name": "app_store",
+  "version": "1.0.0",
+  "description": "A Game and Application Store for Exclusive use by Full Sail Students and Alumni",
+  "main": "./src/server.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "mocha",
+    "start": "node src/server.js"
   },
+  "author": "Chapman",
+  "license": "ISC",
   "dependencies": {
     "async": "^2.0.0-rc.3",
     "bcrypt": "0.8.5",
@@ -14,6 +18,7 @@
     "jsdoc": "3.4.0",
     "moment": "^2.13.0",
     "mysql": "2.10.2",
+    "path": "0.12.7",
     "sequelize": "^3.19.3",
     "validator": "4.9.0"
   },
