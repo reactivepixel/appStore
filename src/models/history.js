@@ -21,7 +21,7 @@ module.exports = function() {
               * Holds the req.body in a variable
               * @param err
               * Errors
-              * @success
+              * @param success
               * Run  
             */
   function _create(payload, err, success) {
@@ -35,7 +35,7 @@ module.exports = function() {
               * Holds the req.body in a variable
               * @param err
               * Errors
-              * @success
+              * @param success
               * Run  
             */
   function _update(payload, err, success) {
@@ -55,7 +55,7 @@ module.exports = function() {
               * Holds the req.body in a variable
               * @param err
               * Errors
-              * @success
+              * @param success
               * Run  
             */
   function _find(payload, err, success) {
@@ -77,7 +77,7 @@ module.exports = function() {
               * Holds the req.body in a variable
               * @param err
               * Errors
-              * @success
+              * @param success
               * Run  
             */
   function _findAll(err, success) {
@@ -95,7 +95,7 @@ module.exports = function() {
               * Holds the req.body in a variable
               * @param err
               * Errors
-              * @success
+              * @param success
               * Run  
             */
   function _destroy(payload, err, success) {  

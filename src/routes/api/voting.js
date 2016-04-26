@@ -26,13 +26,10 @@ module.exports = function(express) {
     /**
       * @property req.body
       * @description holds parameters that are sent up from the client as part of a POST request 
+      * @property req.params
+      * @description will return parameters in the matched routes
     */
-    req.body.id = 
-                  /**
-                    * @property req.params
-                    * @description will return parameters in the matched route
-                  */
-                  req.params.vote_id;
+    req.body.id = req.params.vote_id;
             /**
               * @function find
               * @description Finds ID in DB using _find in models/voting.js
