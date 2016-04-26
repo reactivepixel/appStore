@@ -15,6 +15,10 @@ var body_parser = require('body-parser'); // Sets variable body_parser to body-p
 */
 var app = express(); // Sets variable app to express function
 
+// setting a view engine
+app.set('view engine','ejs');
+
+
 // Dot Env File Loader
 if (!process.env.PORT) dotenv = require('dotenv').load(); // If
 
