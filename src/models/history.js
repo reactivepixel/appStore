@@ -22,6 +22,7 @@ module.exports = function() {
  * @function _create
 
  * Cleans the data within voting in DB
+
  * @param payload
  * Holds the req.body in a variable
  * @param err
@@ -37,7 +38,7 @@ module.exports = function() {
 /**
  * @function _update
 
- * Accepts the parameters and then updates table data
+ * @description Accepts the parameters and then updates table data
  * @param payload
  * Holds the req.body in a variable
  * @param err
@@ -59,7 +60,7 @@ module.exports = function() {
 /**
  * @function _find
 
- * Accepts the parameters and then updates table data
+ * @description Accepts the parameters and then updates table data
  * @param payload
  * Holds the req.body in a variable
  * @param err
@@ -83,7 +84,7 @@ module.exports = function() {
 /**
  * @function _findAll
 
- * Accepts the parameters and then finds all the table data
+ * @description Accepts the parameters and then finds all the table data
  * @param payload
  * Holds the req.body in a variable
  * @param err
@@ -103,7 +104,7 @@ module.exports = function() {
 /**
  * @function _destroy
 
- * Accepts the parameters and then destroys all the table data in given ID
+ * @description Accepts the parameters and then destroys all the table data in given ID
  * @param payload
  * Holds the req.body in a variable
  * @param err
@@ -130,5 +131,5 @@ module.exports = function() {
     find: _find,
     findAll: _findAll,
     destroy: _destroy,
-  }
+  };
 }();
