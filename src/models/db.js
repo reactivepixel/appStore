@@ -1,10 +1,10 @@
-/**
- * @var {sequelize} sequelize
- * Sequelize will setup a connection pool
- * on initialization so you should ideally
- * only ever create one instance per database.
- * if you are reading this sean is awesome...that is all
- */
+
+  // Sequelize will setup a connection pool
+  // on initialization so you should ideally
+  // only ever create one instance per database.
+  // if you are reading this sean is awesome...that is all
+
+
 module.exports = function() {
   var Sequelize = require('sequelize');
   var mysql = require('mysql');
@@ -28,12 +28,12 @@ module.exports = function() {
   //    User
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  /**
-   * @var {attributes} define
-   *   To define mapping between a model and table use
-   *   ".define" Sequelize will then automatically add the
-   *   attributes createdAt and updatedAt to it in DB.
-   */
+
+   // to define mapping between a model and table use
+   // ".define" Sequelize will then automatically add the
+   // attributes createdAt and updatedAt to it in DB.
+
+
   var _user = _sequelize.define('user', {
     id: {
       type: Sequelize.UUID,
@@ -262,8 +262,8 @@ module.exports = function() {
   });
 
   /**
-   * @var {attributes} hasMany
-   *  Adds a foreign key to target _socialAccount and plural association mixins to the source
+   * @var {attributes} .hasMany
+   *  adds a foreign key to target _socialAccount and plural association mixins to the source
    *  user_id.
    */
   _user.hasMany(_socialAccount, {
@@ -283,7 +283,7 @@ module.exports = function() {
   });
 
   /**
-   * @var {attributes} belongsToMany
+   * @var {attributes} .belongsToMany
    *  creates an N:M association with a join table and adds plural association
    *  mixins to the source. The junction table is created with sourceId and targetId.
    */

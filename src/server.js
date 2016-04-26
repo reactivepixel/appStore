@@ -3,7 +3,6 @@
  * This is the express module being put into a variable, express.
 */
 var express = require('express'); // Sets variable express to express module
-var util = require('../lib/util');
 /**
  * @var {module} body_parser
  * This is the body-parser module being put into a variable, body_parser.
@@ -15,10 +14,6 @@ var body_parser = require('body-parser'); // Sets variable body_parser to body-p
  * This is the express functionality being put into a variable, app.
 */
 var app = express(); // Sets variable app to express function
-
-// setting a view engine
-app.set('view engine','ejs');
-
 
 // Dot Env File Loader
 if (!process.env.PORT) dotenv = require('dotenv').load(); // If

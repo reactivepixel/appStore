@@ -33,7 +33,7 @@ module.exports = function() {
   }
 
   function _find(payload, err, success) { // Accepts the parameters and then updates table data
-    util.debug('Voting Model _Find Payload', payload)
+    util.debug('Voting Model _Find Payload', payload);
     var cleanData = util.scrubData(payload);
     db.voting.find({
       where: {
@@ -46,20 +46,24 @@ module.exports = function() {
     }).then(success).catch(err);
   }
 
-  function _findAll(err, success) {// Accepts the parameters and then finds all the table data
+// Accepts the parameters and then finds all the table data
+  function _findAll(err, success) {
     db.voting.findAll({
       include: [{
-        all: true,  // Includes all data
+         // Includes all data
+        all: true,
         nested: true
       }]
     }).then(success).catch(err);
   }
 
-  function _destroy(payload, err, success) { // Accepts the parameters and then destroys all the table data in given ID
+// Accepts the parameters and then destroys all the table data in given ID
+  function _destroy(payload, err, success) {
     var cleanData = util.scrubData(payload);
     db.voting.destroy({
       where: {
-        id: cleanData.id  // Destroy data that matches ID
+        // Destroy data that matches ID
+        id: cleanData.id
       },
       force: payload.force
     }).then(success).catch(err);
@@ -72,5 +76,5 @@ module.exports = function() {
     find: _find,
     findAll: _findAll,
     destroy: _destroy,
-  }
+  };
 }();

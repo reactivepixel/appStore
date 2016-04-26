@@ -32,7 +32,7 @@ describe('Model: App ', function() {
       util.debug('User Create Success', data);
 
       // Overwrite the returned obj to userData
-      // userData = data;
+      //userData = data;
       appData.user_id = userData.id;
       expect(data.dispName).to.be.equal(userData.dispName);
       done();
