@@ -28,11 +28,11 @@ module.exports = function(express) {
       * @description holds parameters that are sent up from the client as part of a POST request 
     */
     req.body.id = 
-    /**
-      * @property req.params
-      * @description will return parameters in the matched route
-    */
-    req.params.vote_id;
+                  /**
+                    * @property req.params
+                    * @description will return parameters in the matched route
+                  */
+                  req.params.vote_id;
             /**
               * @function find
               * @description Finds ID in DB using _find in models/voting.js
@@ -40,7 +40,7 @@ module.exports = function(express) {
               * Requests the body information
             */
     voting.find(req.body, function(err) { 
-      /** ERROR Encountered. */
+      // ERROR Encountered. 
       res.status(500).json(err);
     }, function(data) {
       res.status(200).json(data);
@@ -57,7 +57,7 @@ module.exports = function(express) {
               * Error
             */
     voting.findAll(function(err) {
-      /** ERROR Encountered. */
+      // ERROR Encountered. 
       res.status(500).json(err);
     }, function(data) {
       res.status(200).json(data);
