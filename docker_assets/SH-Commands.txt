@@ -1,0 +1,8 @@
+service mysql start && service mysql status
+rm -rf SH-Commands.txt
+mysql -uroot <<MYSQL_SCRIPT
+CREATE DATABASE appStore;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+MYSQL_SCRIPT
+npm install
