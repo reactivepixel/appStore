@@ -4,8 +4,6 @@ module.exports = function(genre) {
     var esm = new g.MemESM();
     var ger = new g.GER(esm);
 
-
-
     //initialize namespace
     //namespace will be the game genre
     ger.initialize_namespace(genre).then(function(){
