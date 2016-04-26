@@ -1,3 +1,6 @@
 
 var buckets=require('../../models/recommend');
-buckets();
+
+
+var genre='sports';
+buckets(genre);
