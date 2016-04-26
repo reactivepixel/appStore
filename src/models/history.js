@@ -45,7 +45,7 @@ module.exports = function() {
  * @success
  * Run
 */
-    var cleanData =   8util.scrubData(payload);
+    var cleanData = util.scrubData(payload);
     db.history.find({
       where: {
         id: cleanData.id
