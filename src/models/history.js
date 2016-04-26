@@ -20,13 +20,9 @@ module.exports = function() {
   function _create(payload, err, success) {
 /**
  * @function _create
-<<<<<<< HEAD
  * Cleans the data within voting in DB
  * @param payload
-=======
- * @description Cleans the data within voting in DB
- * @param payload 
->>>>>>> origin
+
  * Holds the req.body in a variable
  * @param err
  * Errors
@@ -40,13 +36,9 @@ module.exports = function() {
   function _update(payload, err, success) {
 /**
  * @function _update
-<<<<<<< HEAD
  * Accepts the parameters and then updates table data
  * @param payload
-=======
- * @description Accepts the parameters and then updates table data
- * @param payload 
->>>>>>> origin
+
  * Holds the req.body in a variable
  * @param err
  * Errors
@@ -66,13 +58,9 @@ module.exports = function() {
   function _find(payload, err, success) {
 /**
  * @function _find
-<<<<<<< HEAD
- * Accepts the parameters and then updates table data
- * @param payload
-=======
  * @description Accepts the parameters and then updates table data
- * @param payload 
->>>>>>> origin
+ * @param payload
+
  * Holds the req.body in a variable
  * @param err
  * Errors
@@ -94,13 +82,9 @@ module.exports = function() {
   function _findAll(err, success) {
 /**
  * @function _findAll
-<<<<<<< HEAD
  * Accepts the parameters and then finds all the table data
  * @param payload
-=======
- * @description Accepts the parameters and then finds all the table data
- * @param payload 
->>>>>>> origin
+
  * Holds the req.body in a variable
  * @param err
  * Errors
@@ -118,13 +102,9 @@ module.exports = function() {
   function _destroy(payload, err, success) {
 /**
  * @function _destroy
-<<<<<<< HEAD
  * Accepts the parameters and then destroys all the table data in given ID
  * @param payload
-=======
- * @description Accepts the parameters and then destroys all the table data in given ID
- * @param payload 
->>>>>>> origin
+
  * Holds the req.body in a variable
  * @param err
  * Errors
