@@ -13,7 +13,7 @@ module.exports = function(express) {
       //buckets will contain user information
       var bucket_array=[
       {
-        namespace : '',
+        namespace : 'sports',
         person    : 'patrick',
         action    : 'likes',
         thing     : 'game1',
