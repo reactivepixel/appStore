@@ -194,6 +194,7 @@ module.exports = function() {
   }, {
     paranoid: true
   });
+<<<<<<< HEAD
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    Review
@@ -213,6 +214,8 @@ module.exports = function() {
   }, {
     paranoid: true
   });
+=======
+>>>>>>> 8b34125bd6e09fb42e4a87de795ada0b3d51f0bb
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   //    App Assets
@@ -287,7 +290,10 @@ module.exports = function() {
   _user.hasMany(_socialAccount, {
     foreignKey: 'user_id'
   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8b34125bd6e09fb42e4a87de795ada0b3d51f0bb
   _user.hasMany(_review, { //This is what tracks the user so when they log in it will track them here.
     foreignKey: 'user_id'
   });
