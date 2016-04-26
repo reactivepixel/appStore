@@ -32,7 +32,7 @@ var user = require('../src/models/user');
       * @var {Array} userData
       * Stores dispName, email, hashed pass, and phone#
     */
-var userData = {
+var userData = { 
   dispName: faker.name.findName(),
   email: faker.internet.email(),
   password: 'unhash',
@@ -43,32 +43,32 @@ var userData = {
       * Var that will equal the table data of type
     */
 var appData = {
-  type: faker.commerce.productName()
+  type: faker.commerce.productName() 
 };
     /**
       * @var {Data} appData
       * Var that will equal the table data of link
     */
 var votingData = {
-  link: faker.internet.url()
+  link: faker.internet.url() 
 };
 
 describe('Model: Voter ', function() {
-  // User Create One
+  // User Create One 
   it('Creating a User as Owner for the Vote', function(done) {
     user.create(userData,
 
-    // On Error
+    // On Error 
     (err) => {
       util.debug('User Create Error', err);
       throw new Error('User Create Error');
     },
 
-    // On Success
+    // On Success 
     (data) => {
       util.debug('User Create Success', data);
 
-      // Overwrite the returned obj to userData
+      // Overwrite the returned obj to userData 
       appData.user_id = userData.id;
       expect(data.dispName).to.be.equal(data.dispName);
       done();
@@ -76,60 +76,60 @@ describe('Model: Voter ', function() {
   });
 
 
-  // App  Create One
+  // App  Create One 
   it('Create One App', function(done) {
     app.create(appData,
 
-    // On Error
+    // On Error 
     (err) => {
       util.debug('App Create Error', err);
       throw new Error('App Create Error');
     },
 
-    // On Success
+    // On Success 
     (data) => {
       util.debug('App Create Success', data);
 
-      // Overwrite the returned obj to votingData
+      // Overwrite the returned obj to votingData 
       expect(data.title).to.be.equal(appData.title);
       appData = data;
-      votingData.app_id = data.id; // The Link plus appId will equal data.id for later use
+      votingData.app_id = data.id; // The Link plus appId will equal data.id for later use 
       done();
     });
   });
 
-  // Voter Create One
+  // Voter Create One 
   it('Create Voter', function(done) {
     voter.create(votingData,
 
-    // On Error
+    // On Error 
     (err) => {
       util.debug('Vote Create Error', err);
       throw new Error('Vote Create Error');
     },
 
-    // On Success
+    // On Success 
     (data) => {
       util.debug('Vote Create Success', data);
 
-      // Overwrite the returned obj to votingData
+      // Overwrite the returned obj to votingData 
       expect(data.link).to.be.equal(votingData.link);
       votingData = data;
       done();
     });
   });
 
-  // Voter Read One
+  // Voter Read One 
   it('Read One', function(done) {
     voter.find(votingData,
 
-    // On Error
+    // On Error 
     (err) => {
       util.debug('Voter Read One Error', err);
       throw new Error('Voter Read One Error');
     },
 
-    // On Success
+    // On Success 
     (data) => {
       util.debug('Voter Read One Success', data);
       expect(data.link).to.be.equal(votingData.link);
@@ -137,17 +137,17 @@ describe('Model: Voter ', function() {
     });
   });
 
-  // Voter Read All
+  // Voter Read All 
   it('Read All', function(done) {
     voter.findAll(
 
-    // On Error
+    // On Error 
     (err) => {
       util.debug('Voter Read All Error', err);
       throw new Error('Voter Assets Read All Error');
     },
 
-    // On Success
+    // On Success 
     (data) => {
       util.debug('Voter Read All Success', data);
       expect(data.length).to.be.above(0);
@@ -155,20 +155,20 @@ describe('Model: Voter ', function() {
     });
   });
 
-  // Voter Update One
+  // Voter Update One 
   it('Update One', function(done) {
     var updateInfo = {id: votingData.id, type: 'xx Force Update xx'};
     voter.update(updateInfo,
 
-    // On Error
+    // On Error 
     (err) => {
       util.debug('Voter Update One Error', err);
       throw new Error('Voter Update One Error');
     },
 
-    // On Success
+    // On Success 
     (data) => {
-      // Overwrite the returned obj to votingData
+      // Overwrite the returned obj to votingData 
       votingData = data;
 
       util.debug('Voter Update One Success', data);
@@ -177,22 +177,22 @@ describe('Model: Voter ', function() {
     });
   });
 
-  // Voter Delete
+  // Voter Delete 
   it('Delete One', function(done) {
 
     votingData.force = true;
     voter.destroy(votingData,
 
-    // On Error
+    // On Error 
     (err) => {
       util.debug('Voter Delete One Error', err);
       throw new Error('Voter Delete One Error');
     },
 
-    // On Success
+    // On Success 
     (data) => {
       util.debug('Voter Delete One Success', data);
-      // Successfully deleting a record results in a bool response of 1
+      // Successfully deleting a record results in a bool response of 1 
       expect(data).to.be.equal(1);
       done();
     });

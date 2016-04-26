@@ -17,15 +17,15 @@ module.exports = function(express) {
           /**
             * @function get
             * @description Gathers Data
-            * @param req
+            * @param req 
             * Requests Data
             * @param res
-            * Listens for response
+            * Listens for response  
           */
   router.get('/vote/:vote_id', function(req, res) {
     /**
       * @property req.body
-      * @description holds parameters that are sent up from the client as part of a POST request
+      * @description holds parameters that are sent up from the client as part of a POST request 
       * @property req.params
       * @description will return parameters in the matched routes
     */
@@ -36,8 +36,8 @@ module.exports = function(express) {
               * @param req.body
               * Requests the body information
             */
-    voting.find(req.body, function(err) {
-      // ERROR Encountered.
+    voting.find(req.body, function(err) { 
+      // ERROR Encountered. 
       res.status(500).json(err);
     }, function(data) {
       res.status(200).json(data);
@@ -54,7 +54,7 @@ module.exports = function(express) {
               * Error
             */
     voting.findAll(function(err) {
-      // ERROR Encountered.
+      // ERROR Encountered. 
       res.status(500).json(err);
     }, function(data) {
       res.status(200).json(data);
@@ -63,10 +63,10 @@ module.exports = function(express) {
           /**
             * @function put
             * @description Places Data
-            * @param req
+            * @param req 
             * Requests Data
             * @param res
-            * Listens for response
+            * Listens for response 
           */
   router.put('/app/:app_id/vote', function(req, res) {
     req.body.app_id = req.params.app_id;
@@ -76,7 +76,7 @@ module.exports = function(express) {
               * @param req.body
               * Requests the body information
             */
-    voting.create(req.body, function(err) {
+    voting.create(req.body, function(err) { 
       // ERROR Encountered. , try removing id and try again.
       delete req.body.id;
       voting.create(req.body, function(err) {
@@ -90,18 +90,18 @@ module.exports = function(express) {
   });
 
 
-  router.put('/app/:app_id/vote/:vote_id', function(req, res) {
-    req.body.app_id = req.params.app_id;
-    req.body.id = req.params.vote_id;
+  router.put('/app/:app_id/vote/:vote_id', function(req, res) { 
+    req.body.app_id = req.params.app_id; 
+    req.body.id = req.params.vote_id; 
     util.debug('Voting Update Route Request Body', req.body);
             /**
               * @function update
               * @description varifies that app id and body.id match and runs _update in models
               * @param req.body
               * Requests the body information
-            */
-    voting.update(req.body, function(err) {
-    // ERROR Encountered.
+            */ 
+    voting.update(req.body, function(err) {  
+    // ERROR Encountered. 
       res.status(500).json(err);
     }, function(data) {
       res.status(200).json(data);
@@ -110,7 +110,7 @@ module.exports = function(express) {
 
 
   router.delete('/app/:id/vote/:vote_id', function(req, res) {
-    req.body.id = req.params.vote_id;
+    req.body.id = req.params.vote_id; 
             /**
               * @function destroy
               * @description Deletes User ID using _destroy in models
