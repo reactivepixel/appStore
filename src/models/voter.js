@@ -1,15 +1,15 @@
 module.exports = function() {
-  var db = require('./db.js'); 
+  var db = require('./db.js');
 /**
  * @var {file} db
  * Sets db to imported file db.js
 */
-  var sequelize = db.connection; 
+  var sequelize = db.connection;
 /**
  * @var {connection} db
  * Sets sequelize to db.connection
 */
-  var util = require('../../lib/util'); 
+  var util = require('../../lib/util');
 /**
  * @var {file} util
  * Sets util to imported util.js
@@ -20,12 +20,12 @@ module.exports = function() {
 /**
  * @function _create
  * @description Cleans and creates the data for voting in DB using the payload
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
+ * Run
 */
     var cleanData = util.scrubData(payload);;
     db.voting.create(cleanData).then(success).catch(err);
@@ -35,22 +35,22 @@ module.exports = function() {
 /**
  * @function _update
  * @description Accepts the parameters and then updates table data
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
+ * Run
 */
     var cleanData = util.scrubData(payload);;
     db.voting.find({
       where: {
-        id: cleanData.id 
+        id: cleanData.id
 /**
  * @var {attribute} id
  * Defines a unique identifier (ID) which must be unique in the whole document. Its purpose is to identify the element when linking
 */
-         
+
       }
     }).then(function(matchedvoting) {
       matchedvoting.updateAttributes(cleanData).then(success).catch(err); /** Updates information using updateAttributes */
@@ -61,12 +61,12 @@ module.exports = function() {
 /**
  * @function _find
  * @description Accepts the parameters and then updates table data
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
+ * Run
 */
     util.debug('Voting Model _Find Payload', payload)
     var cleanData = util.scrubData(payload);;
@@ -85,12 +85,12 @@ module.exports = function() {
 /**
  * @function _findAll
  * @description Accepts the parameters and then finds all the table data
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
+ * Run
 */
     db.voting.findAll({
       include: [{
@@ -104,13 +104,13 @@ module.exports = function() {
 /**
  * @function _destroy
  * @description Accepts the parameters and then destroys all the table data in given ID
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
-*/  
+ * Run
+*/
     var cleanData = util.scrubData(payload);;
     db.voting.destroy({
       where: {
@@ -143,5 +143,5 @@ module.exports = function() {
     find: _find,
     findAll: _findAll,
     destroy: _destroy,
-  }
+  };
 }();
