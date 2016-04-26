@@ -3,6 +3,7 @@ module.exports = function(userObj) {
     var g = require('ger');
     var esm = new g.MemESM();
     var ger = new g.GER(esm);
+    var db = require('./db');
 
 
     //object with placeholders for needed values from recommend route
@@ -14,13 +15,12 @@ module.exports = function(userObj) {
       expires_at: null
     };
 
-
     //set values of userObj to userInfo
     for(var prop in userInfo){
       if(userInfo[prop] !== 'undefined'){
         userInfo[prop] = userObj[prop];
       }
-    }
+    };
 
 
     /**
@@ -64,4 +64,5 @@ module.exports = function(userObj) {
 
       });
   });
+
 };

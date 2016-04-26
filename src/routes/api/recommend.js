@@ -1,6 +1,8 @@
 module.exports = function (express) { // Setting module.exports to a new function that excepts express as a paramater of express.
 
+  var router = express.Router();
   var buckets=require('../../models/recommend');
+  var user=require('../../models/user');
 
 
   /**
@@ -45,6 +47,10 @@ module.exports = function (express) { // Setting module.exports to a new functio
   buckets(userObj2);
   buckets(userObj3);
   buckets(userObj4);
+
+  router.get('/recommend', function(req, res) {
+    res.send('recommend route');
+  });
 
   return router;
 

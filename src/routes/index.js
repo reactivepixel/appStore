@@ -50,7 +50,7 @@ module.exports = function(express) {
   router.use('/api/', require('./api/list')(express));
   router.use('/api/', require('./api/listed_apps')(express));
   router.use('/api/', require('./api/voting')(express));
-  // router.use('/api/', require('./api/recommend')(express));
+  router.use('/api/', require('./api/recommend')(express));
 
   // MIDDLE-WARE
   // MIDDLE-WARE FOR history
