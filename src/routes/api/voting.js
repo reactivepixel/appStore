@@ -8,7 +8,7 @@ module.exports = function(express) {
     * @var {file} voting
     * This sets the var voting to equal the path to the models/voting.js
   */
-  var voting = require('../../models/voter.js');
+  var voting = require('../../models/voter');
   /**
     * @var {file} util
     * This sets the util voting to equal the path to the lib/util

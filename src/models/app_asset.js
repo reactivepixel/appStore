@@ -3,7 +3,7 @@ module.exports = function() {
    * @var {file} db
    * This imports the file db.js and sets it to the variable, db.
   */
-  var db = require('./db.js');
+  var db = require('./db');
 
   /**
    * @var {connection} sequelize

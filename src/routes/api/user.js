@@ -1,6 +1,6 @@
 module.exports = function (express) {
   var router = express.Router();
-  var user = require('../../models/user.js');
+  var user = require('../../models/user');
   var util = require('../../../lib/util');
 
   // Read One

@@ -4,45 +4,64 @@ module.exports = function(userObj) {
     var esm = new g.MemESM();
     var ger = new g.GER(esm);
 
-    //initialize namespace
-    //namespace will be the game genre
-    ger.initialize_namespace(userObj.namespace).then(function(){
 
-      //create an empty array of objects treated as a 'bucket' in ger module
+    //object with placeholders for needed values from recommend route
+    var userInfo={
+      namespace : null,
+      person    : null,
+      action    : null,
+      thing     : null,
+      expires_at: null
+    };
+
+
+    //set values of userObj to userInfo
+    for(var prop in userInfo){
+      if(userInfo[prop] !== 'undefined'){
+        userInfo[prop] = userObj[prop];
+      }
+    }
+
+
+    /**
+      * @function ger.initialize_namespace()
+      * @description initialize namespace.
+      * @param {string} userObj.namespace - namespace which is the game genre
+    */
+    ger.initialize_namespace(userInfo.namespace).then(function(){
+
+      /**
+        * @array bucket_array
+        * @description array stores all the objects of user information to be sent to ger.events()
+        * @param {string} userInfo
+      */
       var bucket_array=[
       {
-        namespace : '',
-        person    : '',
-        action    : '',
-        thing     : '',
-        expires_at: ''
+        namespace : userInfo.namespace,
+        person    : userInfo.person,
+        action    : userInfo.action,
+        thing     : userInfo.thing,
+        expires_at: userInfo.expires_at
       }
     ];
 
-
-    //store our info from the recommend route into our array/bucket
-    bucket_array[0].namespace=userObj.namespace;
-    bucket_array[0].person=userObj.person;
-    bucket_array[0].action=userObj.action;
-    bucket_array[0].thing=userObj.thing;
-    bucket_array[0].expires_at=userObj.expires_at;
-
-    //create new object to push into bucket array
-
-      //send bucket_array into events method
-      //events method will allow algortihm to be run on user information
-      //we will then use that algortihm to return the recommendations methods
-      //those methods will display the game or 'thing' to recommend to user
+    /**
+      * @function ger.events()
+      * @description events method performs recommendation algortihms
+      * @param {string} userInfo
+    */
       ger.events(bucket_array)
       .then(function(){
-        //display our array for testing purpose
-        // console.log(bucket_array);
+
         //run recommendation method to recommend a game or 'thing' to user
-        return ger.recommendations_for_person('sports', 'patrick', {actions: {likes: 1}});
+        return ger.recommendations_for_person(userInfo.namespace, userInfo.person, {actions: {likes: 1}});
+
       })
-      .then(function(recommendations){
-        //display result of recommendations_for_person()
-        // return console.log(JSON.stringify(recommendations,null,2));
+      .then( function() {
+
+        // return things are similar to the thing
+        return ger.recommendations_for_thing(userInfo.namespace, userInfo.thing, {actions: {likes: 1}});
+
       });
   });
 };

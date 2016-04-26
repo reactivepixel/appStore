@@ -1,5 +1,5 @@
 module.exports = function() {
-  var db = require('./db.js');
+  var db = require('./db');
   var sequelize = db.connection;
   var util = require('../../lib/util');
 
