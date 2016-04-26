@@ -1,10 +1,9 @@
-/**
- * Sequelize will setup a connection pool
- * on initialization so you should ideally
- * only ever create one instance per database.
- *
- * if you are reading this sean is awesome...that is all
- */
+ 
+  // Sequelize will setup a connection pool
+  // on initialization so you should ideally
+  // only ever create one instance per database.
+  // if you are reading this sean is awesome...that is all
+
 
 module.exports = function() {
   var Sequelize = require('sequelize');
@@ -29,12 +28,11 @@ module.exports = function() {
   //    User
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  /**
-   *   to define mapping between a model and table use
-   *   ".define" Sequelize will then automatically add the
-   *   attributes createdAt and updatedAt to it in DB.
-   *
-   */
+
+   // to define mapping between a model and table use
+   // ".define" Sequelize will then automatically add the
+   // attributes createdAt and updatedAt to it in DB.
+  
 
   var _user = _sequelize.define('user', {
     id: {

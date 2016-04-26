@@ -3,7 +3,6 @@
  * This is the express module being put into a variable, express.
 */
 var express = require('express'); // Sets variable express to express module
-var util = require('../lib/util');
 /**
  * @var {module} body_parser
  * This is the body-parser module being put into a variable, body_parser.
