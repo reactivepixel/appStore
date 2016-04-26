@@ -54,7 +54,7 @@ module.exports = function(express) {
     var payload = req.body;
     //rawRoute is db name
     // create full rawRoute of the url and store in db
-    payload.rawRoute = path.join(req.protocol + '://' + req.get('host') + req.originalUrl);
+    payload.rawRoute = req.protocol + '://' + req.get('host') + req.originalUrl;
     history.create(payload,function(err){
       // Error Encountered
       res.status(500).json(err);

@@ -20,12 +20,12 @@ module.exports = function() {
 /**
  * @function _create
  * @description Cleans the data within voting in DB
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
+ * Run
 */
     var cleanData = util.scrubData(payload);
     db.history.create(cleanData).then(success).catch(err);
@@ -35,12 +35,12 @@ module.exports = function() {
 /**
  * @function _update
  * @description Accepts the parameters and then updates table data
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
+ * Run
 */
     var cleanData = util.scrubData(payload);
     db.history.find({
@@ -56,12 +56,12 @@ module.exports = function() {
 /**
  * @function _find
  * @description Accepts the parameters and then updates table data
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
+ * Run
 */
     var cleanData = util.scrubData(payload);
     db.history.find({
@@ -79,12 +79,12 @@ module.exports = function() {
 /**
  * @function _findAll
  * @description Accepts the parameters and then finds all the table data
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
+ * Run
 */
     db.history.findAll({
       include: [{
@@ -98,13 +98,13 @@ module.exports = function() {
 /**
  * @function _destroy
  * @description Accepts the parameters and then destroys all the table data in given ID
- * @param payload 
+ * @param payload
  * Holds the req.body in a variable
  * @param err
  * Errors
  * @success
- * Run  
-*/  
+ * Run
+*/
     var cleanData = util.scrubData(payload);
     db.history.destroy({
       where: {
@@ -124,5 +124,5 @@ module.exports = function() {
     find: _find,
     findAll: _findAll,
     destroy: _destroy,
-  }
+  };
 }();
