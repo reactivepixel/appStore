@@ -1,8 +1,4 @@
-<<<<<<< 5e4c422f5855691f3ed221d328f9515250659992
 FROM ubuntu:14.04.4
-=======
-FROM ubuntu:latest
->>>>>>> adding Dockerfile for development-environment creation and it's assets
 Label Version="1.0"
 Label "description": “CrudeOil - A Development Environment made by Full Sail Cloud Tech, for Full Sail Web Dev.”
 ENV myName="dev"
@@ -46,18 +42,10 @@ RUN echo “----------------Setting Global NPM Packages----------------”
 RUN npm -g install jsdoc sequelize mysql nodemon express mocha gulp gulp-nodemon gulp-shell gulp-clean ger pm2
 
 RUN echo “----------------Setting up Environment----------------”
-<<<<<<< 5e4c422f5855691f3ed221d328f9515250659992
 COPY docker_assets/SH-Commands.txt /
-=======
-COPY SH-Commands.txt /
->>>>>>> adding Dockerfile for development-environment creation and it's assets
 RUN cat /SH-Commands.txt >> /etc/bash.bashrc
 RUN mkdir -p /usr/src/appStore
 WORKDIR /usr/src/appStore
 
 RUN echo “----------------Setting Global Settings----------------”
-<<<<<<< 5e4c422f5855691f3ed221d328f9515250659992
 COPY docker_assets/my.cnf /etc/mysql/
-=======
-COPY my.cnf /etc/mysql/
->>>>>>> adding Dockerfile for development-environment creation and it's assets
