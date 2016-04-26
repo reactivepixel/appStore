@@ -18,14 +18,8 @@ module.exports = function(express) {
         action    : 'likes',
         thing     : 'game1',
         expires_at: '2020-06-06'
-      },
-      {
-        namespace : 'sports',
-        person    : 'sean',
-        action    : 'likes',
-        thing     : 'game2',
-        expires_at: '2020-06-06'
-      }];
+      }
+    ];
 
       //send bucket_array into events method
       //events method will allow algortihm to be run on user information
@@ -34,13 +28,13 @@ module.exports = function(express) {
       ger.events(bucket_array)
       .then(function(){
         //display our array for testing purpose
-        console.log(bucket_array);
+        // console.log(bucket_array);
         //run recommendation method to recommend a game or 'thing' to user
         return ger.recommendations_for_person('sports', 'patrick', {actions: {likes: 1}});
       })
       .then(function(recommendations){
         //display result of recommendations_for_person()
-        return console.log(JSON.stringify(recommendations,null,2));
+        // return console.log(JSON.stringify(recommendations,null,2));
       });
   });
 };
