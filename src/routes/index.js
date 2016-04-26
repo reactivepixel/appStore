@@ -36,9 +36,6 @@ module.exports = function(express) {
     });
   });
 
-
-
-
 // Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs'));
   router.use('/api/', require('./api/user')(express));
