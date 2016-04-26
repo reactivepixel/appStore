@@ -17,12 +17,12 @@ module.exports = function() {
 
 
   function _create(payload, err, success) { // Accepts the parameters and then creates the data for voting in DB using the payload
-    var cleanData = util.scrubData(payload);;
+    var cleanData = util.scrubData(payload);
     db.voting.create(cleanData).then(success).catch(err);
   }
 
   function _update(payload, err, success) { // Accepts the parameters and then updates table data
-    var cleanData = util.scrubData(payload);;
+    var cleanData = util.scrubData(payload);
     db.voting.find({
       where: {
         id: cleanData.id       
@@ -33,8 +33,8 @@ module.exports = function() {
   }
 
   function _find(payload, err, success) { // Accepts the parameters and then updates table data
-    util.debug('Voting Model _Find Payload', payload)
-    var cleanData = util.scrubData(payload);;
+    util.debug('Voting Model _Find Payload', payload);
+    var cleanData = util.scrubData(payload);
     db.voting.find({
       where: {
         id: cleanData.id // Varifies that the ID's match 
@@ -56,7 +56,7 @@ module.exports = function() {
   }
 
   function _destroy(payload, err, success) { // Accepts the parameters and then destroys all the table data in given ID
-    var cleanData = util.scrubData(payload);;
+    var cleanData = util.scrubData(payload);
     db.voting.destroy({
       where: {
         id: cleanData.id  // Destroy data that matches ID 
