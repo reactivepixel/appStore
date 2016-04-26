@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:14.04.4
 Label Version="1.0"
 Label "description": “CrudeOil - A Development Environment made by Full Sail Cloud Tech, for Full Sail Web Dev.”
 ENV myName="dev"
@@ -42,10 +42,10 @@ RUN echo “----------------Setting Global NPM Packages----------------”
 RUN npm -g install jsdoc sequelize mysql nodemon express mocha gulp gulp-nodemon gulp-shell gulp-clean ger pm2
 
 RUN echo “----------------Setting up Environment----------------”
-COPY SH-Commands.txt /
+COPY docker_assets/SH-Commands.txt /
 RUN cat /SH-Commands.txt >> /etc/bash.bashrc
 RUN mkdir -p /usr/src/appStore
 WORKDIR /usr/src/appStore
 
 RUN echo “----------------Setting Global Settings----------------”
-COPY my.cnf /etc/mysql/
+COPY docker_assets/my.cnf /etc/mysql/
