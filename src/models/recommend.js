@@ -1,42 +1,48 @@
-module.exports = function(express) {
+module.exports = function(userObj) {
 
-//   var express=require('express');
-//   var router = express.Router();
-//   var history =require('./history');
-//   var db =require('./db');
-  var g = require('ger');
-  var esm = new g.MemESM();//Event Store Manager
-  var ger = new g.GER(esm);//Good Enough Recommender----Added to package.json
-//
-//   //change test parameters
-//   //might use .put for postman
-var person='jeff';
-var person2='greg';
-var person3='loopy';
-//   var sports='sports';
-//   var thing='swimming';
+    var g = require('ger');
+    var esm = new g.MemESM();
+    var ger = new g.GER(esm);
 
-// //ger will produce a confidence amount which represents what to recommend to subject user.
-// //the higher the confidence the higher the thing/game will be recommended
+    //initialize namespace
+    //namespace will be the game genre
+    ger.initialize_namespace(userObj.namespace).then(function(){
+
+      //create an empty array of objects treated as a 'bucket' in ger module
+      var bucket_array=[
+      {
+        namespace : '',
+        person    : '',
+        action    : '',
+        thing     : '',
+        expires_at: ''
+      }
+    ];
 
 
-ger.initialize_namespace('movies')
-.then( function() {
-  return ger.events([
-    {
-      namespace: 'movies',
-      person: person,
-      action: 'likes',
-      thing: 'xmen',
-      expires_at: '2020-06-06'
-    }
-  ])
-  })
-  .then( function() {
-  // What things might alice like?
-    return ger.recommendations_for_person('movies', person3, {actions: {likes: 1}})
-  })
-  .then( function(recommendations) {
-    // console.log(JSON.stringify(recommendations,null,2))
+    //store our info from the recommend route into our array/bucket
+    bucket_array[0].namespace=userObj.namespace;
+    bucket_array[0].person=userObj.person;
+    bucket_array[0].action=userObj.action;
+    bucket_array[0].thing=userObj.thing;
+    bucket_array[0].expires_at=userObj.expires_at;
+
+    //create new object to push into bucket array
+
+      //send bucket_array into events method
+      //events method will allow algortihm to be run on user information
+      //we will then use that algortihm to return the recommendations methods
+      //those methods will display the game or 'thing' to recommend to user
+      ger.events(bucket_array)
+      .then(function(){
+        //display our array for testing purpose
+        // console.log(bucket_array);
+        //run recommendation method to recommend a game or 'thing' to user
+        return ger.recommendations_for_person('sports', 'patrick', {actions: {likes: 1}});
+      })
+      .then(function(recommendations){
+        //display result of recommendations_for_person()
+        // return console.log(JSON.stringify(recommendations,null,2));
+      });
   });
 };

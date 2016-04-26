@@ -1,12 +1,5 @@
 module.exports = function (express) { // Setting module.exports to a new function that excepts express as a paramater of express.
 
-  /**@namespace*/
-
-  /**
-  *@example {variable}
-  *Variable router points to express
-  */
-
   var router = express.Router(); // Sets variable router to express.Router() function
   var app = require('../../models/app'); // Sets app to imported app.js file
   var util = require('../../../lib/util'); // Sets util to util.js file
@@ -76,4 +69,5 @@ module.exports = function (express) { // Setting module.exports to a new functio
   };
    // This returns the router to where ever it is called with the appropriate data.
    return router;
+
 };
