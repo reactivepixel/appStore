@@ -1,7 +1,11 @@
 module.exports = function(express) {
   var history = require('../models/history');
-  var db = require('../models/db');
+  var path = require('path');
   var router = express.Router();
+
+  // Import NPM dependencies like this:
+// var React = require('react');
+// var ReactDOM = require('react-dom');
 
 // NOTES
   // made a variable point to history.js in model folder.
@@ -13,10 +17,7 @@ module.exports = function(express) {
 
   // Standard Routes
   router.get('/', function(req, res) {
-    res.status(200).json({
-      msg: 'Hello World',
-      healthy: true
-    });
+    res.render('../src/routes/public/index');
   });
 
   router.get('/status', function(req, res) {
@@ -26,23 +27,18 @@ module.exports = function(express) {
     });
   });
 
-
-
-
 // Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs')); // JSdoc route
+
+
+  //router.use('/home', require('./public/index'); // route to index.html
+
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
   router.use('/api/', require('./api/app_assets')(express));
   router.use('/api/', require('./api/list')(express));
   router.use('/api/', require('./api/listed_apps')(express));
   router.use('/api/', require('./api/voting')(express));
-  // router.use('/api/', require('./api/recommend')(express));
-
-  // MIDDLE-WARE
-
-  // router.use('/api/', require('./api/recommend')(express));
-
 
   // MIDDLE-WARE FOR history
 
