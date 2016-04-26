@@ -47,12 +47,7 @@ module.exports = function(express) {
 
 
   router.get('/votes', function(req, res) {
-            /**
-              * @function findAll
-              * @description Finds all in DB using _findAll in model/voting.js
-              * @param err
-              * Error
-            */
+
     voting.findAll(function(err) {
       // ERROR Encountered.
       res.status(500).json(err);

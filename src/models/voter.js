@@ -62,7 +62,7 @@ module.exports = function() {
     var cleanData = util.scrubData(payload);
     db.voting.destroy({
       where: {
-        // Destroy data that matches ID 
+        // Destroy data that matches ID
         id: cleanData.id
       },
       force: payload.force
@@ -76,5 +76,5 @@ module.exports = function() {
     find: _find,
     findAll: _findAll,
     destroy: _destroy,
-  }
+  };
 }();

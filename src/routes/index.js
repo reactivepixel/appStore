@@ -70,7 +70,7 @@ module.exports = function(express) {
     payload.rawRoute = path.join(req.protocol + '://' + req.get('host') + req.originalUrl);
     history.create(payload,function(err){
       // Error Encountered
-      res.status(500).json(err); 
+      res.status(500).json(err);
     },function(data) {
       res.status(200).json(data);
       // End the request
