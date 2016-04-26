@@ -1,31 +1,43 @@
-module.exports = function(express) {
-  var g = require('ger');
-  /**
-   * @var {connection} esm
-   *   Event Store Manager
-   */
-  var esm = new g.MemESM();
-  /**
-   * @var {connection} ger
-   *   Good Enough Recommender----Added to package.json
-   */
-  var ger = new g.GER(esm);
+module.exports = function(genre) {
+
+    var g = require('ger');
+    var esm = new g.MemESM();
+    var ger = new g.GER(esm);
+
+
 
     //initialize namespace
     //namespace will be the game genre
-    ger.initialize_namespace('sports').then(function(){
+    ger.initialize_namespace(genre).then(function(){
 
       //create array treated as a 'bucket'
       //buckets will contain user information
+      // bucket_array[1].namespace = 'blah'
+      //
+      // for(i=0;i<bucket_array.length;i++){
+      //   bucketarray[i].namespace;
+      // }
+      // var object = {}
+      // bucket_arrray.push(object)
+
       var bucket_array=[
       {
-        namespace : 'sports',
-        person    : 'patrick',
-        action    : 'likes',
-        thing     : 'game1',
-        expires_at: '2020-06-06'
+        namespace : '',
+        person    : '',
+        action    : '',
+        thing     : '',
+        expires_at: ''
       }
     ];
+
+    //push into bucket
+    bucket_array[0].namespace=genre;
+    bucket_array[0].person=genre;
+    bucket_array[0].action='likes';
+    bucket_array[0].thing='game1';
+    bucket_array[0].expires_at='2020-06-06';
+
+    //create new object to push into bucket array
 
       //send bucket_array into events method
       //events method will allow algortihm to be run on user information

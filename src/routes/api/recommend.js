@@ -8,12 +8,7 @@ var buckets=require('../../models/recommend');
 */
 
 var buckets=require('../../models/recommend');
-buckets();
-
-var buckets=require('../../models/recommend');
-
-// var rec=require('../../models/rec');
-var rec=require('../../models/rec2');
 
 
-rec();
+var genre='sports';
+buckets(genre);
