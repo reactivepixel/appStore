@@ -1,7 +1,12 @@
 module.exports = function(express) {
   var history = require('../models/history');
   var db = require('../models/db');
+  var stripe = require("stripe")("sk_test_LUmKi0AVTawC8QDabKUXYjQZ");
   var router = express.Router();
+
+
+  // file is included here:
+
 
   // NOTES
   // made a variable point to history.js in model folder.
@@ -63,38 +68,41 @@ module.exports = function(express) {
 
     // Set your secret key: remember to change this to your live secret key in production
     // See your keys here https://dashboard.stripe.com/account/apikeys
-    var stripe = require("stripe")("sk_test_LUmKi0AVTawC8QDabKUXYjQZ");
 
+    var token = 'placeholder';
     // (Assuming you're using express - expressjs.com)
     // Get the credit card details submitted by the form
-    var stripeToken =   stripe.tokens.create({
+    var stripeToken = stripe.tokens.create({
       card: {
-        "number": '4242424242424242',
-        "exp_month": 12,
-        "exp_year": 2017,
-        "cvc": '123'
+        number: '4242424242424242',
+        exp_month: 12,
+        exp_year: 2017,
+        cvc: '123'
       }
     }, function(err, token) {
-      // asynchronously called
+      // res.json({sucess:'token', token:stripeToken, err:err})
+      token = token.id;
+
+      var charge = stripe.charges.create({
+        amount: 1000, // amount in cents, again
+        currency: "usd",
+        source: token,
+        description: "Example charge"
+      }, function(err, charge) {
+        if (err && err.type === 'StripeCardError') {
+          // The card has been declined
+          res.json({success:false, err: err, charge: charge});
+        }else{
+          res.json({success:true});
+        }
+      });
     });
 
-    var charge = stripe.charges.create({
-      amount: 1000, // amount in cents, again
-      currency: "usd",
-      source: stripeToken,
-      description: "Example charge"
-    }, function(err, charge) {
-      if (err && err.type === 'StripeCardError') {
-        // The card has been declined
-        res.json({success:false});
-      }else{
-        res.json({success:true});
-      }
-    });
+
 
     // res.json({name:'Yooo'});
-
   });
+
 
   return router;
 };
