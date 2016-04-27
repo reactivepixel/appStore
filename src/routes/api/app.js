@@ -1,14 +1,12 @@
 module.exports = function (express) { // Setting module.exports to a new function that excepts express as a paramater of express.
 
-<<<<<<< b71989d7ea7a43bd3a422bda5aabd415d410b334
-=======
 
   /**
    * @var {module} router
    * This sets the express.Router function to the variable, router.
   */
   var router = express.Router();
->>>>>>> Began annotating app.js
+
 
   /**
    * @var {file} app
