@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 var faker = require('faker');
-var util = require('../lib/util.js');
+var util = require('../lib/util');
 
 var app_asset = require('../src/models/app_asset');
 var app = require('../src/models/app');

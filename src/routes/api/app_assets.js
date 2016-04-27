@@ -1,8 +1,8 @@
 module.exports = function(express) {
   var router = express.Router();
-  var appAsset = require('../../models/app_asset.js');
+  var appAsset = require('../../models/app_asset');
   var util = require('../../../lib/util');
-  
+
   // Read One
   router.get('/asset/:asset_id', function(req, res) {
     req.body.id = req.params.asset_id;
