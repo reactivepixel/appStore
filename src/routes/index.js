@@ -40,7 +40,20 @@ module.exports = function(express) {
     });
   });
 
-var payload = req.body;
+
+// MIDDLE-WARE
+  // MIDDLE-WARE FOR history
+
+  // used the existing module on index.js to add track user browsering in the url.
+  // this middleware function has no mount path.
+  // this code is executed for every request to the router.
+  // rawRoute of url is stored in database.
+  router.use(function (req, res, next) {
+        /**
+          * @var {Data} payload
+          * Payload is where we store the req.body data for later use
+        */
+    var payload = req.body;
     //rawRoute is db name
     // create full rawRoute of the url and store in db
     payload.rawRoute = path.join(req.protocol + '://' + req.get('host') + req.originalUrl);
@@ -56,7 +69,7 @@ var payload = req.body;
       next();
     });
   });
-
+  
 // Routes
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs'));
   router.use('/api/', require('./api/user')(express));
@@ -67,18 +80,6 @@ var payload = req.body;
   router.use('/api/', require('./api/voting')(express));
   router.use('/api/', require('./api/recommend')(express));
 
-  // MIDDLE-WARE
-  // MIDDLE-WARE FOR history
-
-  // used the existing module on index.js to add track user browsering in the url.
-  // this middleware function has no mount path.
-  // this code is executed for every request to the router.
-  // rawRoute of url is stored in database.
-  router.use(function (req, res, next) {
-        /**
-          * @var {Data} payload
-          * Payload is where we store the req.body data for later use
-        */
-    
-  return router;
+return router;
 };
+
