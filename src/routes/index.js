@@ -27,7 +27,7 @@ module.exports = function(express) {
 // Standard Routes
   router.get('/', function(req, res) {
     res.status(200).json({
-      msg: 'Hello World',
+      msg: 'Killer fish sticks',
       healthy: true
     });
   });
