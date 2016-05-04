@@ -1,18 +1,5 @@
-/**
- * @var {module} express
- * This is the express module being put into a variable, express.
-*/
 var express = require('express'); // Sets variable express to express module
-/**
- * @var {module} body_parser
- * This is the body-parser module being put into a variable, body_parser.
-*/
 var body_parser = require('body-parser'); // Sets variable body_parser to body-parser module
-
-/**
- * @var {module} app
- * This is the express functionality being put into a variable, app.
-*/
 var app = express(); // Sets variable app to express function
 
 // Dot Env File Loader
@@ -24,19 +11,8 @@ if (!process.env.PORT) dotenv = require('dotenv').load(); // If
 */
 var port = process.env.PORT || 3000;
 
-// Enable body-parser
-/**
- * @function use
- * @param body_parser.json()
- * Tells app to use the selected File.
-*/
 app.use(body_parser.json());
 
-/**
- * @function require
- * @param ./routes(express)
- * Tells app to require the routes.
-*/
 app.use('/', require('./routes')(express));
 
 // Start up the Server
