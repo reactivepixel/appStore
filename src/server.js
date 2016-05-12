@@ -1,32 +1,18 @@
-var express = require('express'); // Sets variable express to express module
-var body_parser = require('body-parser'); // Sets variable body_parser to body-parser module
-var app = express(); // Sets variable app to express function
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const util = require('../lib/util');
 
-// Dot Env File Loader
-if (!process.env.PORT) dotenv = require('dotenv').load(); // If
+const port = process.env.PORT || 3000;
 
-/**
- * @var {number} port
- * Config - Sets variable port to .env file PORT variable OR 3000 if the file doesn't exist.
-*/
-var port = process.env.PORT || 3000;
-
-app.use(body_parser.json());
-
+app.use(bodyParser.json());
 app.use('/', require('./routes')(express));
 
-// Start up the Server
+
 /**
- * @var {module} server
- * @function listen
- * @param port
- * This sets the server variable to the listening action on @var {number} port
- * @param function
- * This is what you would like the function to do while the listen function is running.
-*/
-var server = app.listen(port, function() {
-  if (process.env.DEBUG) console.log('Server Active On', port);
+ * The Server Module that launches the API. Usable by other services like in unit testing.
+ * @module Start/Server
+ */
+exports.server = app.listen(port, () => {
+  util.debug('Server Active On', port);
 });
-
-
-module.exports = server;

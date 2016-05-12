@@ -1,65 +1,65 @@
-module.exports = function(express) { // Setting module.exports to a new function that excepts express as a paramater of express.
-  var router = express.Router();
-  var app = require('../../models/app');
-  var util = require('../../../lib/util');
+module.exports = (express) => {
+  const router = express.Router();
+  const app = require('../../models/app');
+  const util = require('../../../lib/util');
 
   // Read One
-  router.get('/app/:id', function(req, res) {
-    req.body.id = req.params.id;
-    app.find(req.body, function(err) {
+  router.get('/app/:id', (req, res) => {
+    const payload = util.scrubData(req.body);
+    payload.id = req.params.id;
+    app.find(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
-    }, function(data) {
+    }, (data) => {
       res.status(200).json(data);
     });
   });
 
   // Read All
-  router.get('/apps', function(req, res) {
-    app.findAll(function(err) {
+  router.get('/apps', (req, res) => {
+    app.findAll((err) => {
       // Error Encountered
       res.status(500).json(err);
-    }, function(data) {
+    }, (data) => {
       res.status(200).json(data);
     });
   });
 
   // Create
-  router.put('/app', function(req, res) {
-    app.create(req.body, function(err) {
+  router.put('/app', (req, res) => {
+    const payload = util.scrubData(req.body);
+    app.create(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
-    }, function(data) {
+    }, (data) => {
       res.status(200).json(data);
     });
   });
 
   // Update
-  router.put('/app/:id', function(req, res) {
-    req.body.id = req.params.id;
-    app.update(req.body, function(err) {
+  router.put('/app/:id', (req, res) => {
+    const payload = util.scrubData(req.body);
+    payload.id = req.params.id;
+    app.update(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
-    }, function(data) {
+    }, (data) => {
       res.status(200).json(data);
     });
   });
 
   // Delete One
-  router.delete('/app/:id', function(req, res) {
-    req.body.id = req.params.id;
-    app.destroy(req.body, function(err) {
+  router.delete('/app/:id', (req, res) => {
+    const payload = util.scrubData(req.body);
+    payload.id = req.params.id;
+    app.destroy(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
-    }, function(data) {
+    }, (data) => {
       res.status(200).json({
-        success: data
+        success: data,
       });
     });
   });
-
-  saytest = function() {
-    return "testing works";
-  };
   return router;
 };

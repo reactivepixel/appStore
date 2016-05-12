@@ -1,35 +1,35 @@
-module.exports = function(express) {
-  var history = require('../models/history');
-  var util = require('../../lib/util');
-  var router = express.Router();
+const history = require('../models/history');
+const util = require('../../lib/util');
+module.exports = (express) => {
+  const router = express.Router();
 
   // Middleware
-  router.use(function (req, res, next) {
-    var payload = req.body;
+  router.use((req, res, next) => {
+    const payload = req.body;
 
     // create full rawRoute of the url and store in db
     payload.rawRoute = req.originalUrl;
-    history.create(payload,function(err){
+    history.create(payload, (err) => {
       // Error Encountered
       util.debug('History Tracking Middleware Error', err);
       next();
-    },function(data) {
+    }, (data) => {
       util.debug('History Tracking Middleware Success', data);
       next();
     });
   });
 
   // Standard Routes
-  router.get('/', function(req, res) {
+  router.get('/', (req, res) => {
     res.status(200).json({
       msg: 'Hello World',
-      healthy: true
+      healthy: true,
     });
   });
 
-  router.get('/status', function(req, res) {
+  router.get('/status', (req, res) => {
     res.status(200).json({
-      healthy: true
+      healthy: true,
     });
   });
 
