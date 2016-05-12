@@ -3,7 +3,7 @@ var nodemon = require('gulp-nodemon');
 var shell = require('gulp-shell');
 
 //Task to initiate JSdocs
-gulp.task('js-doc', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
+gulp.task('genDocs', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
 
 // Task to run server using gulp
 gulp.task('server', function () {
@@ -12,4 +12,4 @@ gulp.task('server', function () {
   });
 });
 
-gulp.task('default', ['js-doc','server']);
+gulp.task('default', ['server']);
