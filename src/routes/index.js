@@ -9,12 +9,13 @@ module.exports = (express) => {
 
     // create full rawRoute of the url and store in db
     payload.rawRoute = req.originalUrl;
+    util.debug('-----', payload);
     history.create(payload, (err) => {
       // Error Encountered
       util.debug('History Tracking Middleware Error', err);
       next();
     }, (data) => {
-      util.debug('History Tracking Middleware Success', data);
+      // util.debug('History Tracking Middleware Success', data);
       next();
     });
   });

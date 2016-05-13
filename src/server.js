@@ -5,8 +5,17 @@ const util = require('../lib/util');
 
 const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-app.use('/', require('./routes')(express));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+// app.use('/', require('./routes')(express));
+
+app.post('/', (req, res) => {
+  console.log('------------', req.body);
+  res.json(req.body);
+});
 
 
 /**

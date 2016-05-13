@@ -28,6 +28,7 @@ module.exports = (express) => {
   // Create
   router.put('/app/:app_id/asset', (req, res) => {
     const payload = util.scrubData(req.body);
+    util.debug('Routeing', payload);
     payload.id = req.params.asset_id;
     appAsset.create(payload, (createErr) => {
       util.debug('Error Deleting App Asset Route', createErr);

@@ -1,28 +1,8 @@
-module.exports = function() {
-  /**
-   * @var {file} db
-   * This imports the file db.js and sets it to the variable, db.
-  */
-  var db = require('./db.js');
 
-  /**
-   * @var {connection} sequelize
-   * This sets up the database connection and sets it to the variable, sequelize.
-  */
-  var sequelize = db.connection;
+  const db = require('./db.js');
+  const sequelize = db.connection;
+  const util = require('../../lib/util');
 
-  /**
-   * @var {file} util
-   * This imports the file util.js and sets it to the variable, util.
-  */
-  var util = require('../../lib/util'); // Sets util to imported util.js
-
-
-  /*
-    New function _create accepts 3 parameters, payload, err, and success
-    Sets in scope variable cleanData to passed paramaeter payload.
-    todo's, research line 15 and explain
-  */
   /**
    * @function _create
    * @param payload
@@ -32,11 +12,12 @@ module.exports = function() {
    * @param success
    * Test info for success param.
   */
-  function _create(payload, err, success)
-  {
-    var cleanData = payload;
-    db.appAsset.create(cleanData).then(success).catch(err);
-  }
+  exports.create = (payload, err, success) => {
+    if (!payload.cleaned) return false;
+    util.debug('App Asset Create', payload);
+    db.appAsset.create(payload).then(success).catch(err);
+    return true;
+  };
 
   /*
    New function _update accepts 3 parameters, payload, err, and success
@@ -44,7 +25,7 @@ module.exports = function() {
    todo's research lines 26 through 32 and explain
   */
 
-  function _update(payload, err, success) {
+  exports.update = (payload, err, success) => {
     var cleanData = payload;
     db.appAsset.find({
       where: {
@@ -60,7 +41,7 @@ module.exports = function() {
     Sets in scope variable cleanData to passed parameter Payload
     todos' research line 41 and lines 43 - 51
   */
-  function _find(payload, err, success) {
+  exports.find = (payload, err, success) => {
     util.debug('App Asset Model _Find Payload', payload);
     var cleanData = payload;
     db.appAsset.find({
@@ -78,7 +59,7 @@ module.exports = function() {
     New function _findAll accepts 2 parameters, error and success
     todo's research lines 59 - 64
   */
-  function _findAll(err, success) {
+  exports.findAll = (err, success) => {
     db.appAsset.findAll({
       include: [{
         all: true,
@@ -93,7 +74,7 @@ module.exports = function() {
     todo's research lines 75 - 80
   */
 
-  function _destroy(payload, err, success) {
+  exports.destroy = (payload, err, success) => {
     var cleanData = payload;
     db.appAsset.destroy({
       where: {
@@ -102,17 +83,3 @@ module.exports = function() {
       force: payload.force
     }).then(success).catch(err);
   }
-
-
-  /*
-    Returns an object with the functions?
-    todo's look more into this return
-  */
-  return {
-    create: _create,
-    update: _update,
-    find: _find,
-    findAll: _findAll,
-    destroy: _destroy,
-  };
-}();

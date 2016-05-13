@@ -7,6 +7,7 @@ module.exports = (express) => {
   router.get('/app/:id', (req, res) => {
     const payload = util.scrubData(req.body);
     payload.id = req.params.id;
+
     app.find(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
@@ -28,6 +29,7 @@ module.exports = (express) => {
   // Create
   router.put('/app', (req, res) => {
     const payload = util.scrubData(req.body);
+
     app.create(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
@@ -40,6 +42,7 @@ module.exports = (express) => {
   router.put('/app/:id', (req, res) => {
     const payload = util.scrubData(req.body);
     payload.id = req.params.id;
+
     app.update(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
@@ -52,6 +55,7 @@ module.exports = (express) => {
   router.delete('/app/:id', (req, res) => {
     const payload = util.scrubData(req.body);
     payload.id = req.params.id;
+
     app.destroy(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);

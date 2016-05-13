@@ -68,6 +68,7 @@ describe('Model: App Assets ', function() {
 
   // App Assets Create One
   it('Create App Asset', function(done) {
+    console.log('----------------', appAssetData);
     app_asset.create(appAssetData,
 
     // On Error
