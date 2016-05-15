@@ -14,8 +14,10 @@ testData.set('user', {
 
 describe('Model: User ', () => {
   // User Create One
-  it('Create One', (done) => {
-    user.create(testData.get('user'),
+  it('Create One User', (done) => {
+    user.create(
+      util.scrubData(
+        testData.get('user')),
 
       // On Error
       (err) => {
@@ -37,8 +39,10 @@ describe('Model: User ', () => {
   });
 
   // User Read One
-  it('Read One', (done) => {
-    user.find(testData.get('user'),
+  it('Read One User', (done) => {
+    user.find(
+      util.scrubData(
+        testData.get('user')),
 
       // On Error
       (err) => {
@@ -60,7 +64,7 @@ describe('Model: User ', () => {
   });
 
   // User Read All
-  it('Read All', (done) => {
+  it('Retrieve All Users', (done) => {
     user.findAll(
 
       // On Error
@@ -78,11 +82,13 @@ describe('Model: User ', () => {
   });
 
   // User Update One
-  it('Update One', (done) => {
-    user.update(Object.assign(
-        testData.get('user'), {
-          dispName: 'xx Force Update xx',
-        }),
+  it('Update A User', (done) => {
+    user.update(
+      util.scrubData(
+        Object.assign(
+          testData.get('user'), {
+            dispName: 'xx Force Update xx',
+          })),
 
       // On Error
       (err) => {
@@ -104,11 +110,13 @@ describe('Model: User ', () => {
   });
 
   // User Delete
-  it('Delete One', (done) => {
-    user.destroy(Object.assign(
-        testData.get('user'), {
-          force: true,
-        }),
+  it('Delete A User', (done) => {
+    user.destroy(
+      util.scrubData(
+        Object.assign(
+          testData.get('user'), {
+            force: true,
+          })),
 
       // On Error
       (err) => {

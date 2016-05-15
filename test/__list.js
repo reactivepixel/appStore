@@ -4,7 +4,6 @@ const util = require('../lib/util.js');
 
 const app = require('../src/models/app');
 const list = require('../src/models/list');
-const listedApps = require('../src/models/listed_apps');
 const user = require('../src/models/user');
 
 const testData = new Map();
@@ -28,7 +27,9 @@ testData.set('listedApp', {});
 describe('Model: List ', () => {
   // User Create One
   it('Creating a User as Owner for the App', (done) => {
-    user.create(testData.get('user'),
+    user.create(
+      util.scrubData(
+        testData.get('user')),
 
       // On Error
       (err) => {
@@ -51,7 +52,9 @@ describe('Model: List ', () => {
 
   // App Create One
   it('Creating an App to be placed in the List', (done) => {
-    app.create(testData.get('app'),
+    app.create(
+      util.scrubData(
+        testData.get('app')),
 
       // On Error
       (err) => {
@@ -74,7 +77,9 @@ describe('Model: List ', () => {
 
   // List Create One
   it('Create One List', (done) => {
-    list.create(testData.get('list'),
+    list.create(
+      util.scrubData(
+        testData.get('list')),
 
       // On Error
       (err) => {
@@ -97,10 +102,11 @@ describe('Model: List ', () => {
 
   // Add App to List
   it('Add App to List', (done) => {
-    listedApps.create({
-      appId: testData.get('app').id,
-      listId: testData.get('list').id,
-    },
+    app.addToList(
+      util.scrubData({
+        appId: testData.get('app').id,
+        listId: testData.get('list').id,
+      }),
 
       // On Error
       (err) => {
@@ -123,7 +129,9 @@ describe('Model: List ', () => {
 
   // List Read One
   it('Read One List', (done) => {
-    list.find(testData.get('list'),
+    list.find(
+      util.scrubData(
+        testData.get('list')),
 
       // On Error
       (err) => {
@@ -161,10 +169,12 @@ describe('Model: List ', () => {
 
   // List Update One
   it('Update One', (done) => {
-    list.update(Object.assign(
-        testData.get('list'), {
-          title: 'xx Force Update xx',
-        }),
+    list.update(
+      util.scrubData(
+        Object.assign(
+          testData.get('list'), {
+            title: 'xx Force Update xx',
+          })),
 
       // On Error
       (err) => {
@@ -187,10 +197,12 @@ describe('Model: List ', () => {
 
   // List Delete
   it('Delete List', (done) => {
-    list.destroy(Object.assign(
-        testData.get('list'), {
-          force: true,
-        }),
+    list.destroy(
+      util.scrubData(
+        Object.assign(
+          testData.get('list'), {
+            force: true,
+          })),
 
       // On Error
       (err) => {
@@ -209,10 +221,12 @@ describe('Model: List ', () => {
 
   // List Delete
   it('Delete User', (done) => {
-    user.destroy(Object.assign(
-        testData.get('user'), {
-          force: true,
-        }),
+    user.destroy(
+      util.scrubData(
+        Object.assign(
+          testData.get('user'), {
+            force: true,
+          })),
 
       // On Error
       (err) => {

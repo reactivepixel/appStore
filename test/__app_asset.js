@@ -22,7 +22,9 @@ testData.set('appAsset', {
 describe('Model: App Assets ', () => {
   // User Create One
   it('Creating a User as Owner for the App Assets', (done) => {
-    user.create(util.scrubData(testData.get('user')),
+    user.create(
+      util.scrubData(
+        testData.get('user')),
 
       // On Error
       (err) => {
@@ -43,9 +45,12 @@ describe('Model: App Assets ', () => {
 
   // App  Create One
   it('Create One App', (done) => {
-    app.create(util.scrubData(Object.assign(testData.get('app'), {
-      user_id: testData.get('user').id,
-    })),
+    app.create(
+      util.scrubData(
+        Object.assign(
+          testData.get('app'), {
+            user_id: testData.get('user').id,
+          })),
 
       // On Error
       (err) => {
@@ -68,9 +73,12 @@ describe('Model: App Assets ', () => {
 
   // App Assets Create One
   it('Create App Asset', (done) => {
-    appAsset.create(util.scrubData(Object.assign(testData.get('appAsset'), {
-      app_id: testData.get('app').id,
-    })),
+    appAsset.create(
+      util.scrubData(
+        Object.assign(
+          testData.get('appAsset'), {
+            app_id: testData.get('app').id,
+          })),
 
       // On Error
       (err) => {
@@ -93,7 +101,9 @@ describe('Model: App Assets ', () => {
 
   // App Assets Read One
   it('Read One', (done) => {
-    appAsset.find(util.scrubData(testData.get('appAsset')),
+    appAsset.find(
+      util.scrubData(
+        testData.get('appAsset')),
 
       // On Error
       (err) => {
@@ -130,9 +140,12 @@ describe('Model: App Assets ', () => {
 
   // App Assets Update One
   it('Update One', (done) => {
-    appAsset.update(util.scrubData(Object.assign(testData.get('appAsset'), {
-      link: faker.internet.url(),
-    })),
+    appAsset.update(
+      util.scrubData(
+        Object.assign(
+          testData.get('appAsset'), {
+            link: faker.internet.url(),
+          })),
 
       // On Error
       (err) => {
@@ -152,7 +165,12 @@ describe('Model: App Assets ', () => {
   });
   // App Assets Delete
   it('Delete One', (done) => {
-    appAsset.destroy(util.scrubData(Object.assign(testData.get('appAsset'), { force: true })),
+    appAsset.destroy(
+      util.scrubData(
+        Object.assign(
+          testData.get('appAsset'), {
+            force: true,
+          })),
 
       // On Error
       (err) => {

@@ -20,7 +20,9 @@ testData.set('app', {
 describe('Model: App ', () => {
   // User Create One
   it('Creating a User as Owner for the App', (done) => {
-    user.create(testData.get('user'),
+    user.create(
+      util.scrubData(
+        testData.get('user')),
 
       // On Error
       (err) => {
@@ -43,7 +45,9 @@ describe('Model: App ', () => {
 
   // App Create One
   it('Create One', (done) => {
-    app.create(testData.get('app'),
+    app.create(
+      util.scrubData(
+        testData.get('app')),
 
       // On Error
       (err) => {
@@ -66,7 +70,9 @@ describe('Model: App ', () => {
 
   // App Read One
   it('Read One', (done) => {
-    app.find(testData.get('app'),
+    app.find(
+      util.scrubData(
+        testData.get('app')),
 
       // On Error
       (err) => {
@@ -104,9 +110,12 @@ describe('Model: App ', () => {
 
   // App Update One
   it('Update One', (done) => {
-    app.update(Object.assign(testData.get('app'), {
-      title: 'xx Force Update xx',
-    }),
+    app.update(
+      util.scrubData(
+        Object.assign(
+          testData.get('app'), {
+            title: 'xx Force Update xx',
+          })),
 
       // On Error
       (err) => {
@@ -129,9 +138,12 @@ describe('Model: App ', () => {
 
   // App Delete
   it('Delete One', (done) => {
-    app.destroy(Object.assign(testData.get('app'), {
-      force: true,
-    }),
+    app.destroy(
+      util.scrubData(
+        Object.assign(
+          testData.get('app'), {
+            force: true,
+          })),
 
       // On Error
       (err) => {

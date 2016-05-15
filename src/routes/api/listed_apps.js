@@ -1,6 +1,6 @@
 module.exports = (express) => {
   const router = express.Router();
-  const list = require('../../models/listed_apps');
+  const app = require('../../models/app');
   const util = require('../../../lib/util');
 
   // Create
@@ -9,7 +9,7 @@ module.exports = (express) => {
     payload.listId = req.params.list_id;
     payload.appId = req.params.app_id;
 
-    list.create(payload, (err) => {
+    app.addToList(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
     }, (data) => {
@@ -23,7 +23,7 @@ module.exports = (express) => {
     payload.listId = req.params.list_id;
     payload.appId = req.params.app_id;
 
-    list.destroy(payload, (err) => {
+    app.removeFromList(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
     }, (data) => {
