@@ -1,202 +1,196 @@
-var expect = require('chai').expect;
-var faker = require('faker');
-var util = require('../lib/util.js');
+const expect = require('chai').expect;
+const faker = require('faker');
+const util = require('../lib/util.js');
 
-var app = require('../src/models/app');
-var list = require('../src/models/list');
-var listed_apps = require('../src/models/listed_apps');
-var user = require('../src/models/user');
+const app = require('../src/models/app');
+const list = require('../src/models/list');
+const listedApps = require('../src/models/listed_apps');
+const user = require('../src/models/user');
 
-var userData = {
+const testData = new Map();
+testData.set('user', {
   dispName: faker.name.findName(),
   email: faker.internet.email(),
   password: 'unhash',
-  phone: faker.phone.phoneNumber()
-};
+  phone: faker.phone.phoneNumber(),
+});
 
-var appData = {
-  title: faker.commerce.productName()
-};
+testData.set('app', {
+  title: faker.commerce.productName(),
+});
 
-var listData = {
-  title: faker.commerce.productName()
-};
+testData.set('list', {
+  title: faker.commerce.productName(),
+});
 
-var listedAppData = {};
+testData.set('listedApp', {});
 
-describe('Model: List ', function() {
+describe('Model: List ', () => {
   // User Create One
-  it('Creating a User as Owner for the App', function(done) {
-    user.create(userData,
+  it('Creating a User as Owner for the App', (done) => {
+    user.create(testData.get('user'),
 
-    // On Error
-    (err) => {
-      util.debug('User Create Error', err);
-      throw new Error('User Create Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('User Create Error', err);
+        throw new Error('User Create Error');
+      },
 
-    // On Success
-    (data) => {
-      util.debug('User Create Success', data);
+      // On Success
+      (data) => {
+        util.debug('User Create Success', data);
 
-      // Overwrite the returned obj to userData
-      listData.user_id = data.id;
-      expect(data.dispName).to.be.equal(userData.dispName);
-      done();
-    });
+        // Test the model correctly handled the input data.
+        expect(testData.get('user').dispName).to.be.equal(data.dispName);
+
+        // Set the testData with the new infomation returned from the db transaction.
+        testData.set('user', Object.assign(testData.get('user'), data.dataValues));
+        done();
+      });
   });
 
-
   // App Create One
-  it('Creating an App to be placed in the List', function(done) {
-    app.create(appData,
+  it('Creating an App to be placed in the List', (done) => {
+    app.create(testData.get('app'),
 
-    // On Error
-    (err) => {
-      util.debug('App Create Error', err);
-      throw new Error('App Create Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('App Create Error', err);
+        throw new Error('App Create Error');
+      },
 
-    // On Success
-    (data) => {
-      util.debug('App Create Success', data);
+      // On Success
+      (data) => {
+        util.debug('App Create Success', data);
 
-      // Overwrite the returned obj to appData
-      appData = data;
-      expect(data.dispName).to.be.equal(appData.dispName);
-      done();
-    });
+        // Test the model correctly handled the input data.
+        expect(testData.get('app').title).to.be.equal(data.title);
+
+        // Set the testData with the new infomation returned from the db transaction.
+        testData.set('app', Object.assign(testData.get('app'), data.dataValues));
+        done();
+      });
   });
 
   // List Create One
-  it('Create One', function(done) {
-    list.create(listData,
+  it('Create One List', (done) => {
+    list.create(testData.get('list'),
 
-    // On Error
-    (err) => {
-      util.debug('List Create Error', err);
-      throw new Error('List Create Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('List Create Error', err);
+        throw new Error('List Create Error');
+      },
 
-    // On Success
-    (data) => {
-      util.debug('List Create Success', data);
+      // On Success
+      (data) => {
+        util.debug('List Create Success', data);
 
-      // Overwrite the returned obj to listData
-      listData = data;
-      expect(data.dispName).to.be.equal(listData.dispName);
-      done();
-    });
+        // Test the model correctly handled the input data.
+        expect(testData.get('list').title).to.be.equal(data.title);
+
+        // Set the testData with the new infomation returned from the db transaction.
+        testData.set('list', Object.assign(testData.get('list'), data.dataValues));
+        done();
+      });
   });
 
   // Add App to List
-  it('Add App to List', function(done) {
-    listed_apps.create({
-      appId: appData.id,
-      listId: listData.id
+  it('Add App to List', (done) => {
+    listedApps.create({
+      appId: testData.get('app').id,
+      listId: testData.get('list').id,
     },
 
-    // On Error
-    (err) => {
-      util.debug('Add App to List Error', err);
-      throw new Error('Add App to List Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('Add App to List Error', err);
+        throw new Error('Add App to List Error');
+      },
 
-    // On Success
-    (data) => {
-      util.debug('Add App to List Success', data);
+      // On Success
+      (data) => {
+        util.debug('Add App to List Success', data);
 
-      // Overwrite the returned obj to listData
-      listedAppData = data;
-      expect(data.appId).to.be.equal(listedAppData.appId);
-      done();
-    });
+        // Test the model correctly handled the input data.
+        expect(testData.get('app').id).to.be.equal(data.appId);
+
+        // Set the testData with the new infomation returned from the db transaction.
+        testData.set('listedApp', Object.assign(testData.get('listedApp'), data.dataValues));
+        done();
+      });
   });
 
   // List Read One
-  it('Read One', function(done) {
-    list.find(listData,
+  it('Read One List', (done) => {
+    list.find(testData.get('list'),
 
-    // On Error
-    (err) => {
-      util.debug('List Read One Error', err);
-      throw new Error('List Read One Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('List Read One Error', err);
+        throw new Error('List Read One Error');
+      },
 
-    // On Success
-    (data) => {
-      util.debug('List Read One Success', data);
-      expect(data.dispName).to.be.equal(listData.dispName);
-      done();
-    });
+      // On Success
+      (data) => {
+        util.debug('List Read One Success', data);
+
+        // Test the model correctly handled the input data.
+        expect(testData.get('list').title).to.be.equal(data.title);
+        done();
+      });
   });
 
   // List Read All
-  it('Read All', function(done) {
+  it('Read All Lists', (done) => {
     list.findAll(
 
-    // On Error
-    (err) => {
-      util.debug('List Read All Error', err);
-      throw new Error('List Read All Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('List Read All Error', err);
+        throw new Error('List Read All Error');
+      },
 
-    // On Success
-    (data) => {
-      util.debug('List Read All Success', data);
-      expect(data.length).to.be.above(0);
-      done();
-    });
+      // On Success
+      (data) => {
+        util.debug('List Read All Success', data);
+        expect(data.length).to.be.above(0);
+        done();
+      });
   });
 
   // List Update One
-  it('Update One', function(done) {
-    var updateInfo = {id: listData.id, title: 'xx Force Update xx'};
-    list.update(updateInfo,
+  it('Update One', (done) => {
+    list.update(Object.assign(
+        testData.get('list'), {
+          title: 'xx Force Update xx',
+        }),
 
-    // On Error
-    (err) => {
-      util.debug('List Update One Error', err);
-      throw new Error('List Update One Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('List Update One Error', err);
+        throw new Error('List Update One Error');
+      },
 
-    // On Success
-    (data) => {
-      // Overwrite the returned obj to listData
-      listData = data;
+      // On Success
+      (data) => {
+        util.debug('List Update Success', data);
 
-      util.debug('List Update One Success', data);
-      expect(data.dispName).to.be.equal(updateInfo.dispName);
-      done();
-    });
+        // Test the model correctly handled the input data.
+        expect(testData.get('list').title).to.be.equal(data.title);
+
+        // Set the testData with the new infomation returned from the db transaction.
+        testData.set('list', Object.assign(testData.get('list'), data.dataValues));
+        done();
+      });
   });
 
-
-  // Listed App Delete
-  it('Delete List App Relation', function(done) {
-
-    listedAppData.force = true;
-    listed_apps.destroy({appId: appData.id, listId: listData.id},
-
-    // On Error
-    (err) => {
-      util.debug('List Delete One Error', err);
-      throw new Error('List Delete One Error');
-    },
-
-    // On Success
-    (data) => {
-      util.debug('List Delete One Success', data);
-      //Successfully deleting a record results in a bool response of 1
-      expect(data).to.be.equal(1);
-      done();
-    });
-
-    // List Delete
-    it('Delete List', function(done) {
-
-      listData.force = true;
-      list.destroy(listData,
+  // List Delete
+  it('Delete List', (done) => {
+    list.destroy(Object.assign(
+        testData.get('list'), {
+          force: true,
+        }),
 
       // On Error
       (err) => {
@@ -207,17 +201,18 @@ describe('Model: List ', function() {
       // On Success
       (data) => {
         util.debug('List Delete One Success', data);
-        //Successfully deleting a record results in a bool response of 1
+        // Successfully deleting a record results in a bool response of 1
         expect(data).to.be.equal(1);
         done();
       });
-    });
+  });
 
-    // List Delete
-    it('Delete User', function(done) {
-
-      userData.force = true;
-      user.destroy(userData,
+  // List Delete
+  it('Delete User', (done) => {
+    user.destroy(Object.assign(
+        testData.get('user'), {
+          force: true,
+        }),
 
       // On Error
       (err) => {
@@ -228,11 +223,9 @@ describe('Model: List ', function() {
       // On Success
       (data) => {
         util.debug('List Delete One Success', data);
-        //Successfully deleting a record results in a bool response of 1
+        // Successfully deleting a record results in a bool response of 1
         expect(data).to.be.equal(1);
         done();
       });
-    });
-
   });
 });
