@@ -1,7 +1,7 @@
 module.exports = (express) => {
   const router = express.Router();
   const appAsset = require('../../models/app_asset.js');
-  const util = require('../../../lib/util');
+  const util = require('apex-util');
 
   // Read One
   router.get('/asset/:asset_id', (req, res) => {

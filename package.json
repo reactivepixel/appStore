@@ -14,6 +14,7 @@
   "author": "Chapman",
   "license": "ISC",
   "dependencies": {
+    "apex-util": "^1.0.0",
     "async": "2.0.0-rc.3",
     "bcrypt": "0.8.5",
     "body-parser": "1.15.0",

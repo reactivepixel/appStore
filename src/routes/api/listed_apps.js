@@ -1,7 +1,7 @@
 module.exports = (express) => {
   const router = express.Router();
   const app = require('../../models/app');
-  const util = require('../../../lib/util');
+  const util = require('apex-util');
 
   // Create
   router.put('/listed_app/:list_id/:app_id', (req, res) => {

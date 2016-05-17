@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const faker = require('faker');
-const util = require('../lib/util.js');
+const util = require('apex-util');
 
 const user = require('../src/models/user');
 

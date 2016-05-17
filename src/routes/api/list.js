@@ -1,7 +1,7 @@
 module.exports = (express) => {
   const router = express.Router();
   const list = require('../../models/list');
-  const util = require('../../../lib/util');
+  const util = require('apex-util');
 
   // Read One
   router.get('/list/:id', (req, res) => {

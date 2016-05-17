@@ -1,5 +1,5 @@
 const history = require('../models/history');
-const util = require('../../lib/util');
+const util = require('apex-util');
 module.exports = (express) => {
   const router = express.Router();
 

@@ -8,7 +8,7 @@ var app = require('../src/models/app.js');
 var list = require('../src/models/list.js');
 
 // Custom utility handlers
-var util = require('../lib/util');
+var util = require('apex-util');
 
 var config = {
   genTotal: 10,

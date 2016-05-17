@@ -1,5 +1,5 @@
 const db = require('./db.js');
-const util = require('../../lib/util');
+const util = require('apex-util');
 
 
 /**
