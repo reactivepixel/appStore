@@ -1,34 +1,34 @@
-var gulp = require('gulp');
-var nodemon = require('gulp-nodemon');
-var shell = require('gulp-shell');
-var env = require('gulp-env');
+const gulp = require('gulp');
+const nodemon = require('gulp-nodemon');
+const shell = require('gulp-shell');
+const env = require('gulp-env');
 
-//Task to initiate JSdocs
+// Task to initiate JSdocs
 gulp.task('genDocs', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
 
 // Task to run server using gulp
-gulp.task('server', function () {
+gulp.task('server', () => {
   env({
     file: '.env.json',
     vars: {
       // any variables you want to overwrite
-    }
+    },
   });
   nodemon({
-    script: './src/server.js'
+    script: './src/server.js',
   });
 });
 
 // Task to run server using gulp
-gulp.task('dev', function () {
+gulp.task('dev', () => {
   env({
     file: '.env.json',
     vars: {
-      DEBUG: true
-    }
+      DEBUG: true,
+    },
   });
   nodemon({
-    script: './src/server.js'
+    script: './src/server.js',
   });
 });
 
