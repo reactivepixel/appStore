@@ -13,10 +13,9 @@ const argv = require('yargs').argv;
 gulp.task('genDocs', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
 
 gulp.task('bump', () => {
-  if (['major', 'minor', 'patch'].indexOf(Object.keys(argv)[1]) === -1) return false;
-
-
-  pkgInfo.version = bump.version(pkgInfo.version, 'patch');
+  const semOption = Object.keys(argv)[1];
+  if (['major', 'minor', 'patch'].indexOf(semOption) === -1) return console.log('Error: No Argument Specificed');
+  pkgInfo.version = bump.version(pkgInfo.version, semOption);
   fs.writeFile('./package.json', JSON.stringify(pkgInfo, null, 2), (err) => {
     if (err) {
       return util.debug('Saving Package.Json Error', err);
