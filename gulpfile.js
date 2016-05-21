@@ -14,7 +14,9 @@ gulp.task('genDocs', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs'
 
 gulp.task('bump', () => {
   const semOption = Object.keys(argv)[1];
-  if (['major', 'minor', 'patch'].indexOf(semOption) === -1) return console.log('Error: No Argument Specificed');
+  if (['major', 'minor', 'patch'].indexOf(semOption) === -1) {
+    return util.log('Error: No Argument Specificed');
+  }
   pkgInfo.version = bump.version(pkgInfo.version, semOption);
   fs.writeFile('./package.json', JSON.stringify(pkgInfo, null, 2), (err) => {
     if (err) {
