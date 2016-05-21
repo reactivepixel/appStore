@@ -18,8 +18,11 @@ gulp.task('bump', () => {
       return util.debug('Saving Package.Json Error', err);
     }
     util.debug('The file was saved!', true);
+    const commitMsg = 'VERSION BUMP to ' + pkgInfo.version;
     shell.task([
-      'git tag -a ' + pkgInfo.version + ' -m "VERSION BUMP to ' + pkgInfo.version + '"',
+      'git add package.json',
+      'git commit -m ' + commitMsg,
+      'git tag -a ' + pkgInfo.version + ' -m ' + commitMsg,
       // 'git push origin --tags'
     ]);
     return true;
