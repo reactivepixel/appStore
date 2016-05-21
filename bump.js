@@ -12,6 +12,13 @@ exports.version = (semVer, bumpType) => {
     releases[bumpOptions[bumpType]]
   ) + 1;
 
+  if (bumpOptions[bumpType] < 2) {
+    releases[bumpOptions[bumpType] + 1] = 0;
+  }
+  if (bumpOptions[bumpType] < 1) {
+    releases[bumpOptions[bumpType] + 2] = 0;
+  }
+
   const bumpedSemVer = releases.join('.');
   util.debug('Output Version', bumpedSemVer);
   return bumpedSemVer;
