@@ -1,115 +1,136 @@
-var expect = require('chai').expect;
-var faker = require('faker');
-var util = require('../lib/util.js');
+const expect = require('chai').expect;
+const faker = require('faker');
+const util = require('apex-util');
 
-var user = require('../src/models/user');
+const user = require('../src/models/user');
 
-var userData = {
+const testData = new Map();
+testData.set('user', {
   dispName: faker.name.findName(),
   email: faker.internet.email(),
   password: 'unhash',
-  phone: faker.phone.phoneNumber()
-};
+  phone: faker.phone.phoneNumber(),
+});
 
-describe('Model: User ', function() {
-
+describe('Model: User ', () => {
   // User Create One
-  it('Create One', function(done) {
-    user.create(userData,
+  it('Create One User', (done) => {
+    user.create(
+      util.scrubData(
+        testData.get('user')),
 
-    // On Error
-    (err) => {
-      util.debug('User Create Error', err);
-      throw new Error('User Create Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('User Create Error', err);
+        throw new Error('User Create Error');
+      },
 
-    // On Success
-    (data) => {
-      util.debug('User Create Success', data);
+      // On Success
+      (data) => {
+        util.debug('User Create Success', data);
 
-      // Overwrite the returned obj to userData
-      userData = data;
-      expect(data.dispName).to.be.equal(userData.dispName);
-      done();
-    });
+        // Test the model correctly handled the input data.
+        expect(testData.get('user').dispName).to.be.equal(data.dispName);
+
+        // Set the testData with the new infomation returned from the db transaction.
+        testData.set('user', Object.assign(testData.get('user'), data.dataValues));
+        done();
+      });
   });
 
   // User Read One
-  it('Read One', function(done) {
-    user.find(userData,
+  it('Read One User', (done) => {
+    user.find(
+      util.scrubData(
+        testData.get('user')),
 
-    // On Error
-    (err) => {
-      util.debug('User Read One Error', err);
-      throw new Error('User Read One Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('User Read One Error', err);
+        throw new Error('User Read One Error');
+      },
 
-    // On Success
-    (data) => {
-      util.debug('User Read One Success', data);
-      expect(data.dispName).to.be.equal(userData.dispName);
-      done();
-    });
+      // On Success
+      (data) => {
+        util.debug('User Read One Success', data);
+
+        // Test the model correctly handled the input data.
+        expect(testData.get('user').dispName).to.be.equal(data.dispName);
+
+        // Set the testData with the new infomation returned from the db transaction.
+        testData.set('user', Object.assign(testData.get('user'), data.dataValues));
+        done();
+      });
   });
 
   // User Read All
-  it('Read All', function(done) {
+  it('Retrieve All Users', (done) => {
     user.findAll(
 
-    // On Error
-    (err) => {
-      util.debug('User Read All Error', err);
-      throw new Error('User Read All Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('User Read All Error', err);
+        throw new Error('User Read All Error');
+      },
 
-    // On Success
-    (data) => {
-      util.debug('User Read All Success', data);
-      expect(data.length).to.be.above(0);
-      done();
-    });
+      // On Success
+      (data) => {
+        util.debug('User Read All Success', data);
+        expect(data.length).to.be.above(0);
+        done();
+      });
   });
 
   // User Update One
-  it('Update One', function(done) {
-    var updateInfo = {id: userData.id, dispName: 'xx Force Update xx'};
-    user.update(updateInfo,
+  it('Update A User', (done) => {
+    user.update(
+      util.scrubData(
+        Object.assign(
+          testData.get('user'), {
+            dispName: 'xx Force Update xx',
+          })),
 
-    // On Error
-    (err) => {
-      util.debug('User Update One Error', err);
-      throw new Error('User Update One Error');
-    },
+      // On Error
+      (err) => {
+        util.debug('User Update One Error', err);
+        throw new Error('User Update One Error');
+      },
 
-    // On Success
-    (data) => {
-      // Overwrite the returned obj to userData
-      userData = data;
+      // On Success
+      (data) => {
+        util.debug('User Read One Success', data);
 
-      util.debug('User Update One Success', data);
-      expect(data.dispName).to.be.equal(updateInfo.dispName);
-      done();
-    });
+        // Test the model correctly handled the input data.
+        expect(testData.get('user').dispName).to.be.equal(data.dispName);
+
+        // Set the testData with the new infomation returned from the db transaction.
+        testData.set('user', Object.assign(testData.get('user'), data.dataValues));
+        done();
+      });
   });
 
   // User Delete
-  it('Delete One', function(done) {
+  it('Delete A User', (done) => {
+    user.destroy(
+      util.scrubData(
+        Object.assign(
+          testData.get('user'), {
+            force: true,
+          })),
 
-    userData.force = true;
-    user.destroy(userData,
+      // On Error
+      (err) => {
+        util.debug('User Delete One Error', err);
+        throw new Error('User Delete One Error');
+      },
 
-    // On Error
-    (err) => {
-      util.debug('User Delete One Error', err);
-      throw new Error('User Delete One Error');
-    },
+      // On Success
+      (data) => {
+        util.debug('User Delete One Success', data);
 
-    // On Success
-    (data) => {
-      util.debug('User Delete One Success', data);
-      //Successfully deleting a record results in a bool response of 1
-      expect(data).to.be.equal(1);
-      done();
-    });
+        // Successfully deleting a record results in a bool response of 1
+        expect(data).to.be.equal(1);
+        done();
+      });
   });
 });

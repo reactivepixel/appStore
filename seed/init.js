@@ -1,8 +1,6 @@
 var faker = require('faker');
 var async = require('async');
 
-// Dot Env File Loader
-if (!process.env.PORT) dotenv = require('dotenv').load();
 
 // Include all the models to inject seed info into
 var user = require('../src/models/user.js');
@@ -10,7 +8,7 @@ var app = require('../src/models/app.js');
 var list = require('../src/models/list.js');
 
 // Custom utility handlers
-var util = require('../lib/util');
+var util = require('apex-util');
 
 var config = {
   genTotal: 10,

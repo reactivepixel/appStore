@@ -1,70 +1,152 @@
-module.exports = function() {
-  var db = require('./db.js');
-  var sequelize = db.connection;
-  var util = require('../../lib/util');
+const db = require('./db.js');
+const util = require('apex-util');
 
-  function _create(payload, err, success) {
-    var cleanData = util.scrubData(payload);
-    var cryptedData;
+/**
+ * @function create
+ * @param payload
+ * An object that contains all props for creation of the model.
+ * @param err
+ * Callback Function in the event of an error.
+ * @param success
+ * Callback Function in the event of an Success.
+ * @example
+ * .create({
+ *   dispName: 'Best User Ever',
+ * }, (errorMsg) => {
+ *   console.log(errorMsg);
+ * }, (successData) => {
+ *   console.log(successData);
+ * });
+ */
+exports.create = (payload, err, success) => {
+  // If the Data has not been sanitized evoke an error.
+  if (!payload.cleaned) return err('Data not sanitized.');
 
-    // Hash the user's password
-    util.hash(cleanData.password, function(err, hash){
-      cleanData.password = hash;
-      var cryptedData = cleanData;
+  util.debug('Model: User Create', payload);
+  db.user.create(payload).then(success).catch(err);
+  return true;
+};
 
-      // Save the user with crypted hash
-      db.user.create(cryptedData).then(success).catch(err);
-    });
-  }
+/**
+ * @function update
+ * @param payload
+ * An object that contains all props for update of the db.
+ * @param err
+ * Callback Function in the event of an error.
+ * @param success
+ * Callback Function in the event of an Success.
+ * @example
+ * .update({
+ *   id: 'xxxx-xxx-xxx-xxx-xxxx',
+ *   dispName: 'An Even Better User',
+ * }, (errorMsg) => {
+ *   console.log(errorMsg);
+ * }, (successData) => {
+ *   console.log(successData);
+ * });
+ */
+exports.update = (payload, err, success) => {
+  // If the Data has not been sanitized evoke an error.
+  if (!payload.cleaned) return err('Data not sanitized.');
 
-  function _update(payload, err, success) {
-    var cleanData = util.scrubData(payload);
-    db.user.find({
-      where: {
-        id: cleanData.id
-      }
-    }).then(function(matcheduser) {
-      matcheduser.updateAttributes(cleanData).then(success).catch(err);
-    }).catch(err);
-  }
+  util.debug('Model: User Update', payload);
+  db.user.find({
+    where: {
+      id: payload.id,
+    },
+  }).then((matchedUserAsset) => {
+    matchedUserAsset.updateAttributes(payload).then(success).catch(err);
+  }).catch(err);
+  return true;
+};
 
-  function _find(payload, err, success) {
-    var cleanData = util.scrubData(payload);
-    db.user.find({
-      where: {
-        id: cleanData.id
-      },
-      include: [{
-        all: true,
-        nested: true
-      }]
-    }).then(success).catch(err);
-  }
+/**
+ * @function find
+ * @param payload
+ * An object that contains an id prop to find in the db.
+ * @param err
+ * Callback Function in the event of an error.
+ * @param success
+ * Callback Function in the event of an Success.
+ * @example
+ * .find({
+ *   id: 'xxxx-xxx-xxx-xxx-xxxx',
+ * }, (errorMsg) => {
+ *   console.log(errorMsg);
+ * }, (successData) => {
+ *   console.log(successData);
+ * });
+ */
+exports.find = (payload, err, success) => {
+  // If the Data has not been sanitized evoke an error.
+  if (!payload.cleaned) return err('Data not sanitized.');
 
-  function _findAll(err, success) {
-    db.user.findAll({
-      include: [{
-        all: true,
-        nested: true
-      }]
-    }).then(success).catch(err);
-  }
+  util.debug('Model: User Find', payload);
 
-  function _destroy(payload, err, success) {
-    var cleanData = util.scrubData(payload);
-    db.user.destroy({
-      where: {
-        id: cleanData.id
-      },
-      force: payload.force
-    }).then(success).catch(err);
-  }
+  db.user.find({
+    where: {
+      id: payload.id,
+    },
+    // Find all relations defiend in sequelize
+    include: [{
+      all: true,
+      nested: true,
+    }],
+  }).then(success).catch(err);
+  return true;
+};
 
-  return {
-    create: _create,
-    update: _update,
-    find: _find,
-    findAll: _findAll,
-    destroy: _destroy,
-  };
-}();
+/**
+ * @function findAll
+ * @param err
+ * Callback Function in the event of an error.
+ * @param success
+ * Callback Function in the event of an Success.
+ * @example
+ * .findAll((errorMsg) => {
+ *   console.log(errorMsg);
+ * }, (successData) => {
+ *   console.log(successData);
+ * });
+ */
+exports.findAll = (err, success) => {
+  db.user.findAll({
+    // Find all relations defiend in sequelize
+    include: [{
+      all: true,
+      nested: true,
+    }],
+  }).then(success).catch(err);
+};
+
+/**
+ * @function destroy
+ * @param payload
+ * An object that contains an id prop to delete in the db.
+ * @param err
+ * Callback Function in the event of an error.
+ * @param success
+ * Callback Function in the event of an Success.
+ * @example
+ * .destroy({
+ *   id: 'xxxx-xxx-xxx-xxx-xxxx',
+ * }, (errorMsg) => {
+ *   console.log(errorMsg);
+ * }, (successData) => {
+ *   console.log(successData);
+ * });
+ */
+exports.destroy = (payload, err, success) => {
+  // If the Data has not been sanitized evoke an error.
+  if (!payload.cleaned) return err('Data not sanitized.');
+
+  util.debug('Model: User Destroy', payload);
+  db.user.destroy({
+    where: {
+      id: payload.id,
+    },
+    // Override if paraniod mode has been set to true for this table.
+    force: payload.force || false,
+  }).then(success).catch(err);
+  return true;
+};

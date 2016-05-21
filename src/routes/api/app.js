@@ -1,33 +1,8 @@
-module.exports = function (express) { // Setting module.exports to a new function that excepts express as a paramater of express.
+module.exports = (express) => {
+  const router = express.Router();
+  const app = require('../../models/app');
+  const util = require('apex-util');
 
-
-  /**
-   * @var {module} router
-   * This sets the express.Router function to the variable, router.
-  */
-  var router = express.Router();
-
-
-  /**
-   * @var {file} app
-   * This sets the imported file app.js to the variable, app.
-  */
-  var app = require('../../models/app');
-
-  /**
-   * @var {file} util
-   * This sets the imported file util.js to the variable, util.
-  */
-  var util = require('../../../lib/util');
-
-
-
-
-/*
-  The following are all routes that will either display an error with status 500,
-  Or the proper data with a status of 200.
-
-*/
 
 /**
  * @function get
@@ -38,12 +13,14 @@ module.exports = function (express) { // Setting module.exports to a new functio
  * @desc ATTN: What does this do?
 */
   // Read One
-  router.get('/app/:id', function(req, res) {
-    req.body.id = req.params.id;
-    app.find(req.body,function(err){
+  router.get('/app/:id', (req, res) => {
+    const payload = util.scrubData(req.body);
+    payload.id = req.params.id;
+
+    app.find(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
-    },function(data) {
+    }, (data) => {
       res.status(200).json(data);
     });
   });
@@ -57,11 +34,11 @@ module.exports = function (express) { // Setting module.exports to a new functio
    * @desc ATTN: What does this do?
   */
   // Read All
-  router.get('/apps', function(req, res) {
-    app.findAll(function(err){
+  router.get('/apps', (req, res) => {
+    app.findAll((err) => {
       // Error Encountered
       res.status(500).json(err);
-    },function(data) {
+    }, (data) => {
       res.status(200).json(data);
     });
   });
@@ -75,11 +52,13 @@ module.exports = function (express) { // Setting module.exports to a new functio
    * @desc ATTN: What does this do?
   */
   // Create
-  router.put('/app', function(req, res) {
-    app.create(req.body,function(err){
+  router.put('/app', (req, res) => {
+    const payload = util.scrubData(req.body);
+
+    app.create(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
-    },function(data) {
+    }, (data) => {
       res.status(200).json(data);
     });
   });
@@ -93,12 +72,14 @@ module.exports = function (express) { // Setting module.exports to a new functio
    * @desc ATTN: What does this do?
   */
   // Update
-  router.put('/app/:id', function(req, res) {
-    req.body.id = req.params.id;
-    app.update(req.body,function(err){
+  router.put('/app/:id', (req, res) => {
+    const payload = util.scrubData(req.body);
+    payload.id = req.params.id;
+
+    app.update(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
-    },function(data) {
+    }, (data) => {
       res.status(200).json(data);
     });
   });
@@ -112,20 +93,18 @@ module.exports = function (express) { // Setting module.exports to a new functio
    * @desc ATTN: What does this do?
   */
   // Delete One
-  router.delete('/app/:id', function(req, res) {
-    req.body.id = req.params.id;
-    app.destroy(req.body,function(err){
+  router.delete('/app/:id', (req, res) => {
+    const payload = util.scrubData(req.body);
+    payload.id = req.params.id;
+
+    app.destroy(payload, (err) => {
       // Error Encountered
       res.status(500).json(err);
-    },function(data) {
-      res.status(200).json({success:data});
+    }, (data) => {
+      res.status(200).json({
+        success: data,
+      });
     });
   });
-
-   saytest=function(){
-    return "testing works";
-  };
-   // This returns the router to where ever it is called with the appropriate data.
-   return router;
-
+  return router;
 };

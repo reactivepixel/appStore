@@ -1,29 +1,50 @@
-/**
- * @var {module} gulp
- * This is setting the gulp module to the variable, gulp.
-*/
-var gulp = require('gulp');
+const gulp = require('gulp');
+const nodemon = require('gulp-nodemon');
+const shell = require('gulp-shell');
+const env = require('gulp-env');
+const pkgInfo = require('./package.json');
+const bump = require('./bump.js');
+const fs = require('fs');
+const util = require('apex-util');
 
-/**
- * @var {module} nodemon
- * This is setting the gulp-nodemon module to the variable, nodemon.
-*/
-var nodemon = require('gulp-nodemon');
+// Task to initiate JSdocs
+gulp.task('genDocs', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
 
-/**
- * @var {module} shell
- * This is setting the gulp-shell module to the variable, shell.
-*/
-var shell = require('gulp-shell');
+gulp.task('bump', () => {
+  pkgInfo.version = bump.version(pkgInfo.version, 'patch');
 
-//Task to initiate JSdocs
-gulp.task('js-doc', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
-
-// Task to run server using gulp
-gulp.task('server', function () {
-  nodemon({
-    script: './src/server.js'
+  fs.writeFile('./package.json', JSON.stringify(pkgInfo, null, 2), (err) => {
+    if (err) {
+      return util.debug('Saving Package.Json Error', err);
+    }
+    return util.debug('The file was saved!', true);
   });
 });
 
-gulp.task('default', ['js-doc','server']);
+// Task to run server using gulp
+gulp.task('server', () => {
+  env({
+    file: '.env.json',
+    vars: {
+      // any variables you want to overwrite
+    },
+  });
+  nodemon({
+    script: './src/server.js',
+  });
+});
+
+// Task to run server using gulp
+gulp.task('dev', () => {
+  env({
+    file: '.env.json',
+    vars: {
+      DEBUG: true,
+    },
+  });
+  nodemon({
+    script: './src/server.js',
+  });
+});
+
+gulp.task('default', ['server']);

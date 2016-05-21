@@ -1,59 +1,23 @@
-/**
- * @var {module} express
- * This is the express module being put into a variable, express.
-*/
-var express = require('express'); // Sets variable express to express module
-/**
- * @var {module} body_parser
- * This is the body-parser module being put into a variable, body_parser.
-*/
-var body_parser = require('body-parser'); // Sets variable body_parser to body-parser module
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const util = require('apex-util');
 
-/**
- * @var {module} app
- * This is the express functionality being put into a variable, app.
-*/
-var app = express(); // Sets variable app to express function
+const port = process.env.PORT || 3000;
 
-// Dot Env File Loader
-if (!process.env.PORT) dotenv = require('dotenv').load(); // If
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
 
-/**
- * @var {number} port
- * Config - Sets variable port to .env file PORT variable OR 3000 if the file doesn't exist.
-*/
-var port = process.env.PORT || 3000;
-
-// Enable body-parser
-/**
- * @function use
- * @param body_parser.json()
- * Tells app to use the selected File.
- * @desc This function tells the app to use the selected file that is passed as a parameter.
-*/
-app.use(body_parser.json());
-
-/**
- * @function require
- * @param ./routes(express)
- * Tells app to require the routes.
- * @desc This function imports or requires a file to be present. In this case it's the routes directory.
-*/
 app.use('/', require('./routes')(express));
 
-// Start up the Server
+
 /**
- * @var {module} server
- * @function listen
- * @param port
- * This sets the server variable to the listening action on @var {number} port
- * @param function
- * This is what you would like the function to do while the listen function is running.
- * @desc This function listens at the defined port number and runs the inner function.
-*/
-var server = app.listen(port, function() {
-  if (process.env.DEBUG) console.log('Server Active On', port);
+ * The Server Module that launches the API. Usable by other services like in unit testing.
+ * @module Start/Server
+ */
+exports.server = app.listen(port, () => {
+  util.debug('Server Active On', port);
 });
-
-
-module.exports = server;

@@ -1,308 +1,260 @@
+const Sequelize = require('sequelize');
 
-  // Sequelize will setup a connection pool
-  // on initialization so you should ideally
-  // only ever create one instance per database.
-  // if you are reading this sean is awesome...that is all
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_SCHEMA,
+  port: process.env.DB_PORT,
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000,
+  },
+  logging: false,
+});
 
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    User
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const user = sequelize.define('user', {
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true,
+  },
+  dispName: {
+    type: Sequelize.STRING,
+  },
+  email: {
+    type: Sequelize.STRING,
+  },
+  password: {
+    type: Sequelize.STRING,
+  },
+  phone: {
+    type: Sequelize.STRING,
+  },
+  gender: {
+    type: Sequelize.STRING,
+  },
+  age: {
+    type: Sequelize.INTEGER,
+  },
+  hobby: {
+    type: Sequelize.STRING,
+  },
+}, {
+  paranoid: true,
+});
 
-module.exports = function() {
-  var Sequelize = require('sequelize');
-  var mysql = require('mysql');
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    genre
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const genre = sequelize.define('genre', {
+  title: {
+    type: Sequelize.STRING,
+  },
+}, {
+  paranoid: true,
+});
 
-  // Dot Env File Loader
-  if (!process.env.PORT) dotenv = require('dotenv').load();
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    degree
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const degree = sequelize.define('degree', {
+  title: {
+    type: Sequelize.STRING,
+  },
+}, {
+  paranoid: true,
+});
 
-  var _sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-    host: process.env.DB_HOST,
-    dialect: process.env.DB_SCHEMA,
-    port: process.env.DB_PORT,
-    pool: {
-      max: 5,
-      min: 0,
-      idle: 10000
-    },
-    logging: false
-  });
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    Roles
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const role = sequelize.define('role', {
+  title: {
+    type: Sequelize.STRING,
+  },
+}, {
+  paranoid: true,
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    User
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    Social Accounts
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const socialAccount = sequelize.define('socialAccount', {
+  socialID: {
+    type: Sequelize.INTEGER,
+  },
+  publicLink: {
+    type: Sequelize.STRING,
+  },
+  type: {
+    type: Sequelize.ENUM,
+    values: ['google', 'twitter', 'facebook'],
+  },
+}, {
+  paranoid: true,
+});
 
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    Apps
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const app = sequelize.define('app', {
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true,
+  },
+  title: {
+    type: Sequelize.STRING,
+  },
+  description: {
+    type: Sequelize.TEXT,
+  },
+  age: {
+    type: Sequelize.INTEGER,
+  },
+  readme: {
+    type: Sequelize.TEXT,
+  },
+  sourceLink: {
+    type: Sequelize.STRING,
+  },
+  exeLink: {
+    type: Sequelize.STRING,
+  },
+  iOSAppStoreLink: {
+    type: Sequelize.STRING,
+  },
+  releaseDate: {
+    type: Sequelize.DATE,
+  },
+}, {
+  paranoid: true,
+});
 
-   // to define mapping between a model and table use
-   // ".define" Sequelize will then automatically add the
-   // attributes createdAt and updatedAt to it in DB.
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    Review
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const review = sequelize.define('review', {
+  name: {
+    type: Sequelize.STRING,
+  },
+  post: {
+    type: Sequelize.TEXT,
+  },
+  star: {
+    type: Sequelize.INTEGER,
+  },
+}, {
+  paranoid: true,
+});
 
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    App Assets
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const appAsset = sequelize.define('appAsset', {
+  type: {
+    type: Sequelize.ENUM,
+    values: ['image', 'YouTube', 'other'],
+  },
+  link: {
+    type: Sequelize.STRING,
+  },
+}, {
+  paranoid: true,
+});
 
-  var _user = _sequelize.define('user', {
-    id: {
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      primaryKey: true
-    },
-    dispName: {
-      type: Sequelize.STRING
-    },
-    email: {
-      type: Sequelize.STRING
-    },
-    password: {
-      type: Sequelize.STRING
-    },
-    phone: {
-      type: Sequelize.STRING
-    },
-    gender: {
-      type: Sequelize.STRING
-    },
-    age: {
-      type: Sequelize.INTEGER
-    },
-    hobby: {
-      type: Sequelize.STRING
-    }
-  }, {
-    paranoid: true
-  });
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    Lists
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const list = sequelize.define('list', {
+  title: {
+    type: Sequelize.STRING,
+  },
+  releaseDate: {
+    type: Sequelize.DATE,
+  },
+}, {
+  paranoid: true,
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    genre
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _genre = _sequelize.define('genre', {
-    title: {
-      type: Sequelize.STRING
-    }
-  }, {
-    paranoid: true
-  });
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    History
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const history = sequelize.define('history', {
+  rawRoute: {
+    type: Sequelize.STRING,
+  },
+  model: {
+    type: Sequelize.STRING,
+  },
+  action: {
+    type: Sequelize.STRING,
+  },
+  target: {
+    type: Sequelize.STRING,
+  },
+}, {
+  paranoid: true,
+});
 
-   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    degree
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _degree = _sequelize.define('degree', {
-    title: {
-      type: Sequelize.STRING
-    }
-  }, {
-    paranoid: true
-  });
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    Listed Apps - table joins
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+const listedApp = sequelize.define('listedApp', {}, {
+  paranoid: false,
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Roles
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _role = _sequelize.define('role', {
-    title: {
-      type: Sequelize.STRING
-    }
-  }, {
-    paranoid: true
-  });
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//    Relations
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+user.belongsTo(role, {
+  foreignKey: 'role_id',
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Social Accounts
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _socialAccount = _sequelize.define('socialAccount', {
-    socialID: {
-      type: Sequelize.INTEGER
-    },
-    publicLink: {
-      type: Sequelize.STRING
-    },
-    type: {
-      type: Sequelize.ENUM,
-      values: ['google', 'twitter', 'facebook']
-    }
-  }, {
-    paranoid: true
-  });
+genre.hasOne(app, {
+  foreignKey: 'genre_id',
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Votings
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _voting = _sequelize.define('voting', {
-    type: {
-      type: Sequelize.ENUM,
-      values: ['A', 'B', 'C']
-    },
-    link: {
-      type: Sequelize.STRING
-    }
-  }, {
-    paranoid: true
-  });
+degree.hasOne(user, {
+  foreignKey: 'degree_id',
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Apps
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _app = _sequelize.define('app', {
-    id: {
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      primaryKey: true
-    },
-    title: {
-      type: Sequelize.STRING
-    },
-    description: {
-      type: Sequelize.TEXT
-    },
-    age: {
-      type: Sequelize.INTEGER
-    },
-    readme: {
-      type: Sequelize.TEXT
-    },
-    sourceLink: {
-      type: Sequelize.STRING
-    },
-    exeLink: {
-      type: Sequelize.STRING
-    },
-    iOSAppStoreLink: {
-      type: Sequelize.STRING
-    },
-    releaseDate: {
-      type: Sequelize.DATE
-    }
-  }, {
-    paranoid: true
-  });
+user.hasMany(socialAccount, {
+  foreignKey: 'user_id',
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Review
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+user.hasMany(review, {
+  foreignKey: 'user_id',
+});
 
-  var _review = _sequelize.define('review', {
-    name: {
-      type: Sequelize.STRING
-    },
-    post: {
-      type: Sequelize.TEXT
-    },
-    star: {
-      type: Sequelize.INTEGER
-    }
-  }, {
-    paranoid: true
-  });
+user.hasMany(app, {
+  foreignKey: 'user_id',
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    App Assets
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _appAsset = _sequelize.define('appAsset', {
-    type: {
-      type: Sequelize.ENUM,
-      values: ['image', 'YouTube', 'other']
-    },
-    link: {
-      type: Sequelize.STRING
-    }
-  }, {
-    paranoid: true
-  });
+app.hasMany(appAsset, {
+  foreignKey: 'app_id',
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Lists
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _list = _sequelize.define('list', {
-    title: {
-      type: Sequelize.STRING
-    },
-    releaseDate: {
-      type: Sequelize.DATE
-    }
-  }, {
-    paranoid: true
-  });
+user.hasMany(list, {
+  foreignKey: 'user_id',
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    History
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _history = _sequelize.define('history', {
-    rawRoute: {
-      type: Sequelize.STRING
-    },
-    model: {
-      type: Sequelize.STRING
-    },
-    action: {
-      type: Sequelize.STRING
-    },
-    target: {
-      type: Sequelize.STRING
-    }
-  }, {
-    paranoid: true
-  });
+app.belongsToMany(list, {
+  through: 'listedApp',
+});
 
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  //    Listed Apps - table joins
-  // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  var _listedApp = _sequelize.define('listedApp', {}, {
-    paranoid: false
-  });
+// Sync the Database with the ORM's Model.
+sequelize.sync();
 
-  /**
-   * @var {attributes} belongsTo
-   * Adds a foreign key and singular association mixins to the _role source.
-   */
-  _user.belongsTo(_role, {
-    foreignKey: 'role_id'
-  });
-
-  /**
-   * @var {attributes} hasOne
-   * Adds a foreign key to the target "app" and singular association mixins to the source.
-   */
-  _genre.hasOne(_app, {
-    foreignKey: 'genre_id'
-  });
-  _degree.hasOne(_user, {
-    foreignKey: 'degree_id'
-  });
-
-  /**
-   * @var {attributes} .hasMany
-   *  adds a foreign key to target _socialAccount and plural association mixins to the source
-   *  user_id.
-   */
-  _user.hasMany(_socialAccount, {
-    foreignKey: 'user_id'
-  });
-  _user.hasMany(_review, {
-    foreignKey: 'user_id'
-  });
-  _user.hasMany(_app, {
-    foreignKey: 'user_id'
-  });
-  _app.hasMany(_appAsset, {
-    foreignKey: 'app_id'
-  });
-  _user.hasMany(_list, {
-    foreignKey: 'user_id'
-  });
-
-  /**
-   * @var {attributes} .belongsToMany
-   *  creates an N:M association with a join table and adds plural association
-   *  mixins to the source. The junction table is created with sourceId and targetId.
-   */
-  _app.belongsToMany(_list, {
-    through: 'listedApp'
-  });
-
-  _sequelize.sync();
-
-  return {
-    connection: _sequelize,
-    user: _user,
-    app: _app,
-    history: _history,
-    review: _review,
-    voting: _voting,
-    appAsset: _appAsset,
-    list: _list,
-    listedApp: _listedApp,
-    role: _role
-  };
-}();
+exports.sequelize = sequelize;
+exports.user = user;
+exports.app = app;
+exports.history = history;
+exports.review = review;
+exports.appAsset = appAsset;
+exports.list = list;
+exports.listedApp = listedApp;
+exports.role = role;
