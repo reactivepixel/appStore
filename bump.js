@@ -1,6 +1,6 @@
 const util = require('apex-util');
 
-exports.version = (semVer, bumpType) => {
+exports.version = (semVer, bumpType = 'patch') => {
   const releases = semVer.split('.');
   const bumpOptions = {
     major: 0,

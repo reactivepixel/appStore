@@ -7,12 +7,13 @@ const bump = require('./bump.js');
 const fs = require('fs');
 const util = require('apex-util');
 const git = require('gulp-git');
+const argv = require('yargs').argv;
 
 // Task to initiate JSdocs
 gulp.task('genDocs', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
 
 gulp.task('bump', () => {
-  pkgInfo.version = bump.version(pkgInfo.version, 'patch');
+  pkgInfo.version = bump.version(pkgInfo.version, Object.keys(argv)[1]);
 
   fs.writeFile('./package.json', JSON.stringify(pkgInfo, null, 2), (err) => {
     if (err) {
@@ -30,6 +31,7 @@ gulp.task('bump', () => {
 
     return true;
   });
+  return false;
 });
 
 // Task to run server using gulp
