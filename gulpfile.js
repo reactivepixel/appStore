@@ -6,6 +6,7 @@ const pkgInfo = require('./package.json');
 const bump = require('./bump.js');
 const fs = require('fs');
 const util = require('apex-util');
+const git = require('gulp-git');
 
 // Task to initiate JSdocs
 gulp.task('genDocs', shell.task(['jsdoc src -r -c ./conf.json -d ./build/jsdocs']));
@@ -19,12 +20,14 @@ gulp.task('bump', () => {
     }
     util.debug('The file was saved!', true);
     const commitMsg = 'VERSION BUMP to ' + pkgInfo.version;
-    shell.task([
-      'git add package.json',
-      'git commit -m ' + commitMsg,
-      'git tag -a ' + pkgInfo.version + ' -m ' + commitMsg,
-      // 'git push origin --tags'
-    ]);
+
+    gulp.src('./package.json')
+      .pipe(git.add())
+      .pipe(git.commit(commitMsg));
+    git.tag('v' + pkgInfo.version, 'Version message', (taggingErr) => {
+      if (taggingErr) throw taggingErr;
+    });
+
     return true;
   });
 });
