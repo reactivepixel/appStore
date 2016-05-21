@@ -28,7 +28,7 @@ gulp.task('bump', () => {
     gulp.src('./package.json')
       .pipe(git.add())
       .pipe(git.commit(commitMsg));
-    git.tag('v' + pkgInfo.version, 'Version message', (taggingErr) => {
+    git.tag('v' + pkgInfo.version, commitMsg, (taggingErr) => {
       if (taggingErr) throw taggingErr;
     });
     git.push('github', 'master', {args: " --tags"}, (pushErr) => {
