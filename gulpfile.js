@@ -17,7 +17,12 @@ gulp.task('bump', () => {
     if (err) {
       return util.debug('Saving Package.Json Error', err);
     }
-    return util.debug('The file was saved!', true);
+    util.debug('The file was saved!', true);
+    shell.task([
+      'git tag -a ' + pkgInfo.version + ' -m "VERSION BUMP to ' + pkgInfo.version + '"',
+      // 'git push origin --tags'
+    ]);
+    return true;
   });
 });
 
