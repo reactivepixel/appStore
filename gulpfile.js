@@ -31,8 +31,10 @@ gulp.task('bump', () => {
     git.tag('v' + pkgInfo.version, commitMsg, (taggingErr) => {
       if (taggingErr) throw taggingErr;
     });
-    git.push('github', 'master', {args: " --tags"}, (pushErr) => {
-      if (err) throw err;
+    git.push('github', 'master', {
+      args: ' --tags',
+    }, (pushErr) => {
+      if (pushErr) throw pushErr;
     });
     return true;
   });
