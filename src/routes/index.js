@@ -9,7 +9,7 @@ module.exports = (express) => {
 
     // create full rawRoute of the url and store in db
     payload.rawRoute = req.originalUrl;
-    history.create(payload, (err) => {
+    history.create(util.scrubData(payload), (err) => {
       // Error Encountered
       util.debug('History Tracking Middleware Error', err);
       next();
@@ -35,6 +35,7 @@ module.exports = (express) => {
 
 
   // Routes
+  router.use('/public', express.static(__dirname + './../../public'));
   router.use('/jsdoc', express.static(__dirname + './../../build/jsdocs'));
   router.use('/api/', require('./api/user')(express));
   router.use('/api/', require('./api/app')(express));
