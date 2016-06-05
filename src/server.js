@@ -4,7 +4,7 @@ const app = express();
 const util = require('apex-util');
 
 const port = process.env.PORT || 3000;
-
+app.set('json spaces', 2);
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
