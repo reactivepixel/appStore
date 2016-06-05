@@ -28,9 +28,13 @@ module.exports = (express) => {
   });
 
   router.get('/status', (req, res) => {
-    res.status(200).json({
+    history.findAll((err) => res.status(500).json({
+      healthy: false,
+      error: err,
+    }), (historyData) => res.status(200).json({
       healthy: true,
-    });
+      history: historyData,
+    }));
   });
 
 
