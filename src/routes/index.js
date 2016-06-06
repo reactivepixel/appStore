@@ -23,18 +23,21 @@ module.exports = (express) => {
   router.get('/', (req, res) => {
     res.status(200).json({
       msg: 'Hello World',
-      healthy: true,
     });
   });
 
   router.get('/status', (req, res) => {
-    history.findAll((err) => res.status(500).json({
-      healthy: false,
-      error: err,
-    }), (historyData) => res.status(200).json({
-      healthy: true,
-      history: historyData,
-    }));
+    history.findAll((err) => {
+      util.debug('Database Failed to retrieve Histroy Data', err);
+      res.status(500).json({
+        healthy: false,
+      });
+    }, (historyData) => {
+      util.debug('History Dump', historyData);
+      res.status(200).json({
+        healthy: true,
+      });
+    });
   });
 
 

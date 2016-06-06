@@ -18,6 +18,6 @@ app.use('/', require('./routes')(express));
  * The Server Module that launches the API. Usable by other services like in unit testing.
  * @module Start/Server
  */
-exports.server = app.listen(port, function() {
+exports.server = app.listen(port, () => {
   util.debug('Server Active On', port);
 });
