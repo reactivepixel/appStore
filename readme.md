@@ -2,6 +2,12 @@
 
 # Gravity App Store
 
+## File Uploader
+
+Set the environment variable **UPLOAD_DESTINATION**: "relative_or_absolute_file_path_with_trailing/".
+
+To access view the route ```GET /file/form``` in a web browser. Choose a file and Submit.
+
 ## Installation
 
 ### Package Dependencies
@@ -90,6 +96,7 @@ DB_PORT=3306
 DB_USER=root
 DB_PASS=
 DB_NAME=appStore
+UPLOAD_DESTINATION=uploads/
 ```
 
 ### MySQL
