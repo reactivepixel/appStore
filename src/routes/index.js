@@ -7,6 +7,11 @@ module.exports = (express) => {
   router.use((req, res, next) => {
     const payload = req.body;
 
+    // Skipping for history status checks
+    if(req.originalUrl === "/status"){
+      return next();
+    }
+
     // create full rawRoute of the url and store in db
     payload.rawRoute = req.originalUrl;
     history.create(util.scrubData(payload), (err) => {
