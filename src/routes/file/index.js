@@ -1,6 +1,6 @@
 module.exports = (express) => {
   const multer = require('multer');
-  const upload = multer({ dest: process.env.UPLOAD_DESTINATION || 'uploxxxads/' });
+  const upload = multer({ dest: process.env.UPLOAD_DESTINATION || 'uploads/' });
   const router = express.Router();
 
   router.post('/upload', upload.single('bulk'), (req, res, next) => {
