@@ -50,5 +50,6 @@ module.exports = (express) => {
   router.use('/api/', require('./api/list')(express));
   router.use('/api/', require('./api/listed_apps')(express));
 
+  router.use('/file/', require('./file')(express));
   return router;
 };
