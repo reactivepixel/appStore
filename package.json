@@ -1,6 +1,6 @@
 {
   "name": "app_store",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A Game and Application Store for Exclusive use by Full Sail Students and Alumni",
   "main": "./src/server.js",
   "scripts": {
