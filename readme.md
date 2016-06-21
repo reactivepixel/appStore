@@ -8,7 +8,7 @@ Set the environment variable **UPLOAD_DESTINATION**: "relative_or_absolute_file_
 
 To access view the route ```GET /file/form``` in a web browser. Choose a file and Submit.
 
-## Installation
+## Installation 
 
 ### Package Dependencies
 
