@@ -205,3 +205,6 @@ In addition to a Terms of Service for Users, Developers and Admins will need to 
 |Unit Tests| Mocha will be used to provide the stability over time this project will need.|
 |Automated QA| Codeship will be our build and test runner tool to not encumber our production environment.|
 |Various Notables for Inclusion| CodeClimate, Sequelizejs, Gulp, Papertrailsapp, Github Workflow, PassportJS, JSON Web Tokens (JWT), SemVer |
+
+
+Project Concluded
